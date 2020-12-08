@@ -1,0 +1,11 @@
+﻿@page
+@model BetterBuys.Pages.Product.IndexModel
+
+<div class="d-flex justify-content-start align-items-center flex-wrap">
+    @foreach (var product in Model.Products)
+    {
+        <div style="width: 33%;">
+            <partial name="_ProductPartial" for="@product" />
+        </div>
+    }
+</div>
