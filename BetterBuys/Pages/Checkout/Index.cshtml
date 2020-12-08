@@ -40,62 +40,64 @@
         <div class="container content-checkout">
             <div class="row my-3">
                 @*shipping address box*@
-                <form class=" col-lg-6">
-                    <h5>Shipping Address</h5>
-                    <div class="input-control firstName">
-                        <input type="text" id="firstName" placeholder="First Name" />
-                    </div>
-                    <div class="input-control lastName">
-                        <input type="text" id="lastName" placeholder="Last Name" />
-                    </div>
-                    <div class="input-control address">
-                        <input type="text" id="address" placeholder="Adress" />
-                    </div>
-                    <div class="input-control apartment">
-                        <input type="text" id="apartment" placeholder="Apartment" />
-                    </div>
-                    <div class="input-control city">
-                        <input type="text" id="city" placeholder="City" />
-                    </div>
-                    <div class="d-flex">
-                        <div class="input-control country">
-                            <select name="country" class="countries" id="countryId">
-                                <option value="">Select Country</option>
-                                <option value="Canada">Canada</option>
-                            </select>
+                <div class="col-lg-6">
+                    <form class="pr-lg-5 pb-5 pb-lg-0">
+                        <h5>Shipping Address</h5>
+                        <div class="input-control firstName mb-3">
+                            <input type="text" id="firstName" placeholder="First Name" />
                         </div>
-                        <div class="input-control province mx-5">
-                            <select name="province" class="provinces" id="provinceId">
-                                <option value="">Select Province</option>
-                            </select>
+                        <div class="input-control lastName mb-3">
+                            <input type="text" id="lastName" placeholder="Last Name" />
                         </div>
-                    </div>
-                    <div class="input-control postal">
-                        <input type="text" id="postCode" placeholder="Postal Code" />
-                    </div>
-                    <div class="input-control phone">
-                        <input type="text" id="phone" placeholder="Phone" />
-                    </div>
-                    <h5 class="mt-4">Payment Method</h5>
-                    <div class="input-control name">
-                        <input type="text" id="name" placeholder="Cardholder Name" />
-                    </div>
-                    <div class="d-flex">
-                        <div class="input-control number">
-                            <input type="text" id="number" placeholder="Card Number" />
+                        <div class="input-control address mb-3">
+                            <input type="text" id="address" placeholder="Adress" />
                         </div>
-                        <div class="input-control expirationDate mx-5">
-                            <input type="text" id="phone" placeholder="Expiration Date mm/yy" />
+                        <div class="input-control apartment mb-3">
+                            <input type="text" id="apartment" placeholder="Apartment" />
                         </div>
-                    </div>
-                    <div class="input-control cvw">
-                        <input type="text" id="cvw" placeholder="CVW" />
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p>Return to cart</p>
-                        <input type="Submit" value="COMPLETE PURCHASE" id="complete" />
-                    </div>
-                </form>
+                        <div class="input-control city mb-3">
+                            <input type="text" id="city" placeholder="City" />
+                        </div>
+                        <div class="d-flex">
+                            <div class="input-control country mb-3">
+                                <select name="country" class="countries" id="countryId">
+                                    <option value="">Select Country</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </div>
+                            <div class="input-control province mx-5 mb-3">
+                                <select name="province" class="provinces" id="provinceId">
+                                    <option value="">Select Province</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-control postal mb-3">
+                            <input type="text" id="postCode" placeholder="Postal Code" />
+                        </div>
+                        <div class="input-control phone mb-3">
+                            <input type="text" id="phone" placeholder="Phone" />
+                        </div>
+                        <h5 class="mt-4">Payment Method</h5>
+                        <div class="input-control name mb-3">
+                            <input type="text" id="name" placeholder="Cardholder Name" />
+                        </div>
+                        <div class="d-flex">
+                            <div class="input-control number">
+                                <input type="text" id="number" placeholder="Card Number" />
+                            </div>
+                            <div class="input-control expirationDate mx-5 mb-3">
+                                <input type="text" id="phone" placeholder="Expiration Date mm/yy" />
+                            </div>
+                        </div>
+                        <div class="input-control cvw mb-3">
+                            <input type="text" id="cvw" placeholder="CVW" />
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <p>Return to cart</p>
+                            <input type="Submit" value="COMPLETE PURCHASE" id="complete" />
+                        </div>
+                    </form>
+                </div>
                 @*order box*@
                 <div class=" col-lg-6">
                     <h5 class="d-flex justify-content-center">Your Order</h5>
