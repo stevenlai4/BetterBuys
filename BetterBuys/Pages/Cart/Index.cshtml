@@ -1,0 +1,40 @@
+﻿@page
+@model BetterBuys.Pages.Cart.IndexModel
+
+<h1 class="text-center mb-5">Shopping Cart</h1>
+<main class="shopping-cart">
+    <div class="d-flex container justify-content-between">
+        <div class="products">
+            @for (int i = 0; i < 2; i++)
+            {
+                <partial name="_ProductPartial" />
+            }
+        </div>
+        <div class="checkout-container">
+            <form class="promo" method="post">
+                <label for="promo-code" class="form-label">Add a Discount Code</label>
+                <div class="d-flex">
+                    <input type="text" id="promo-code" class="col-form-control mr-2" />
+                    <button type="submit" class="btn btn-primary">Apply Promo Code</button>
+                </div>
+            </form>
+            <div class="total">
+                <div class="d-flex justify-content-between">
+                    <p>Order Value</p>
+                    <p>$20.00</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>Delivery</p>
+                    <p>$8.00</p>
+                </div>
+                <hr />
+                <a>Continue To Checkout</a>
+                <br />  
+                <small>Prices and shipping costs are not confirmed until you've reached checkout</small>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</main>
