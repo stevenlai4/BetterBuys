@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">BetterBuys</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,15 +18,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    <form class="form-inline">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white">
+            <div class="container" id="main-nav">
+                <a class="navbar-brand">Home</a>
+                <a class="navbar-brand">Clothes</a>
+                <a class="navbar-brand">Books</a>
+                <a class="navbar-brand">Electronics</a>
+                <a class="navbar-brand">Sport</a>
+                <a class="navbar-brand">Jewellery</a>
             </div>
         </nav>
     </header>
@@ -36,15 +42,48 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark">
         <div class="container">
-            &copy; 2020 - BetterBuys - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-4">
+                    <aside id="followcolumn">
+                        <i class="fab fa-facebook-square" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
+                        <i class="fab fa-instagram" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
+                        <i class="fab fa-twitter-square" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
+                        <i class="fab fa-youtube" style="font-size: 25px; color:white;"></i><br />
+                        <i class="fas fa-map-marker-alt" style="font-size: 25px;color:white;"></i> <br />
+                        <i class="fas fa-phone-square" style="font-size: 25px; color:white;"></i><br />
+                        <i class="fas fa-envelope" style="font-size: 25px; color:white;"></i>
+                    </aside>
+                </div>
+                <div class="col-lg-4">
+                    <h3 style="color:white;">BetterBuys</h3><br />
+                    <a href="#">About Us</a>&nbsp; &nbsp;
+                    <a href="#">Services</a>&nbsp; &nbsp;
+                    <a href="#">Careers</a>&nbsp; &nbsp;
+                    <a href="#">Get In Touch</a><br /><br />
+                    &copy; 2020 - BetterBuys
+                </div>
+                <div class="col-lg-4">
+                    <h3 style="color:white;"> Contact Us</h3>
+                    <form class="form-inline">
+                        <input class="form-control" type="text" placeholder="Enter Email" />
+                    </form>
+                    <form class="form-inline" style="padding-top: 20px;">
+                        <input class="form-control" type="text" placeholder="Write your message here" />
+                    </form>
+                    <button class="btn btn-outline-success" type="submit">Send Message</button>
+                </div>
+            </div>
+               
+          
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/c2e09ec5b1.js" crossorigin="anonymous"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
