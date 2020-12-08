@@ -1,13 +1,15 @@
 ﻿@model BetterBuys.ViewModels.ProductVM
 
-<form asp-page="/Cart/Index" method="post">
-    <div class="card">
-        <img class="card-img-top" src="@Model.ImageUri" alt="" />
-        <div class="card-body">
-            <p class="card-text">@Model.Name</p>
-            <p class="card-text">@Model.Price</p>
+<div class="card">
+    <img class="card-img-top" src="@Model.ImageUri" alt="" />
+    <div class="card-body">
+        <p class="card-text">@Model.Name</p>
+        <p class="card-text">@Model.Price</p>
+        <form asp-page="/Cart/Index" method="post">
             <button type="submit">Add To Cart</button>
-            <button type="reset">View Detail</button>
-        </div>
+        </form>
+        <form asp-page="/Product/1" method="get">
+            <button type="submit">View Detail</button>
+        </form>
     </div>
-</form>
+</div>
