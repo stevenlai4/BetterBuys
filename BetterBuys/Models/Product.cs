@@ -13,5 +13,7 @@ namespace BetterBuys.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string ImageUri { get; set; }
+
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }
