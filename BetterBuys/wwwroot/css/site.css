@@ -79,4 +79,11 @@ body {
 
 .product-detail-ad {
     text-align: center;
+    padding-top: 150px;
+}
+
+
+.product-detail-button {
+    padding-top: 50px;
+    padding-bottom:150px;
 }
