@@ -32,6 +32,11 @@ namespace BetterBuys
                     Configuration.GetConnectionString("AuthConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>();
+
+            services.AddDbContext<StoreDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("StoreConnection")));
+
             services.AddRazorPages();
         }
 

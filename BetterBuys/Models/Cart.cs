@@ -9,7 +9,7 @@ namespace BetterBuys.Models
     {
         public string ShippingAddress { get; set; }
         public DateTime CreatedOn { get; set; }
-        public int status { get; set; }
+        public int Status { get; set; }
 
         public virtual ICollection<CartProduct> CartProducts { get; set; }
     }
