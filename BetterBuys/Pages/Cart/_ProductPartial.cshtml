@@ -1,0 +1,17 @@
+﻿<div class="product-item d-flex align-items-center">
+    <img src="~/images/products/echo-dot.jpg" width="300" />
+    <div>
+        <h5>ProductItem</h5>
+        <label for="quantity" class="col-form-label mr-2">Quantity</label>
+        <select class="form-select" id="quantity">
+            @for (int i = 1; i < 51; i++)
+            {
+                <option value=@i>@i</option>
+            }
+        </select>
+        <p class="price">$10.00</p>
+        <form method="delete">
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+</div>
