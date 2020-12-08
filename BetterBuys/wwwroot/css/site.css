@@ -70,3 +70,20 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+
+/* Styles for individual product page --------------------------------*/
+
+.product-detail-body-link {
+    text-align: end;
+}
+
+.product-detail-ad {
+    text-align: center;
+    padding-top: 150px;
+}
+
+
+.product-detail-button {
+    padding-top: 50px;
+    padding-bottom:150px;
+}
