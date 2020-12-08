@@ -70,6 +70,9 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+
+/* Styles for individual product page --------------------------------*/
+
 .product-detail-body-link {
     text-align: end;
 }
