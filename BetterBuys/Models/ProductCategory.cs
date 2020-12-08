@@ -10,10 +10,10 @@ namespace BetterBuys.Models
     public class ProductCategory
     {
         [Key, Column(Order = 0)]
-        public int ProductId { get; private set; }
-        [Key, Column(Order = 1)]
         public int CategoryId { get; private set; }
-
+        [Key, Column(Order = 1)]
+        public int ProductId { get; private set; }
+        
         public virtual Product Product { get; set; }
         public virtual Category Category { get; set; }
     }

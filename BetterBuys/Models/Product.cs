@@ -15,5 +15,6 @@ namespace BetterBuys.Models
         public string ImageUri { get; set; }
 
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+        public virtual ICollection<CartProduct> CartProducts { get; set; }
     }
 }
