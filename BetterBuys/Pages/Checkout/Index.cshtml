@@ -2,41 +2,8 @@
 @model BetterBuys.Pages.Checkout.IndexModel
 @{
 }
-
-@*@if (Model.Cart != null && Model.Cart.CartProducts.Any())
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Unit Price</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Cart.CartProducts)
-                {
-
-                    <tr>
-                        <td><img src="@item.Product.PictureUri" width="50" /></td>
-                        <td>@item.Product.Name</td>
-                        <td>@item.UnitPrice.ToString("C")</td>
-                        <td>@item.Quantity</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No Items in Your Cart!</p>
-    }*@
-
-
 <div class="wrapper content">
     <h2 class="d-flex justify-content-center">Checkout</h2>
-    <!--form-->
     <div class="container content-checkout">
         <div class="row my-3">
             @*shipping address box*@
@@ -136,9 +103,4 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
-@*<h3 class="d-flex justify-content-center">Thank you for your order!</h3>
-    <p class="d-flex justify-content-center pt-4"><a asp-page="/Index">back to home page</a></p>*@
