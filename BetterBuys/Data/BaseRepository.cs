@@ -24,7 +24,7 @@ namespace BetterBuys.Data
 
         public IQueryable<T> GetOne(int id)
         {
-            return _db.Set<T>().Where<T>(t => t.Id == id) ;
+            return _db.Set<T>().Where<T>(t => t.Id == id);
         }
     }
 }
