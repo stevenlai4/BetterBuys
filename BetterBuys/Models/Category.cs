@@ -8,8 +8,12 @@ namespace BetterBuys.Models
     public class Category : BaseEntity
     {
         public string Name { get; private set; }
-        public string Description { get; private set; }
 
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+
+        public Category(string name)
+        {
+            Name = name;
+        }
     }
 }
