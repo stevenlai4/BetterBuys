@@ -9,7 +9,7 @@ namespace BetterBuys.ViewModels
     public class ProductIndexVM
     {
         public List<ProductVM> Products { get; set; }
-        public List<SelectListItem> Types { get; set; }
+        public List<SelectListItem> Categories { get; set; }
         public int? TypesFilterApplied { get; set; }
     }
 }

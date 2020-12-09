@@ -9,7 +9,7 @@ namespace BetterBuys.Interfaces
 {
     public interface IProductVMService
     {
-        ProductIndexVM GetProductsVM(int? typeId);
-        IEnumerable<SelectListItem> GetTypes();
+    ProductIndexVM GetProductsVM(int? categoryId);
+    IEnumerable<SelectListItem> GetCategories();
     }
 }
