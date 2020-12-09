@@ -16,8 +16,9 @@ namespace BetterBuys.Data
             _db = db;
         }
 
+        //limiting traffic to the database
         public IQueryable<T> GetAll()
-        {
+        { 
             return _db.Set<T>();
         }
     }
