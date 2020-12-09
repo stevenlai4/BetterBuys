@@ -12,8 +12,7 @@ using BetterBuys.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using GoogleReCaptcha.V3;
-using GoogleReCaptcha.V3.Interface;
+using BetterBuys.Interfaces;
 
 namespace BetterBuys
 {
@@ -33,10 +32,13 @@ namespace BetterBuys
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
 
-            services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
+            services.AddDbContext<StoreDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("StoreConnection")));
+
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddRazorPages();
         }
 

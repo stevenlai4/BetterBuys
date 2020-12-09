@@ -8,10 +8,23 @@ namespace BetterBuys.Models
 {
     public class Product : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
         [Column(TypeName = "money")]
-        public decimal Price { get; set; }
-        public string Description { get; set; }
-        public string ImageUri { get; set; }
+        public decimal Price { get; private set; }
+        public string Description { get; private set; }
+        public string ImageUri { get; private set; }
+        public int CategoryId { get; private set; }
+
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+        public virtual ICollection<CartProduct> CartProducts { get; set; }
+
+        public Product(int categoryId, string name, string description, decimal price, string imageUri)
+        {
+            CategoryId = categoryId;
+            Name = name;
+            Description = description;
+            Price = price;
+            ImageUri = imageUri;
+        }
     }
 }
