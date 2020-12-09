@@ -12,7 +12,7 @@ using BetterBuys.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using BetterBuys.Interfaces;
 
 namespace BetterBuys
 {
@@ -38,6 +38,7 @@ namespace BetterBuys
                 options.UseSqlServer(
                     Configuration.GetConnectionString("StoreConnection")));
 
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddRazorPages();
         }
 
