@@ -7,9 +7,9 @@ namespace BetterBuys.Models
 {
     public class Cart : BaseEntity
     {
-        public string ShippingAddress { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public int Status { get; set; }
+        public string ShippingAddress { get; private set; }
+        public DateTime CreatedOn { get; private set; }
+        public int Status { get; private set; }
 
         public virtual ICollection<CartProduct> CartProducts { get; set; }
     }
