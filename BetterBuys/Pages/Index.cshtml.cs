@@ -20,18 +20,10 @@ namespace BetterBuys.Pages
             _logger = logger;
             _db = db;
         }
-        public List<Category> Categories { get; set; }
+        public List<Category> Categories { get; set; } = new List<Category>();
         public void OnGet()
         {
-            Categories = new List<Category>
-            {
-                new Category("Clothes"),
-                new Category("Books"),
-                new Category("Electronics"),
-                new Category("Jewellery"),
-                new Category("Sport")
-
-            };
+            Categories = _db.Categories.Select(cat => new Category(cat.Name)).ToList();
         }
     }
 }
