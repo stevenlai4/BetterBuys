@@ -16,5 +16,11 @@ namespace BetterBuys.Models
         
         public virtual Product Product { get; set; }
         public virtual Category Category { get; set; }
+
+        public ProductCategory(int categoryId, int productId)
+        {
+            CategoryId = categoryId;
+            ProductId = productId;
+        }
     }
 }
