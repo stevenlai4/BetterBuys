@@ -9,11 +9,6 @@ namespace BetterBuys.Pages.Checkout
 {
     public class IndexModel : PageModel
     {
-        //private readonly StoreDbContext _db;
-        //public CheckoutModel(StoreDbContext db)
-        //{
-        //    _db = db;
-        //}
         public void OnGet()
         {
         }
