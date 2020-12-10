@@ -27,7 +27,9 @@ namespace BetterBuys.Pages
             {
                 new Category("Clothes"),
                 new Category("Books"),
-                new Category("Electronics")
+                new Category("Electronics"),
+                new Category("Jewellery"),
+                new Category("Sport")
 
             };
         }
