@@ -1,6 +1,8 @@
-﻿using BetterBuys.Interfaces;
+﻿using BetterBuys.Data;
+using BetterBuys.Interfaces;
 using BetterBuys.Models;
 using BetterBuys.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -13,19 +15,24 @@ namespace BetterBuys.Services
     {
         private readonly IBaseRepository<Product> _productRepo;
         private readonly IBaseRepository<Category> _categoryRepo;
-
-        public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo)
+        private readonly StoreDbContext _db;
+        public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
         {
             _productRepo = productRepo;
             _categoryRepo = categoryRepo;
+            _db = db;
         }
-
         public ProductIndexVM GetProductsVM(int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
-            //if (categoryId != null)
-            //    products = products.Where();
+            //IActionResult actionResult(int Id) = View(categories.FirstOrDefault())
+            if (categoryId != null)
+                products = (from p in products
+                            join pc in _db.ProductCategories on p.Id equals pc.ProductId
+                            join c in categories on pc.CategoryId equals c.Id
+                            where c.Id == categoryId
+                            select p);
 
             var vm = new ProductIndexVM()
             {
