@@ -1,0 +1,9 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white">
+    <div class="container" id="main-nav">
+        @foreach (var item in Model.ProductIndex.Categories)
+        {
+            <a href="#">@item.Name</a>
+        }
+
+    </div>
+</nav>

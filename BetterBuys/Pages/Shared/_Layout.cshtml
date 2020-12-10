@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
@@ -25,16 +26,7 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white">
-            <div class="container" id="main-nav">
-                <a class="navbar-brand">Home</a>
-                <a class="navbar-brand">Clothes</a>
-                <a class="navbar-brand">Books</a>
-                <a class="navbar-brand">Electronics</a>
-                <a class="navbar-brand">Sport</a>
-                <a class="navbar-brand">Jewellery</a>
-            </div>
-        </nav>
+        <partial name ="_NavbarIndex" for ="@Model"/>
     </header>
 
     <div class="container">
@@ -86,7 +78,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://kit.fontawesome.com/c2e09ec5b1.js" crossorigin="anonymous"></script>
 
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
