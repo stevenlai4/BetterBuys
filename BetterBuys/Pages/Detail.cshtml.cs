@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BetterBuys.Pages.IndividualProduct
+namespace BetterBuys.Pages
 {
-    public class IndexModel : PageModel
+    public class DetailModel : PageModel
     {
         public void OnGet()
         {

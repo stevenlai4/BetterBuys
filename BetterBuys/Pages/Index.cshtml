@@ -31,86 +31,13 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>&nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>
-                
-            </div>
-        </div>
 
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>&nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>
+    <section class="d-flex justify-content-start align-items-center flex-wrap">
+        @foreach (var product in Model.ProductIndex.Products)
+        {
+            <div style="width: 33%;">
+                <partial name="_ProductPartial" for="@product" />
             </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a> &nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>
-            </div>
-        </div>
-    </div><br />
-
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>&nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>   
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>&nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/Cameras/423.JPG" alt="Card image cap">
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>&nbsp;
-                    <a href="#" class="btn btn-primary">View Details</a>
-                    <h4>Product Name:</h4>
-                    <h4>Price:</h4>
-                    <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div>
-            </div>
-        </div>
-    </div>
+        }
+    </section>
 </div>
