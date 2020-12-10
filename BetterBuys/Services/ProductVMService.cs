@@ -20,6 +20,7 @@ namespace BetterBuys.Services
             _categoryRepo = categoryRepo;
         }
 
+       
         public ProductIndexVM GetProductsVM(int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
