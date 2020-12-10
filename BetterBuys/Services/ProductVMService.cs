@@ -47,14 +47,12 @@ namespace BetterBuys.Services
                     ImageUri = p.ImageUri,
 
                 }).ToList(),
-                Categories = GetCategories()
+                Categories = categories.Select(c => new CategoryVM
+                {
+                    Name = c.Name
+                }).ToList()
             };
             return vm;
-        }
-        public List<CategoryVM> GetCategories()
-        {
-            var categories = _categoryRepo.GetAll().Select(c => new CategoryVM { Name = c.Name }).ToList();
-            return categories;
         }
     }
 }
