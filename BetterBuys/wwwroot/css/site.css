@@ -70,6 +70,29 @@ footer {
     padding-bottom: 40px;
 }
 
+/* Product */
+.product-item {
+    width: 21%;
+    margin: 2%;
+}
+
+@media screen and (max-width: 1200px) {
+    .product-item {
+        width: 29%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .product-item {
+        width: 46%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .product-item {
+        width: 96%;
+    }
+}
 
 /* Styles for individual product page --------------------------------*/
 
