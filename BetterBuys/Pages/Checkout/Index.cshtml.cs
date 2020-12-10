@@ -16,15 +16,14 @@ namespace BetterBuys.Pages.Checkout
 
         private readonly IProductVMService _productVMService;
 
-        public IndexModel(StoreDbContext db)
+        public IndexModel(IProductVMService productVMService)
         {
-            
-            _db = db;
+            _productVMService = productVMService;
         }
         public List<Category> Categories { get; set; } = new List<Category>();
         public void OnGet()
         {
-            Categories = _db.Categories.Select(cat => new Category(cat.Name)).ToList();
+            Categories = _productVMService.GetCategories();
         }
     }
 }
