@@ -24,6 +24,8 @@ namespace BetterBuys.Services
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
+            //if (categoryId != null)
+            //    products = products.Where();
 
             var vm = new ProductIndexVM()
             {
@@ -42,14 +44,5 @@ namespace BetterBuys.Services
             };
             return vm;
         }
-
-        //public List<CategoryVM> GetCategories()
-        //{
-        //    var categories = _categoryRepo.GetAll().Select(c => new CategoryVM
-        //    { 
-        //        Name = c.Name
-        //    }).ToList();
-        //    return categories;
-        //}
     }
 }
