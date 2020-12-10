@@ -26,11 +26,8 @@ namespace BetterBuys.Pages
         public void OnGet(ProductIndexVM productIndex)
         {
             ProductIndex = _productVMService.GetProductsVM(productIndex.TypesFilterApplied);
-            Categories = new List<Category>
-            {
-                
-
-            };
+            Categories = _productVMService.GetCategories();
+           
         }
     }
 }
