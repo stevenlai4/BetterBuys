@@ -34,23 +34,21 @@ namespace BetterBuys.Services
                     Name = p.Name,
                     Price = p.Price,
                     ImageUri = p.ImageUri,
-                    
+
                 }).ToList(),
-               Categories = GetCategories().ToList()
+                Categories = GetCategories()
             };
             return vm;
         }
-        public IEnumerable<SelectListItem> GetCategories()
+        public List<Category> GetCategories()
         {
-            var categories = _categoryRepo.GetAll().Select(c => new SelectListItem()
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            }).OrderBy(t => t.Text).ToList();
-
-            var allItem = new SelectListItem() { Value = null, Text = "All", Selected = true };
-            categories.Insert(0, allItem);
-
+            var categories = _categoryRepo.GetAll().Select(c => new Category(c.Name)).ToList();
+            //{
+            //    Value = c.Id.ToString(),
+            //    Text = c.Name
+            //}).OrderBy(t => t.Text).ToList();
+            //var allItem = new SelectListItem() { Value = null, Text = "All", Selected = true };
+            //categories.Insert(0, allItem);
             return categories;
         }
     }
