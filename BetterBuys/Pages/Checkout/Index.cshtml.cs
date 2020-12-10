@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BetterBuys.Data;
 using BetterBuys.Interfaces;
-using BetterBuys.Models;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -20,10 +20,11 @@ namespace BetterBuys.Pages.Checkout
         {
             _productVMService = productVMService;
         }
-        public List<Category> Categories { get; set; } = new List<Category>();
-        public void OnGet()
+
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public void OnGet(ProductIndexVM productIndex)
         {
-            Categories = _productVMService.GetCategories();
+            ProductIndex = _productVMService.GetProductsVM(productIndex.CategoriesFilterApplied);
         }
     }
 }
