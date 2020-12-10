@@ -4,6 +4,7 @@ using BetterBuys.Models;
 using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,14 @@ namespace BetterBuys.Services
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
-            //IActionResult actionResult(int Id) = View(categories.FirstOrDefault())
             if (categoryId != null)
+            {
                 products = (from p in products
                             join pc in _db.ProductCategories on p.Id equals pc.ProductId
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
                             select p);
+            }
 
             var vm = new ProductIndexVM()
             {
