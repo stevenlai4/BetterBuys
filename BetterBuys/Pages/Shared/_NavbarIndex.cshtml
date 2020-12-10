@@ -2,11 +2,8 @@
     <div class="container" id="main-nav">
         @foreach (var item in Model.ProductIndex.Categories)
         {
-            <a href="#">@item.Name</a>
-            <a asp-route-id="Mugs"></a>
-            <a asp-route-id="T-Shirt"></a>
-            <a asp-route-id="Sheet"></a>
-            <a asp-route-id="USB-Memory-Stick"></a>
+            <a asp-route-id="@item.Id">@item.Name</a>
+            
         }
 
     </div>
