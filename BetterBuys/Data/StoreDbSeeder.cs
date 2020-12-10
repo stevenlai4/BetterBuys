@@ -22,6 +22,12 @@ namespace BetterBuys.Data
                 await db.Products.AddRangeAsync(GetPreconfiguredProducts());
                 await db.SaveChangesAsync();
             }
+
+            if(!await db.ProductCategories.AnyAsync())
+            {
+                await db.ProductCategories.AddRangeAsync(GetPreconfiguredProductCategories());
+                await db.SaveChangesAsync();
+            }
         }
 
         static IEnumerable<Product> GetPreconfiguredProducts()
@@ -51,6 +57,25 @@ namespace BetterBuys.Data
                 new Category("T-Shirt"),
                 new Category("Sheet"),
                 new Category("USB Memory Stick")
+            };
+        }
+
+        static IEnumerable<ProductCategory> GetPreconfiguredProductCategories()
+        {
+            return new List<ProductCategory>
+            {
+                new ProductCategory(2,1),
+                new ProductCategory(1,2),
+                new ProductCategory(2,3),
+                new ProductCategory(2,4),
+                new ProductCategory(3,5),
+                new ProductCategory(2,6),
+                new ProductCategory(2,7),
+                new ProductCategory(2,8),
+                new ProductCategory(1,9),
+                new ProductCategory(3,10),
+                new ProductCategory(3,11),
+                new ProductCategory(2,12)
             };
         }
     }
