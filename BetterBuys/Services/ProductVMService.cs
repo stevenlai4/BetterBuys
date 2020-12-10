@@ -51,9 +51,9 @@ namespace BetterBuys.Services
             };
             return vm;
         }
-        public List<Category> GetCategories()
+        public List<CategoryVM> GetCategories()
         {
-            var categories = _categoryRepo.GetAll().Select(c => new Category(c.Name)).ToList();
+            var categories = _categoryRepo.GetAll().Select(c => new CategoryVM { Name = c.Name }).ToList();
             return categories;
         }
     }
