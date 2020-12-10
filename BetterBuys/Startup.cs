@@ -47,7 +47,7 @@ namespace BetterBuys
 
             services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
 
-
+            services.AddScoped<IProductVMService, ProductVMService>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddRazorPages();
         }
