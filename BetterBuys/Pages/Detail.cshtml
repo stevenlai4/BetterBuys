@@ -25,8 +25,19 @@
                
                 <div class="product-detail-button">
                     <span>Quantity:</span>
-                    <select class="form-control d-inline w-75 ml-2"></select>
-                    <button type="button" class="btn btn-primary d-block my-3 px-5 w-100">Add</button>
+                    <select class="form-control d-inline w-75 ml-2">
+                        @for (int i = 1; i < 51; i++)
+                        {
+                            <option value=@i>@i</option>
+                        }
+                    </select>
+                    <form method="post">
+                        <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart"/>
+                        <div>
+                            <span>@Model.Name</span>
+                        </div>
+                    </form>
+                    @*<button type="button" class="btn btn-primary d-block my-3 px-5 w-100">Add</button>*@
                 </div>
                 
                 <div class="product-detail-body-link">
