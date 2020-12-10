@@ -4,7 +4,7 @@
     <img class="card-img-top" src="@Model.ImageUri" alt="" />
     <div class="card-body">
         <p class="card-text">@Model.Name</p>
-        <p class="card-text">@Model.Price</p>
+        <p class="card-text">$@string.Format("{0:n2}", Model.Price)</p>
         <form asp-page="/Cart/Index" method="post">
             <button type="submit">Add To Cart</button>
         </form>

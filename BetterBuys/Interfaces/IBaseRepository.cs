@@ -10,6 +10,5 @@ namespace BetterBuys.Interfaces
     {
         IQueryable<T> GetAll();
         IQueryable<T> GetOne(int id);
-
     }
 }
