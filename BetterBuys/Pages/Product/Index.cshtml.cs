@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BetterBuys.Data;
+using BetterBuys.Interfaces;
 using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,22 +12,16 @@ namespace BetterBuys.Pages.Product
 {
     public class IndexModel : PageModel
     {
-        private readonly StoreDbContext _db;
-        public IndexModel(StoreDbContext db)
+        private readonly IProductVMService _productVMService;
+        public IndexModel(IProductVMService productVMService)
         {
-            _db = db;
+            _productVMService = productVMService;
         }
 
-        public List<ProductVM> Products { get; set; } = new List<ProductVM>();
-        public async Task OnGet()
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public void OnGet(ProductIndexVM productIndex)
         {
-            Products = await _db.Products.Select(p => new ProductVM
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                ImageUri = p.ImageUri
-            }).ToListAsync();
+            ProductIndex = _productVMService.GetProductsVM(productIndex.TypesFilterApplied);
         }
     }
 }
