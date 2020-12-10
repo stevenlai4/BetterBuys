@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container">
+<div>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -32,12 +32,12 @@
         </a>
     </div>
 
-    <section class="d-flex justify-content-start align-items-center flex-wrap">
+    <div class="d-flex justify-content-start align-items-center flex-wrap">
         @foreach (var product in Model.ProductIndex.Products)
         {
-            <div style="width: 33%;">
+            <div class="product-item">
                 <partial name="_ProductPartial" for="@product" />
             </div>
         }
-    </section>
+    </div>
 </div>
