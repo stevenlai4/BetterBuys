@@ -39,6 +39,7 @@ namespace BetterBuys.Services
                 }).ToList(),
                 Categories = categories.Select(c => new CategoryVM
                 {
+                    Id = c.Id,
                     Name = c.Name
                 }).ToList()
             };
