@@ -1,9 +1,7 @@
-﻿using BetterBuys.Data;
-using BetterBuys.Interfaces;
+﻿using BetterBuys.Interfaces;
 using BetterBuys.Models;
 using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,30 +12,19 @@ namespace BetterBuys.Services
     public class ProductVMService : IProductVMService
     {
         private readonly IBaseRepository<Product> _productRepo;
-        private readonly IBaseRepository<Category> _categoryRepo;
-        private readonly StoreDbContext _db;
+        private readonly IBaseRepository<Category> _categoryRepo ;
 
-        public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
+        public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo)
         {
             _productRepo = productRepo;
             _categoryRepo = categoryRepo;
-            _db = db;
         }
 
         public ProductIndexVM GetProductsVM(int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
-            IQueryable<Category> categories = _categoryRepo.GetAll();
             if (categoryId != null)
-            {
-                //products = from c in categories
-                //           join pc in _db.ProductCategories on c.Id equals pc.CategoryId
-                //           join p in products on pc.ProductId equals p.Id
-                //           where c.Id == categoryId
-                //           select new Product(p.Name, p.Description, p.Price, p.ImageUri);
-                products = products.Include(p => p.CartProducts).ThenInclude(pc => pc.CartId);
-            }
-
+                products = products.Where(p => p.CategoryId == categoryId);
 
             var vm = new ProductIndexVM()
             {
@@ -51,10 +38,8 @@ namespace BetterBuys.Services
                 }).ToList(),
                 Categories = GetCategories()
             };
-
             return vm;
         }
-
         public List<Category> GetCategories()
         {
             var categories = _categoryRepo.GetAll().Select(c => new Category(c.Name)).ToList();
@@ -62,10 +47,8 @@ namespace BetterBuys.Services
             //    Value = c.Id.ToString(),
             //    Text = c.Name
             //}).OrderBy(t => t.Text).ToList();
-
             //var allItem = new SelectListItem() { Value = null, Text = "All", Selected = true };
             //categories.Insert(0, allItem);
-
             return categories;
         }
     }
