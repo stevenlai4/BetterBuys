@@ -27,12 +27,9 @@ namespace BetterBuys.Models
             Price = price;
             Quantity = quantity;
         }
-
         public void AddQuantity(int quantity)
         {
             Quantity += quantity;
         }
     }
-
-    
 }

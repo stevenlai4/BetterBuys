@@ -24,23 +24,23 @@
                     including versions of Lorem Ipsum.
                 </p>
 
-                
-                <form asp-page="Cart" method="post">
-                        <div class="product-detail-button">
-                            <span>Quantity:</span>
-                            <select class="form-control d-inline w-75 ml-2" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart" />
-                        </div>
 
-                        <input type="hidden" asp-for="@Model.ProductDetail.Id" name="id">
-                        <input type="hidden" asp-for="@Model.ProductDetail.Name" name="name">
-                        <input type="hidden" asp-for="@Model.ProductDetail.Price" name="price">
-                        <input type="hidden" asp-for="@Model.ProductDetail.ImageUri" name="pictureUri">
-                    </form>
+                <form asp-page="cart" method="post">
+                    <div class="product-detail-button">
+                        <span>Quantity:</span>
+                        <select class="form-control d-inline w-75 ml-2" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart" />
+                    </div>
+
+                    <input type="hidden" asp-for="@Model.ProductDetail.Id" name="id">
+                    <input type="hidden" asp-for="@Model.ProductDetail.Name" name="name">
+                    <input type="hidden" asp-for="@Model.ProductDetail.Price" name="price">
+                    <input type="hidden" asp-for="@Model.ProductDetail.ImageUri" name="pictureUri">
+                </form>
 
                 <div class="product-detail-body-link">
                     <a asp-page="index" class="product-detail-link">Continue Shopping</a>
