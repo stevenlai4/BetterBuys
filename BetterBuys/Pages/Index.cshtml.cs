@@ -22,8 +22,10 @@ namespace BetterBuys.Pages
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public Boolean IsFiltering = false;
         public void OnGet(int? categoryId)
         {
+            IsFiltering = categoryId != null ? true : false;
             ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
     }
