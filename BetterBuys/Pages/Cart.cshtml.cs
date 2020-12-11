@@ -39,14 +39,19 @@ namespace BetterBuys.Pages.Cart
                .ThenInclude(cp => cp.Product)
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
+
+            List<ProductVM> productsInCart = (from p in ProductIndex.Products
+                                              join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                              where cp.CartId == Cart.Id
+                                              select p).ToList();
         }
 
         //method for the delete
         public async Task<IActionResult> OnPostDelete(int productId)
         {
             int? cartId = HttpContext.Session.GetInt32("cartId");
-            var cartproducts = await _db.CartProducts.FindAsync(cp => cp.ProductId == productId);
-            
+            var cartproducts = await _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == productId).FirstOrDefaultAsync();
+
             if (cartproducts == null)
             {
                 return NotFound();
