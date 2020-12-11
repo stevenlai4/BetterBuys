@@ -56,5 +56,13 @@ namespace BetterBuys.Services
             };
             return vm;
         }
+
+        public Product GetProduct (int productId)
+        {
+            Product product = _productRepo.GetOne(productId);
+
+            return product;
+     
+        }
     }
 }

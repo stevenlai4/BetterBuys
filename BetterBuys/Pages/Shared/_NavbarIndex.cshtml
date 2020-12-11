@@ -2,7 +2,7 @@
     <div class="container" id="main-nav">
         @foreach (var item in Model.ProductIndex.Categories)
         {
-            <a asp-route-category="@item.Id">@item.Name</a>
+            <a asp-page="index" asp-route-categoryId="@item.Id">@item.Name</a>
         }
 
     </div>

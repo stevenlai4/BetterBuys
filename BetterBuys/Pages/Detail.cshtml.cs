@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BetterBuys.Interfaces;
+using BetterBuys.Models;
 using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,9 +19,12 @@ namespace BetterBuys.Pages
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public void OnGet(ProductIndexVM productIndex)
+        public Product ProductDetail { get; private set; }
+
+        public void OnGet(int productId, int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(productIndex.CategoriesFilterApplied);
+            ProductDetail = _productVMService.GetProduct(productId);
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
     }
 }
