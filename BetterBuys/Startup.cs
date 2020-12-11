@@ -49,6 +49,7 @@ namespace BetterBuys
 
             services.AddScoped<IProductVMService, ProductVMService>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddSession();
             services.AddRazorPages();
         }
 
@@ -74,6 +75,8 @@ namespace BetterBuys
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

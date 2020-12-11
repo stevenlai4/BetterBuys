@@ -17,7 +17,22 @@ namespace BetterBuys.Models
         public decimal Price { get; private set; }
         public int Quantity { get; private set; }
 
-        public virtual Cart Cart { get; set; }
+        public virtual ShoppingCart Cart { get; set; }
         public virtual Product Product { get; set; }
+
+        public CartProduct(int cartId, int productId, decimal price, int quantity)
+        {
+            CartId = cartId;
+            ProductId = productId;
+            Price = price;
+            Quantity = quantity;
+        }
+
+        public void AddQuantity(int quantity)
+        {
+            Quantity += quantity;
+        }
     }
+
+    
 }

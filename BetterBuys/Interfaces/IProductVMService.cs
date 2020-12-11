@@ -11,6 +11,6 @@ namespace BetterBuys.Interfaces
     public interface IProductVMService
     {
         ProductIndexVM GetProductsVM(int? categoryId);
-        Product GetProduct(int productId);
+        ProductVM GetProduct(int productId);
     }
 }

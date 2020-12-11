@@ -11,5 +11,6 @@ namespace BetterBuys.Interfaces
     {
         IQueryable<T> GetAll();
         Product GetOne(int id);
+
     }
 }
