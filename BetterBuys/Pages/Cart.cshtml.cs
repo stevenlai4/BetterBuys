@@ -17,13 +17,6 @@ namespace BetterBuys.Pages.Cart
 
     public class CartModel : PageModel
     {
-        //[HttpPost]
-        //public ActionResult Delete(int id)
-        //{
-        //    CartProduct cartProduct = new CartProduct();
-        //    cartProduct.DeleteCartProduct(id);
-        //    return RedirectToAction("Index");
-        //}
 
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
