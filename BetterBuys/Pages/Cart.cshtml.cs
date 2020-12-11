@@ -39,6 +39,11 @@ namespace BetterBuys.Pages.Cart
                .ThenInclude(cp => cp.Product)
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
+
+            List<ProductVM> productsInCart = (from p in ProductIndex.Products
+                                              join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                              where cp.CartId == Cart.Id
+                                              select p).ToList();
         }
 
         //method for the delete
@@ -47,11 +52,10 @@ namespace BetterBuys.Pages.Cart
             int? cartId = HttpContext.Session.GetInt32("cartId");
 
             var cartproducts = await _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == productId).FirstOrDefaultAsync();
-            
+
             if (cartproducts == null)
             {
                 return NotFound();
-
             }
             _db.CartProducts.Remove(cartproducts);
             await _db.SaveChangesAsync();
