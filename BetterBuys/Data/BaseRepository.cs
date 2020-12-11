@@ -23,9 +23,9 @@ namespace BetterBuys.Data
             return _db.Set<T>();
         }
 
-        public ProductVM GetOne(int id)
+        public Product GetOne(int id)
         {
-            return _db.Set<ProductVM>().Where(t => t.Id == id).FirstOrDefault();
+            return _db.Set<Product>().Where(t => t.Id == id).FirstOrDefault();
         }
     }
 }

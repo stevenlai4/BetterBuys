@@ -57,9 +57,9 @@ namespace BetterBuys.Services
             return vm;
         }
 
-        public ProductVM GetProductVM (int productId)
+        public Product GetProduct (int productId)
         {
-            ProductVM product = _productRepo.GetOne(productId);
+            Product product = _productRepo.GetOne(productId);
 
             return product;
      

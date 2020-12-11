@@ -1,4 +1,4 @@
-﻿@page "{id}"
+﻿@page 
 @model DetailModel
 
 <section>
@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-lg-6 col-sm-12 product-detail-body-text">
-                <h4>Product Name</h4>
+                <h4>@Model.ProductDetail.Name</h4>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>

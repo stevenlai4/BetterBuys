@@ -18,12 +18,13 @@ namespace BetterBuys.Pages
             _productVMService = productVMService;
         }
 
-        public ProductVM ProductIndex { get; set; } = new ProductVM();
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Product ProductDetail { get; private set; }
 
-        public void OnGet(int productId)
+        public void OnGet(int productId, int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductVM(productId);
+            ProductDetail = _productVMService.GetProduct(productId);
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
     }
 }

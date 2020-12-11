@@ -10,6 +10,6 @@ namespace BetterBuys.Interfaces
     public interface IBaseRepository<T> where T : BaseEntity
     {
         IQueryable<T> GetAll();
-        ProductVM GetOne(int id);
+        Product GetOne(int id);
     }
 }
