@@ -34,13 +34,13 @@ namespace BetterBuys
         {
             services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("AuthConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>();
 
             services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("StoreConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<EmailSenderOptions>(Configuration);

@@ -8,5 +8,6 @@ namespace BetterBuys.ViewModels
     public class CategoryVM
     {
         public string Name { get; set; }
+        public int Id { get; set; }
     }
 }
