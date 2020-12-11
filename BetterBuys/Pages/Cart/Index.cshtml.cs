@@ -9,6 +9,7 @@ using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterBuys.Pages.Cart
@@ -16,6 +17,14 @@ namespace BetterBuys.Pages.Cart
 
     public class IndexModel : PageModel
     {
+        //[HttpPost]
+        //public ActionResult Delete(int id)
+        //{
+        //    CartProduct cartProduct = new CartProduct();
+        //    cartProduct.DeleteCartProduct(id);
+        //    return RedirectToAction("Index");
+        //}
+
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
 
@@ -38,7 +47,6 @@ namespace BetterBuys.Pages.Cart
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
         }
-
 
         public IActionResult OnPost(ProductVM testProduct)
         {
