@@ -29,5 +29,18 @@ namespace BetterBuys.Models
         public string CVW { get; set; }
 
         public virtual ICollection<CartProduct> CartProducts { get; set; }
+        public ShoppingCart(string shippingAddress, DateTime createdOn, int status, string phone, string cardNumber, string cardHolderName,
+                            string expirationDate, string cvw)
+        {
+            ShippingAddress = shippingAddress;
+            CreatedOn = createdOn;
+            Status = status;
+            Phone = phone;
+            CardNumber = cardNumber;
+            CardHolderName = cardHolderName;
+            ExpirationDate = expirationDate;
+            CVW = cvw;
+        }
     }
 }
+
