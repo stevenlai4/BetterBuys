@@ -1,5 +1,6 @@
 ﻿using BetterBuys.Interfaces;
 using BetterBuys.Models;
+using BetterBuys.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace BetterBuys.Data
             return _db.Set<T>();
         }
 
-        public IQueryable<T> GetOne(int id)
+        public ProductVM GetOne(int id)
         {
-            return _db.Set<T>().Where<T>(t => t.Id == id);
+            return _db.Set<ProductVM>().Where(t => t.Id == id).FirstOrDefault();
         }
     }
 }
