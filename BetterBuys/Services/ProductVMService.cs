@@ -25,7 +25,7 @@ namespace BetterBuys.Services
             _db = db;
         }
 
-        public ProductIndexVM GetProductsVM(int? categoryId)
+         public ProductIndexVM GetProductsVM(int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
@@ -57,11 +57,18 @@ namespace BetterBuys.Services
             return vm;
         }
 
-        public Product GetProduct (int productId)
+        public ProductVM GetProduct (int productId)
         {
             Product product = _productRepo.GetOne(productId);
+            ProductVM productVM = new ProductVM();
 
-            return product;
+            productVM.Id = product.Id;
+            productVM.Name = product.Name;
+            productVM.Price = product.Price;
+            productVM.ImageUri = product.ImageUri;
+            
+
+            return productVM;
      
         }
     }
