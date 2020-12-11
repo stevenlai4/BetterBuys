@@ -41,6 +41,20 @@ namespace BetterBuys.Pages.Cart
                .FirstOrDefault();
         }
 
+        public async Task<IActionResult> OnPostDelete(int Id)
+        {
+            var cartproducts = await _db.CartProducts.FindAsync(Id);
+            if (cartproducts == null)
+            {
+                return NotFound();
+
+            }
+            _db.CartProducts.Remove(cartproducts);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Cart");
+        }
+
         public IActionResult OnPost(ProductVM testProduct)
         {
             if (testProduct?.Id == null)

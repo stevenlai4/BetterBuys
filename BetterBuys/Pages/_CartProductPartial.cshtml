@@ -10,8 +10,8 @@
             }
         </select>
         <p class="price">$10.00</p>
-        <form method="delete">
-            <button type="submit" class="btn btn-primary" name="buttonDelete">Delete</button>
+        <form method="post">
+            <button asp-page-handler="Delete" asp-route-id="@i.Id" onclick="return confirm('Comfirm to Delete this item.')">Delete</button>
         </form>
     </div>
 </div>
