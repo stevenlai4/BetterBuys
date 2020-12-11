@@ -25,6 +25,7 @@ namespace BetterBuys.Pages
         {
             ProductDetail = _productVMService.GetProduct(productId);
             ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ViewData["returnUrl"] = HttpContext.Request.Host.Value;
         }
     }
 }
