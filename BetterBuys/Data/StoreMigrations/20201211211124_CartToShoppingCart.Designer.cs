@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterBuys.Data.StoreMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20201211113131_CartToShoppingCart")]
+    [Migration("20201211211124_CartToShoppingCart")]
     partial class CartToShoppingCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

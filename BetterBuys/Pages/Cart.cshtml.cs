@@ -47,7 +47,7 @@ namespace BetterBuys.Pages.Cart
         }
 
         //method for the delete
-        public async Task<IActionResult> OnPostDelete(int productId)
+        public async Task<IActionResult> OnPostDelete(int? productId)
         {
             int? cartId = HttpContext.Session.GetInt32("cartId");
             var cartproducts = await _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == productId).FirstOrDefaultAsync();
@@ -55,7 +55,6 @@ namespace BetterBuys.Pages.Cart
             if (cartproducts == null)
             {
                 return NotFound();
-
             }
             _db.CartProducts.Remove(cartproducts);
             await _db.SaveChangesAsync();
