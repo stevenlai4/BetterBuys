@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BetterBuys.Models
 {
-    public class Cart : BaseEntity
+    public class ShoppingCart : BaseEntity
     {
         public string ShippingAddress { get; private set; }
         public DateTime CreatedOn { get; private set; }
