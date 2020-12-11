@@ -1,21 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetterBuys.Data;
 using BetterBuys.Interfaces;
 using BetterBuys.ViewModels;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BetterBuys.Areas.Identity.Pages.Account
+namespace BetterBuys.Pages.Cart
 {
-    [AllowAnonymous]
-    public class ResetPasswordConfirmationModel : PageModel
-    {
 
+    public class CartModel : PageModel
+    {
         private readonly IProductVMService _productVMService;
 
-        public ResetPasswordConfirmationModel(IProductVMService productVMService)
+        public CartModel(IProductVMService productVMService)
         {
             _productVMService = productVMService;
         }

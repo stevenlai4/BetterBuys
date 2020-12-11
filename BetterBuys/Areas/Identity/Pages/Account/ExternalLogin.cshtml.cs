@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -23,17 +25,20 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly IProductVMService _productVMService;
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IProductVMService productVMService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
@@ -53,8 +58,12 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
-        public IActionResult OnGetAsync()
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public IActionResult OnGetAsync(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             return RedirectToPage("./Login");
         }
 
