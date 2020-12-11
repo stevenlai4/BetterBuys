@@ -67,7 +67,6 @@ namespace BetterBuys.Services
             productVM.ImageUri = product.ImageUri;
 
             return productVM;
-     
         }
     }
 }
