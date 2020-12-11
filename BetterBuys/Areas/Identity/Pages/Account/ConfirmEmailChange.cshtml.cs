@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,18 +18,24 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IProductVMService _productVMService;
 
-        public ConfirmEmailChangeModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public ConfirmEmailChangeModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IProductVMService productVMService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _productVMService = productVMService;
         }
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string userId, string email, string code)
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public async Task<IActionResult> OnGetAsync(int? categoryId, string userId, string email, string code)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             if (userId == null || email == null || code == null)
             {
                 return RedirectToPage("/Index");

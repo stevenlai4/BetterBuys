@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace BetterBuys.Pages.Cart
 {
 
-    public class IndexModel : PageModel
+    public class CartModel : PageModel
     {
         private readonly IProductVMService _productVMService;
 
-        public IndexModel(IProductVMService productVMService)
+        public CartModel(IProductVMService productVMService)
         {
             _productVMService = productVMService;
         }
