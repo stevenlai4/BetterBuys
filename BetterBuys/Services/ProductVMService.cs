@@ -17,12 +17,14 @@ namespace BetterBuys.Services
         private readonly IBaseRepository<Product> _productRepo;
         private readonly IBaseRepository<Category> _categoryRepo;
         private readonly StoreDbContext _db;
+
         public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
         {
             _productRepo = productRepo;
             _categoryRepo = categoryRepo;
             _db = db;
         }
+
         public ProductIndexVM GetProductsVM(int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
