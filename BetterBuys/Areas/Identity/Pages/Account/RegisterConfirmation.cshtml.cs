@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 
 namespace BetterBuys.Areas.Identity.Pages.Account
 {
@@ -14,11 +16,13 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _sender;
+        private readonly IProductVMService _productVMService;
 
-        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender, IProductVMService productVMService)
         {
             _userManager = userManager;
             _sender = sender;
+            _productVMService = productVMService;
         }
 
         public string Email { get; set; }
@@ -27,8 +31,12 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public string EmailConfirmationUrl { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public async Task<IActionResult> OnGetAsync(int? categoryId, string email, string returnUrl = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             if (email == null)
             {
                 return RedirectToPage("/Index");

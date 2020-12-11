@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +18,18 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IProductVMService _productVMService;
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public ResetPasswordModel(UserManager<IdentityUser> userManager, IProductVMService productVMService)
         {
             _userManager = userManager;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
         public class InputModel
         {
@@ -44,8 +50,10 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             public string Code { get; set; }
         }
 
-        public IActionResult OnGet(string code = null)
+        public IActionResult OnGet(int? categoryId, string code = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             if (code == null)
             {
                 return BadRequest("A code must be supplied for password reset.");
