@@ -19,7 +19,7 @@ namespace BetterBuys.Pages.Cart
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
 
-        public IndexModel(IProductVMService productVMService, StoreDbContext db)
+        public CartModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
             _db = db;
@@ -38,8 +38,6 @@ namespace BetterBuys.Pages.Cart
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
         }
-
-
         public IActionResult OnPost(ProductVM testProduct)
         {
             if (testProduct?.Id == null)

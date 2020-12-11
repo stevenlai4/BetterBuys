@@ -12,6 +12,5 @@ namespace BetterBuys.ViewModels
         public decimal Price { get; set; }
         public string ImageUri { get; set; }
         public int Quantity { get; set; }
-
     }
 }
