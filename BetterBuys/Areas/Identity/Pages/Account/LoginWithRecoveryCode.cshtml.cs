@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,17 +18,20 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
+        private readonly IProductVMService _productVMService;
 
-        public LoginWithRecoveryCodeModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWithRecoveryCodeModel> logger)
+        public LoginWithRecoveryCodeModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWithRecoveryCodeModel> logger, IProductVMService productVMService)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
         public class InputModel
         {
@@ -37,8 +42,10 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             public string RecoveryCode { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(int? categoryId, string returnUrl = null)
         {
+
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
