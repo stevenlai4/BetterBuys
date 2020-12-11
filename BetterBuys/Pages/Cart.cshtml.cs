@@ -14,12 +14,12 @@ using Microsoft.EntityFrameworkCore;
 namespace BetterBuys.Pages.Cart
 {
 
-    public class IndexModel : PageModel
+    public class CartModel : PageModel
     {
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
 
-        public IndexModel(IProductVMService productVMService, StoreDbContext db)
+        public CartModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
             _db = db;
