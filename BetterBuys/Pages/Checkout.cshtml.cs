@@ -11,12 +11,12 @@ using Microsoft.Extensions.Logging;
 
 namespace BetterBuys.Pages.Checkout
 {
-    public class IndexModel : PageModel
+    public class CheckoutModel : PageModel
     {
 
         private readonly IProductVMService _productVMService;
 
-        public IndexModel(IProductVMService productVMService)
+        public CheckoutModel(IProductVMService productVMService)
         {
             _productVMService = productVMService;
         }
