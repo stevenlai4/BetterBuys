@@ -22,9 +22,9 @@ namespace BetterBuys.Pages
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public void OnGet(int? category)
+        public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(category);
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
     }
 }

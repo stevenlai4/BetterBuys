@@ -1,22 +1,22 @@
-﻿@page "{id}"
-@model DetailModel
+﻿@page
 
+@model DetailModel
 
 <section>
     <div class="container-fluid product-detail">
         <div class="row product-detail-body">
             <div class="col-lg-6 col-sm-12 my-5">
-                <img src="/images/dummy.jpg" class="product-detail-image" />
+                <img src="@Model.ProductDetail.ImageUri" class="product-detail-image" />
             </div>
 
             <div class="col-lg-6 col-sm-12 product-detail-body-text">
-                <h4>Product Name</h4>
+                <h4>@Model.ProductDetail.Name</h4>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-half"></i>
-                <p>$99.99</p>
+                <p>@Model.ProductDetail.Price</p>
                 <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                     took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
@@ -26,26 +26,13 @@
 
                 <div class="product-detail-button">
                     <span>Quantity:</span>
-                    <select class="form-control d-inline w-75 ml-2">
-                        @for (int i = 1; i < 51; i++)
-                        {
-                            <option value=@i>@i</option>
-                        }
-                    </select>
-                    <form method="post">
-                        <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart" />
-                        <div>
-                            <span>@Model.Product.Name</span>
-                        </div>
-                    </form>
-                    @*<button type="button" class="btn btn-primary d-block my-3 px-5 w-100">Add</button>*@
+                    <select class="form-control d-inline w-75 ml-2"></select>
+                    <button type="button" class="btn btn-primary d-block my-3 px-5 w-100">Add</button>
                 </div>
 
                 <div class="product-detail-body-link">
                     <a class="product-detail-link" href="#">Continue Shopping</a>
                 </div>
-
-
             </div>
         </div>
 

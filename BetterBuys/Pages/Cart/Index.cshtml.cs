@@ -21,9 +21,9 @@ namespace BetterBuys.Pages.Cart
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public void OnGet(ProductIndexVM productIndex)
+        public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(productIndex.CategoriesFilterApplied);
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
     }
 }
