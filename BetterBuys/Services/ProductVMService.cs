@@ -2,6 +2,7 @@
 using BetterBuys.Interfaces;
 using BetterBuys.Models;
 using BetterBuys.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -49,6 +50,7 @@ namespace BetterBuys.Services
                 }).ToList(),
                 Categories = categories.Select(c => new CategoryVM
                 {
+                    Id = c.Id,
                     Name = c.Name
                 }).ToList()
             };
