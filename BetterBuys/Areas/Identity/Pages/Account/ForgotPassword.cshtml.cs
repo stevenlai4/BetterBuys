@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using BetterBuys.ViewModels;
+using BetterBuys.Interfaces;
 
 namespace BetterBuys.Areas.Identity.Pages.Account
 {
@@ -18,11 +20,13 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IProductVMService _productVMService;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender, IProductVMService productVMService)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
@@ -33,6 +37,13 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+        }
+
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public void OnGet(int? categoryId)
+        {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +17,23 @@ namespace BetterBuys.Areas.Identity.Pages.Account
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IProductVMService _productVMService;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager, IProductVMService productVMService)
         {
             _userManager = userManager;
+            _productVMService = productVMService;
         }
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string userId, string code)
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public async Task<IActionResult> OnGetAsync(string userId, string code, int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             if (userId == null || code == null)
             {
                 return RedirectToPage("/Index");

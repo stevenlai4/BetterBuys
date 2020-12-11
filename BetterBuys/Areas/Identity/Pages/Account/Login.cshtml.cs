@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using GoogleReCaptcha.V3.Interface;
+using BetterBuys.ViewModels;
+using BetterBuys.Interfaces;
 
 namespace BetterBuys.Areas.Identity.Pages.Account
 {
@@ -22,16 +24,19 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly ICaptchaValidator _captchaValidator;
+        private readonly IProductVMService _productVMService;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
-            ICaptchaValidator captchaValidator)
+            ICaptchaValidator captchaValidator,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _captchaValidator = captchaValidator;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
@@ -58,8 +63,12 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public async Task OnGetAsync(int? categoryId, string returnUrl = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);

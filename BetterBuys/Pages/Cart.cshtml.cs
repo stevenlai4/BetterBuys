@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BetterBuys.Pages.Cart
 {
 
-    public class IndexModel : PageModel
+    public class CartModel : PageModel
     {
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
