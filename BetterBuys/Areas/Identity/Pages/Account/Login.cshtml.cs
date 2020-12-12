@@ -84,8 +84,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string captcha, string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(int? categoryId, string captcha, string returnUrl = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             //var captchaData = await _captchaValidator.GetCaptchaResultDataAsync(captcha);
             if (!await _captchaValidator.IsCaptchaPassedAsync(captcha))
             {
