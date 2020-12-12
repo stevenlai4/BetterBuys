@@ -87,7 +87,7 @@ namespace BetterBuys.Pages.Cart
             }
             //need to validate against user or session
             int? cartId = HttpContext.Session.GetInt32("cartId");
- 
+            
             if (cartId == null) //new cart
             {
                 Cart = new ShoppingCart();
