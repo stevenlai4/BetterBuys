@@ -15,29 +15,26 @@ using Microsoft.Extensions.Logging;
 
 namespace BetterBuys.Pages.Checkout
 {
-    [Authorize]
+    //[Authorize]
     public class CheckoutModel : PageModel
     {
         private readonly IProductVMService _productVMService;
-
-        public CheckoutModel(IProductVMService productVMService)
+        private readonly StoreDbContext _db;
+        public CheckoutModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
-        }
-        private readonly StoreDbContext _db;
-        public CheckoutModel(StoreDbContext db)
-        {
             _db = db;
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public void OnGet(int? categoryId)
+        //public void OnGet(int? categoryId)
+        //{
+        //    ProductIndex = _productVMService.GetProductsVM(categoryId);
+        //}
+        public ShoppingCart ShoppingCart { get; set; }
+        public void OnGet(int? categoryId)  
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
-        }
-        public ShoppingCart ShoppingCart { get; set; }
-        public void OnGet()  
-        {
             int? cartId = HttpContext.Session.GetInt32("cartId");
             if (cartId != null)
                 ShoppingCart = _db.Carts
