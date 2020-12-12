@@ -41,11 +41,30 @@ namespace BetterBuys.Pages.Cart
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
 
-            List<ProductVM> productsInCart = (from p in ProductIndex.Products
+            productsInCart = (from p in ProductIndex.Products
                                               join cp in _db.CartProducts on p.Id equals cp.ProductId
                                               where cp.CartId == Cart.Id
                                               select p).ToList();
         }
+        public decimal CalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach(var item in productList)
+            {
+                total += item.Price;
+            }
+            return total;
+        }
+        public decimal CalFinalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach (var item in productList)
+            {
+                total += item.Price;
+            }
+            return total+8;
+        }
+
 
         //method for the delete
         public async Task<IActionResult> OnPostDelete(int? productId)

@@ -22,7 +22,11 @@
             <div class="total text-center">
                 <div class="d-flex justify-content-between">
                     <p>Order Value</p>
-                    <p>$20.00</p>
+                   
+                <p>
+                    $@Model.CalTotal(Model.productsInCart)
+                    
+                </p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Delivery</p>
@@ -31,7 +35,7 @@
                 <hr />
                 <div class="d-flex justify-content-between">
                     <b>Total</b>
-                    <p>$28.00</p>
+                    <p>$@Model.CalFinalTotal(Model.productsInCart)</p>
                 </div>
                 <a class="btn btn-primary mb-4" href="#">Continue To Checkout</a>
                 <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>
