@@ -38,8 +38,6 @@ namespace BetterBuys.Pages.Cart
                .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                .FirstOrDefault();
         }
-
-
         public IActionResult OnPost(ProductVM testProduct)
         {
             if (testProduct?.Id == null)
