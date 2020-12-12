@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BetterBuys.Data;
 using BetterBuys.Interfaces;
@@ -18,11 +19,13 @@ namespace BetterBuys.Pages.Cart
     {
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
+        Claim user;
 
-        public CartModel(IProductVMService productVMService, StoreDbContext db)
+        public CartModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _productVMService = productVMService;
             _db = db;
+            user = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
         }
 
         public ShoppingCart Cart { get; set; }
@@ -46,14 +49,18 @@ namespace BetterBuys.Pages.Cart
             }
             //need to validate against user or session
             int? cartId = HttpContext.Session.GetInt32("cartId");
-            //add new prod to new cart
-            ShoppingCart cart;
+            ////add new prod to new cart
             if (cartId == null) //new cart
             {
-                cart = new ShoppingCart();
-                _db.Carts.Add(cart);
+                Cart = new ShoppingCart(user == null ? null : user.Value);
+                _db.Carts.Add(Cart);
                 _db.SaveChanges();
-                cartId = cart.Id;
+                cartId = Cart.Id;
+            }
+            else
+            {
+                Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
+                Cart.setBuyer(user == null ? null : user.Value);
             }
 
             //update existing prod in existing cart

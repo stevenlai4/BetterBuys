@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BetterBuys.Models
@@ -10,7 +11,18 @@ namespace BetterBuys.Models
         public string ShippingAddress { get; private set; }
         public DateTime CreatedOn { get; private set; }
         public int Status { get; private set; }
+        public string BuyerId { get; private set; }
 
         public virtual ICollection<CartProduct> CartProducts { get; set; }
+
+        public ShoppingCart(string buyerId)
+        {
+            BuyerId = buyerId;
+        }
+
+        public void setBuyer(string buyerId)
+        {
+            BuyerId = buyerId;
+        }
     }
 }
