@@ -39,5 +39,15 @@ namespace BetterBuys.Pages.Checkout
                     .FirstOrDefault();
             //HttpContext.Session.Remove("cartId");
         }
+
+        public async Task<IActionResult> onPost() 
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            return RedirectToPage();
+        }
     }
 }
