@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BetterBuys.Area.Identity.Data.Migrations
+namespace BetterBuys.Data.StoreMigrations
 {
     public partial class ShoppingCartSchemaUpdate : Migration
     {

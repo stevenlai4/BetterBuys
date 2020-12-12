@@ -4,14 +4,16 @@ using BetterBuys.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuys.Data.StoreMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211235804_ShoppingCartSchemaUpdate2")]
+    partial class ShoppingCartSchemaUpdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,17 +104,14 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CVW")
-                        .IsRequired()
                         .HasColumnType("nvarchar(3)")
                         .HasMaxLength(3);
 
                     b.Property<string>("CardHolderName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("CardNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(12)")
                         .HasMaxLength(12);
 
@@ -120,7 +119,6 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ExpirationDate")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 

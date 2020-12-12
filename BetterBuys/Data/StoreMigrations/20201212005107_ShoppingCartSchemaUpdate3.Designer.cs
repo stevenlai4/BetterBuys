@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BetterBuys.Area.Identity.Data.Migrations
+namespace BetterBuys.Data.StoreMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20201211233720_ShoppingCartSchemaUpdate")]
-    partial class ShoppingCartSchemaUpdate
+    [Migration("20201212005107_ShoppingCartSchemaUpdate3")]
+    partial class ShoppingCartSchemaUpdate3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,42 @@ namespace BetterBuys.Area.Identity.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BetterBuys.Models.CheckoutInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CVW")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("CardHolderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
+                    b.Property<string>("ExpirationDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckoutInfos");
                 });
 
             modelBuilder.Entity("BetterBuys.Models.Product", b =>
@@ -103,31 +139,11 @@ namespace BetterBuys.Area.Identity.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CVW")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("CardHolderName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(12)")
-                        .HasMaxLength(12);
+                    b.Property<int>("CheckoutId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ExpirationDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShippingAddress")
                         .HasColumnType("nvarchar(max)");
@@ -136,6 +152,9 @@ namespace BetterBuys.Area.Identity.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CheckoutId")
+                        .IsUnique();
 
                     b.ToTable("Carts");
                 });
@@ -166,6 +185,15 @@ namespace BetterBuys.Area.Identity.Data.Migrations
                     b.HasOne("BetterBuys.Models.Product", "Product")
                         .WithMany("ProductCategories")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BetterBuys.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("BetterBuys.Models.CheckoutInfo", "CheckoutInfo")
+                        .WithOne("Cart")
+                        .HasForeignKey("BetterBuys.Models.ShoppingCart", "CheckoutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
