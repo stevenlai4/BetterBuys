@@ -10,6 +10,7 @@ using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterBuys.Pages.Cart
@@ -17,6 +18,7 @@ namespace BetterBuys.Pages.Cart
 
     public class CartModel : PageModel
     {
+
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
         Claim user;
@@ -31,16 +33,55 @@ namespace BetterBuys.Pages.Cart
         public ShoppingCart Cart { get; set; }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet(int? categoryId)
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
 
-            Cart = _db.Carts
-               .Include(c => c.CartProducts)
-               .ThenInclude(cp => cp.Product)
-               .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
-               .FirstOrDefault();
+            if (HttpContext.Session.GetInt32("cartId") != null)
+            {
+                productsInCart = (from p in ProductIndex.Products
+                                  join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                  where cp.CartId == (int)HttpContext.Session.GetInt32("cartId")
+                                  select p).ToList();
+            }
         }
+        public decimal CalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach(var item in productList)
+            {
+                total += item.Price;
+            }
+            return total;
+        }
+        public decimal CalFinalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach (var item in productList)
+            {
+                total += item.Price;
+            }
+            return total+8;
+        }
+
+
+        //method for the delete
+        public async Task<IActionResult> OnPostDelete(int? productId)
+        {
+            int? cartId = HttpContext.Session.GetInt32("cartId");
+            var cartproducts = await _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == productId).FirstOrDefaultAsync();
+
+            if (cartproducts == null)
+            {
+                return NotFound();
+            }
+            _db.CartProducts.Remove(cartproducts);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Cart");
+        }
+
         public IActionResult OnPost(ProductVM testProduct)
         {
             if (testProduct?.Id == null)
@@ -49,7 +90,7 @@ namespace BetterBuys.Pages.Cart
             }
             //need to validate against user or session
             int? cartId = HttpContext.Session.GetInt32("cartId");
-            ////add new prod to new cart
+            
             if (cartId == null) //new cart
             {
                 Cart = new ShoppingCart(user == null ? null : user.Value);

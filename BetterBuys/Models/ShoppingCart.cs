@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -8,12 +9,12 @@ namespace BetterBuys.Models
 {
     public class ShoppingCart : BaseEntity
     {
-        public string ShippingAddress { get; private set; }
         public DateTime CreatedOn { get; private set; }
         public int Status { get; private set; }
         public string BuyerId { get; private set; }
 
         public virtual ICollection<CartProduct> CartProducts { get; set; }
+        public virtual CheckoutInfo CheckoutInfo { get; set; }
 
         public ShoppingCart(string buyerId)
         {
@@ -26,3 +27,4 @@ namespace BetterBuys.Models
         }
     }
 }
+

@@ -4,39 +4,52 @@
 <h1 class="text-center mb-5">Shopping Cart</h1>
 <section class="shopping-cart">
     <div class="d-flex container justify-content-between">
-        <div class="products">
-            @for (int i = 0; i < 2; i++)
-            {
-                <partial name="_CartProductPartial" />
-            }
-            <a asp-page="index">Continue Shipping</a>
-        </div>
-        <div class="checkout-container border border-dark pt-5 pl-4 pr-4">
-            <form class="promo mb-5" method="post">
-                <label for="promo-code" class="form-label">Add a Discount Code</label>
-                <div class="d-flex">
-                    <input type="text" id="promo-code" class="col-form-control mr-2" />
-                    <button type="submit" class="btn btn-primary">Apply Promo Code</button>
-                </div>
-            </form>
-            <div class="total text-center">
-                <div class="d-flex justify-content-between">
-                    <p>Order Value</p>
-                    <p>$20.00</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <p>Delivery</p>
-                    <p>$8.00</p>
-                </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <b>Total</b>
-                    <p>$28.00</p>
-                </div>
-                <a class="btn btn-primary mb-4" href="#">Continue To Checkout</a>
-                <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>
+        @if (Model.productsInCart.Count == 0)
+        {
+            <div>
+                <p>Your Cart Is Empty...</p>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="products">
+                @foreach (var item in Model.productsInCart)
+                {
+                    <partial name="_CartProductPartial" for="@item" />
+                }
+                <a asp-page="index">Continue Shipping</a>
+            </div>
+            <div class="checkout-container border border-dark pt-5 pl-4 pr-4">
+                <form class="promo mb-5" method="post">
+                    <label for="promo-code" class="form-label">Add a Discount Code</label>
+                    <div class="d-flex">
+                        <input type="text" id="promo-code" class="col-form-control mr-2" />
+                        <button type="submit" class="btn btn-primary">Apply Promo Code</button>
+                    </div>
+                </form>
+                <div class="total text-center">
+                    <div class="d-flex justify-content-between">
+                        <p>Order Value</p>
+
+                        <p>
+                            $@Model.CalTotal(Model.productsInCart)
+
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Delivery</p>
+                        <p>$8.00</p>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between">
+                        <b>Total</b>
+                        <p>$@Model.CalFinalTotal(Model.productsInCart)</p>
+                    </div>
+                    <a class="btn btn-primary mb-4" asp-page="Checkout">Continue To Checkout</a>
+                    <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>
+                </div>
+            </div>
+        }
     </div>
     <div>
         <p>Advertisement</p>

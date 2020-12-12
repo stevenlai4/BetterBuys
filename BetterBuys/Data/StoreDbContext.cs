@@ -19,6 +19,7 @@ namespace BetterBuys.Data
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ShoppingCart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<CheckoutInfo> CheckoutInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,7 +47,12 @@ namespace BetterBuys.Data
             modelBuilder.Entity<CartProduct>()
                 .HasOne(cp => cp.Product)
                 .WithMany(p => p.CartProducts)
-                .HasForeignKey(fk => new { fk.ProductId });
+                .HasForeignKey(fk => new { fk.ProductId }); 
+
+            modelBuilder.Entity<CheckoutInfo>()
+                .HasOne(ci => ci.Cart)
+                .WithOne(sc => sc.CheckoutInfo)
+                .HasForeignKey<CheckoutInfo>(fk => new { fk.CartId });
         }
     }
 }

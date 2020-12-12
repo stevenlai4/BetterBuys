@@ -4,14 +4,16 @@ using BetterBuys.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuys.Data.StoreMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201212005503_ShoppingCartSchemaUpdate4")]
+    partial class ShoppingCartSchemaUpdate4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,9 +79,6 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasColumnType("nvarchar(12)")
                         .HasMaxLength(12);
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ExpirationDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -89,13 +88,7 @@ namespace BetterBuys.Data.StoreMigrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShippingAddress")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId")
-                        .IsUnique();
 
                     b.ToTable("CheckoutInfos");
                 });
@@ -146,16 +139,23 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BuyerId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CheckoutId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ShippingAddress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CheckoutId")
+                        .IsUnique()
+                        .HasFilter("[CheckoutId] IS NOT NULL");
 
                     b.ToTable("Carts");
                 });
@@ -175,15 +175,6 @@ namespace BetterBuys.Data.StoreMigrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BetterBuys.Models.CheckoutInfo", b =>
-                {
-                    b.HasOne("BetterBuys.Models.ShoppingCart", "Cart")
-                        .WithOne("CheckoutInfo")
-                        .HasForeignKey("BetterBuys.Models.CheckoutInfo", "CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BetterBuys.Models.ProductCategory", b =>
                 {
                     b.HasOne("BetterBuys.Models.Category", "Category")
@@ -197,6 +188,13 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BetterBuys.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("BetterBuys.Models.CheckoutInfo", "CheckoutInfo")
+                        .WithOne("Cart")
+                        .HasForeignKey("BetterBuys.Models.ShoppingCart", "CheckoutId");
                 });
 #pragma warning restore 612, 618
         }
