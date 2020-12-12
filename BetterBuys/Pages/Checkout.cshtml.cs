@@ -25,12 +25,7 @@ namespace BetterBuys.Pages.Checkout
             _productVMService = productVMService;
             _db = db;
         }
-
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        //public void OnGet(int? categoryId)
-        //{
-        //    ProductIndex = _productVMService.GetProductsVM(categoryId);
-        //}
         public ShoppingCart ShoppingCart { get; set; }
         public void OnGet(int? categoryId)  
         {
@@ -42,7 +37,6 @@ namespace BetterBuys.Pages.Checkout
                     .ThenInclude(cp => cp.Product)
                     .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                     .FirstOrDefault();
-
             //HttpContext.Session.Remove("cartId");
         }
     }
