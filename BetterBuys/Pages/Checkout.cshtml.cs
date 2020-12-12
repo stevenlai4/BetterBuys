@@ -37,7 +37,16 @@ namespace BetterBuys.Pages.Checkout
                     .ThenInclude(cp => cp.Product)
                     .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                     .FirstOrDefault();
-            //HttpContext.Session.Remove("cartId");
+        }
+
+        public async Task<IActionResult> onPost() 
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            HttpContext.Session.Remove("cartId");
+            return RedirectToPage();
         }
     }
 }

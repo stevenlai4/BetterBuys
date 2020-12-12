@@ -8,8 +8,6 @@ namespace BetterBuys.Models
 {
     public class ShoppingCart : BaseEntity
     {
-        public int? CheckoutId { get; private set; }
-        public string ShippingAddress { get; private set; }
         public DateTime CreatedOn { get; private set; }
         public int Status { get; private set; }
 
