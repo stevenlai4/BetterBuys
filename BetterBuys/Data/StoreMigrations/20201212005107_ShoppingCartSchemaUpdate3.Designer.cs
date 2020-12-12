@@ -4,14 +4,16 @@ using BetterBuys.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterBuys.Data.StoreMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201212005107_ShoppingCartSchemaUpdate3")]
+    partial class ShoppingCartSchemaUpdate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,7 +139,7 @@ namespace BetterBuys.Data.StoreMigrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CheckoutId")
+                    b.Property<int>("CheckoutId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -152,8 +154,7 @@ namespace BetterBuys.Data.StoreMigrations
                     b.HasKey("Id");
 
                     b.HasIndex("CheckoutId")
-                        .IsUnique()
-                        .HasFilter("[CheckoutId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Carts");
                 });
@@ -192,7 +193,9 @@ namespace BetterBuys.Data.StoreMigrations
                 {
                     b.HasOne("BetterBuys.Models.CheckoutInfo", "CheckoutInfo")
                         .WithOne("Cart")
-                        .HasForeignKey("BetterBuys.Models.ShoppingCart", "CheckoutId");
+                        .HasForeignKey("BetterBuys.Models.ShoppingCart", "CheckoutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
