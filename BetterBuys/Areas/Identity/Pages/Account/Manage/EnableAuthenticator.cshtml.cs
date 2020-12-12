@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using BetterBuys.ViewModels;
+using BetterBuys.Interfaces;
 
 namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 {
@@ -18,17 +20,20 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<EnableAuthenticatorModel> _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly IProductVMService _productVMService;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public EnableAuthenticatorModel(
             UserManager<IdentityUser> userManager,
             ILogger<EnableAuthenticatorModel> logger,
-            UrlEncoder urlEncoder)
+            UrlEncoder urlEncoder,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _productVMService = productVMService;
         }
 
         public string SharedKey { get; set; }
@@ -43,6 +48,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         public InputModel Input { get; set; }
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
         public class InputModel
         {
@@ -53,8 +59,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
             public string Code { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
