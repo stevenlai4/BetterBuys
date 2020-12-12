@@ -30,6 +30,7 @@ namespace BetterBuys.Pages.Cart
         public ShoppingCart Cart { get; set; }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet(int? categoryId)
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
