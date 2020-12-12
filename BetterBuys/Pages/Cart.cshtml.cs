@@ -35,16 +35,13 @@ namespace BetterBuys.Pages.Cart
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
 
-            Cart = _db.Carts
-               .Include(c => c.CartProducts)
-               .ThenInclude(cp => cp.Product)
-               .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
-               .FirstOrDefault();
-
-            productsInCart = (from p in ProductIndex.Products
-                                              join cp in _db.CartProducts on p.Id equals cp.ProductId
-                                              where cp.CartId == Cart.Id
-                                              select p).ToList();
+            if (HttpContext.Session.GetInt32("cartId") != null)
+            {
+                productsInCart = (from p in ProductIndex.Products
+                                  join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                  where cp.CartId == (int)HttpContext.Session.GetInt32("cartId")
+                                  select p).ToList();
+            }
         }
         public decimal CalTotal(List<ProductVM> productList)
         {
@@ -90,14 +87,13 @@ namespace BetterBuys.Pages.Cart
             }
             //need to validate against user or session
             int? cartId = HttpContext.Session.GetInt32("cartId");
-            //add new prod to new cart
-            ShoppingCart cart;
+
             if (cartId == null) //new cart
             {
-                cart = new ShoppingCart();
-                _db.Carts.Add(cart);
+                Cart = new ShoppingCart();
+                _db.Carts.Add(Cart);
                 _db.SaveChanges();
-                cartId = cart.Id;
+                cartId = Cart.Id;
             }
 
             //update existing prod in existing cart
