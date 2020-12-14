@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 
 namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 {
@@ -13,13 +15,16 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
+        private readonly IProductVMService _productVMService;
 
         public GenerateRecoveryCodesModel(
             UserManager<IdentityUser> userManager,
-            ILogger<GenerateRecoveryCodesModel> logger)
+            ILogger<GenerateRecoveryCodesModel> logger,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _logger = logger;
+            _productVMService = productVMService;
         }
 
         [TempData]
@@ -27,9 +32,11 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

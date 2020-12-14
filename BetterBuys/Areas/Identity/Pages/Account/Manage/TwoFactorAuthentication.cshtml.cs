@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 
 namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 {
@@ -16,15 +18,18 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
+        private readonly IProductVMService _productVMService;
 
         public TwoFactorAuthenticationModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<TwoFactorAuthenticationModel> logger)
+            ILogger<TwoFactorAuthenticationModel> logger,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _productVMService = productVMService;
         }
 
         public bool HasAuthenticator { get; set; }
@@ -38,9 +43,11 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
