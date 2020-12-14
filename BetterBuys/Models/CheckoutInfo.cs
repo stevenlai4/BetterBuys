@@ -9,10 +9,22 @@ namespace BetterBuys.Models
 {
     public class CheckoutInfo : BaseEntity
     {
-        private object p;
-
         public int CartId { get; private set; }
-        public string ShippingAddress { get; private set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string Address { get; set; }
+        public string Apartment { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public string Province { get; set; }
+        [Required]
+        public string PostalCode { get; set; }
         [Phone]
         [Required]
         public string Phone { get; set; }

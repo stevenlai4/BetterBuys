@@ -26,7 +26,7 @@ namespace BetterBuys.Pages.Checkout
             _db = db;
         }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public ShoppingCart ShoppingCart { get; set; }
+        public ShoppingCart ShoppingCart { get; set; } = new ShoppingCart();
         public void OnGet(int? categoryId)  
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
@@ -39,24 +39,30 @@ namespace BetterBuys.Pages.Checkout
                     .FirstOrDefault();
         }
 
-        CheckoutInfo checkoutInfo;
-        public async Task<IActionResult> onPost()
+        public CheckoutInfo checkoutInfo = new CheckoutInfo();
+        public async Task<IActionResult> OnPost(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            int? cartId = HttpContext.Session.GetInt32("cartId");
+            if (cartId != null)
+                ShoppingCart = _db.Carts
+                    .Include(c => c.CartProducts)
+                    .ThenInclude(cp => cp.Product)
+                    .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
+                    .FirstOrDefault();
 
-            if (!ModelState.IsValid)
-            {
-                //checkoutInfo = new CheckoutInfo(null);
+            //if (!ModelState.IsValid)
+            //{
+            //    return RedirectToPage("Checkout");
+            //}
+            //else
+            //{
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
-
-            }
-            else
-            {
                 return Page();
-            }
+            //}
             HttpContext.Session.Remove("cartId");
-            return RedirectToPage("~/Index");
+            //return RedirectToPage("~/Index");
         }
     }
 }

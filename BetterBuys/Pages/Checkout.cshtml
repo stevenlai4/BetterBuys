@@ -11,7 +11,7 @@
                 <form class="pr-lg-5 pb-5 pb-lg-0" method="post">
                     <h5>Shipping Address</h5>
                     <div class="input-control firstName mb-3">
-                        <input type="text" id="firstName" placeholder="First Name" />
+                        <input type="text" asp-for="@Model.checkoutInfo.Address" id="firstName" placeholder="First Name" />
                     </div>
                     <div class="input-control lastName mb-3">
                         <input type="text" id="lastName" placeholder="Last Name" />
@@ -35,6 +35,19 @@
                         <div class="input-control province mx-5 mb-3">
                             <select name="province" class="provinces" id="provinceId">
                                 <option value="">Select Province</option>
+                                <option value="AB">Alberta</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland and Labrador</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="ON">Ontario</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="QC">Quebec</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NU">Nunavut</option>
+                                <option value="YT">Yukon</option>
                             </select>
                         </div>
                     </div>
@@ -61,7 +74,7 @@
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <p>Return to cart</p>
-                        <input class="btn btn-primary" type="Submit" value="COMPLETE PURCHASE" id="complete" />
+                        <input class="btn btn-primary" type="submit" value="COMPLETE PURCHASE" id="complete" />
                     </div>
                 </form>
             </div>
