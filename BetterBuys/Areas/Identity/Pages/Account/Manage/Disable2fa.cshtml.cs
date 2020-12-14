@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,20 +15,26 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<Disable2faModel> _logger;
+        private readonly IProductVMService _productVMService;
 
         public Disable2faModel(
             UserManager<IdentityUser> userManager,
-            ILogger<Disable2faModel> logger)
+            ILogger<Disable2faModel> logger,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _logger = logger;
+            _productVMService = productVMService;
         }
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGet()
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+
+        public async Task<IActionResult> OnGet(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
