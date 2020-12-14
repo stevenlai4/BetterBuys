@@ -21,6 +21,14 @@ a.navbar-brand {
     background-color: black;
 }
 
+.navbar-collapse i{
+    font-size: 25px;
+    padding-left: 30px;
+}
+
+#accountlogo a{
+    padding-left: 50rem;
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
