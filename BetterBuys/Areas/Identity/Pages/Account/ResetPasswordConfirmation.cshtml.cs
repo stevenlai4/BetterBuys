@@ -23,7 +23,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
     }
 }
