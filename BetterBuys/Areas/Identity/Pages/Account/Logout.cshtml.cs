@@ -30,13 +30,14 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+            HttpContext.Session.Remove("cartId");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

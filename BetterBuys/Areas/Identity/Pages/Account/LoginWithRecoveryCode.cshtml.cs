@@ -45,7 +45,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnGetAsync(int? categoryId, string returnUrl = null)
         {
 
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BetterBuys.Data;
 using BetterBuys.Interfaces;
@@ -20,18 +21,20 @@ namespace BetterBuys.Pages.Cart
 
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
+        Claim user;
 
-        public CartModel(IProductVMService productVMService, StoreDbContext db)
+        public CartModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _productVMService = productVMService;
             _db = db;
+            user = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId, HttpContext.Session.GetInt32("cartId"));
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (HttpContext.Session.GetInt32("cartId") != null)
             {

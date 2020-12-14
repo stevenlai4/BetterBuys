@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,13 +17,22 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
+        private readonly IProductVMService _productVMService;
 
         public DownloadPersonalDataModel(
             UserManager<IdentityUser> userManager,
-            ILogger<DownloadPersonalDataModel> logger)
+            ILogger<DownloadPersonalDataModel> logger,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _logger = logger;
+            _productVMService = productVMService;
+        }
+
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public void OnGet(int? categoryId)
+        {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
 
         public async Task<IActionResult> OnPostAsync()

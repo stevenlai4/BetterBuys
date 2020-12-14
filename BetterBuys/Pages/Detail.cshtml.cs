@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BetterBuys.Data;
 using BetterBuys.Interfaces;
-using BetterBuys.Models;
 using BetterBuys.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

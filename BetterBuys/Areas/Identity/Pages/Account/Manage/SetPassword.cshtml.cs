@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using BetterBuys.Interfaces;
+using BetterBuys.ViewModels;
 
 namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 {
@@ -13,13 +15,16 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IProductVMService _productVMService;
 
         public SetPasswordModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            IProductVMService productVMService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _productVMService = productVMService;
         }
 
         [BindProperty]
@@ -27,6 +32,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
+        public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
         public class InputModel
         {
@@ -42,8 +48,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
             public string ConfirmPassword { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? categoryId)
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

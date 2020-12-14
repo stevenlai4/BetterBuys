@@ -2,6 +2,7 @@
 using BetterBuys.Interfaces;
 using BetterBuys.Models;
 using BetterBuys.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace BetterBuys.Services
             _db = db;
         }
 
-        public ProductIndexVM GetProductsVM(int? categoryId, int? cartId)
+        public ProductIndexVM GetProductsVM(HttpContext context, int? categoryId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
@@ -37,6 +38,8 @@ namespace BetterBuys.Services
                             where c.Id == categoryId
                             select p);
             }
+
+            int? cartId = context.Session.GetInt32("cartId");
 
             var vm = new ProductIndexVM()
             {

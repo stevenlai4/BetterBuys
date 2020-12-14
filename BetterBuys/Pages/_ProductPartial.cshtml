@@ -8,10 +8,11 @@
             <a asp-page="/Detail" asp-route-productId="@Model.Id" class="btn btn-primary">View Detail</a>
             <p class="card-text">@Model.Name</p>
             <p class="card-text">$@string.Format("{0:n2}", Model.Price)</p>
-            <input type="hidden" asp-for="@Model.Id" name="id">
-            <input type="hidden" asp-for="@Model.Name" name="name">
-            <input type="hidden" asp-for="@Model.Price" name="price">
-            <input type="hidden" asp-for="@Model.ImageUri" name="pictureUri">
+            <input type="hidden" asp-for="@Model.Id" name="id" />
+            <input type="hidden" asp-for="@Model.Name" name="name" />
+            <input type="hidden" asp-for="@Model.Price" name="price" />
+            <input type="hidden" asp-for="@Model.ImageUri" name="pictureUri" />
+            <input type="hidden" asp-for="@Model.Quantity" name="quantity" value="1" />
         </div>
     </div>
 </form>

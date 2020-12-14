@@ -35,7 +35,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetAsync(int? categoryId, string email, string returnUrl = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (email == null)
             {
