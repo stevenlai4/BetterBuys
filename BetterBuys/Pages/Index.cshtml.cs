@@ -28,6 +28,7 @@ namespace BetterBuys.Pages
         {
             IsFiltering = categoryId != null ? true : false;
             ProductIndex = _productVMService.GetProductsVM(categoryId);
+            //
             if (!string.IsNullOrEmpty(SearchString))
             {
                 ProductIndex = new ProductIndexVM()
@@ -37,6 +38,7 @@ namespace BetterBuys.Pages
                                 select p).ToList(),
                     Categories = ProductIndex.Categories
                 };
+                IsFiltering = true;
             }
 
         }

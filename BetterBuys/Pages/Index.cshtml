@@ -6,14 +6,14 @@
 }
 
 <div>
+
+    <form class="form-inline">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
     @if (!Model.IsFiltering)
     {
-        <div>
-            <form>
-                <input type="text" asp-for="SearchString" />
-                <input type="submit" value="Search">
-            </form>
-        </div>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
