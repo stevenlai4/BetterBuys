@@ -31,8 +31,10 @@ a {
 
 .form-inline .form-control{
     padding-left: 100px;
-    width: 200%;
+    width: 80%;
 }
+
+
 /*add styling to the main nav*/
 #main-nav a {
     color: white;
@@ -42,10 +44,10 @@ a {
     
 }
 
-    #main-nav a:hover {
-        color: grey;
-        background-color: black;
-    }
+#main-nav a:hover {
+   color: grey;
+   background-color: black;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -134,7 +136,17 @@ footer {
     padding-bottom:150px;
 }
 
+/*Styling for the footer*/
+
 #followcolumn i{
     font-size: 25px !important;
     color: white !important;
+}
+
+#contact .form-control{
+    width: 100%;
+}
+
+#contact #submitform{
+    height: 150px;
 }
