@@ -26,7 +26,7 @@ namespace BetterBuys.Pages.Checkout
             _db = db;
         }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public ShoppingCart ShoppingCart { get; set; } = new ShoppingCart();
+        public ShoppingCart ShoppingCart { get; set; } 
         public void OnGet(int? categoryId)  
         {
             ProductIndex = _productVMService.GetProductsVM(categoryId);
@@ -39,17 +39,9 @@ namespace BetterBuys.Pages.Checkout
                     .FirstOrDefault();
         }
 
-        public CheckoutInfo checkoutInfo = new CheckoutInfo();
-        public async Task<IActionResult> OnPost(int? categoryId)
+        public CheckoutInfo checkoutInfo;
+        public async Task<IActionResult> OnPost()
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
-            int? cartId = HttpContext.Session.GetInt32("cartId");
-            if (cartId != null)
-                ShoppingCart = _db.Carts
-                    .Include(c => c.CartProducts)
-                    .ThenInclude(cp => cp.Product)
-                    .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
-                    .FirstOrDefault();
 
             //if (!ModelState.IsValid)
             //{
@@ -57,10 +49,12 @@ namespace BetterBuys.Pages.Checkout
             //}
             //else
             //{
+                //checkoutInfo = new CheckoutInfo(cartId, firstName, lastName, address, apartment, city, country,  province, postalCode, phone,
+                //                                cardNumber, cardHolderName, expirationDate, cvw);
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
                 await _db.SaveChangesAsync();
                 return Page();
-            //}
+            //
             HttpContext.Session.Remove("cartId");
             //return RedirectToPage("~/Index");
         }

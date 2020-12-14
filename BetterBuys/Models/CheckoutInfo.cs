@@ -10,45 +10,55 @@ namespace BetterBuys.Models
     public class CheckoutInfo : BaseEntity
     {
         public int CartId { get; private set; }
-        [Required]
+       // [Required]
         public string FirstName { get; set; }
-        [Required]
+        //[Required]
         public string LastName { get; set; }
-        [Required]
+       // [Required]
         public string Address { get; set; }
         public string Apartment { get; set; }
-        [Required]
+        //[Required]
         public string City { get; set; }
-        [Required]
+       // [Required]
         public string Country { get; set; }
-        [Required]
+        //[Required]
         public string Province { get; set; }
-        [Required]
+       // [Required]
         public string PostalCode { get; set; }
-        [Phone]
-        [Required]
+        //[Phone]
+        //[Required]
         public string Phone { get; set; }
         //[StringLength(12)]
-        [Required]
+        //[Required]
         public string CardNumber { get; set; }
         //[StringLength(100, MinimumLength = 10)]
-        [Required]
+        //[Required]
         public string CardHolderName { get; set; }
         //[StringLength(100, MinimumLength = 10)]
-        [Required]
+        //[Required]
         public string ExpirationDate { get; set; }
         //[StringLength(3)]
-        [Required]
+        //[Required]
         public string CVW { get; set; }
 
         public virtual ShoppingCart Cart { get; set; }
 
-        //public CheckoutInfo(int cartId, string shippingAddress, string phone, string cardNumber, string expirationDate, string cvw)
+        //public CheckoutInfo(int cartId, string firstName, string lastName, string address, string apartment , string city, 
+        //                    string country, string province, string postalCode, string phone, 
+        //                    string cardNumber, string cardHolderName, string expirationDate, string cvw)
         //{
         //    CartId = cartId;
-        //    ShippingAddress = shippingAddress;
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    Address = address;
+        //    Apartment = apartment;
+        //    City = city;
+        //    Country = country;
+        //    Province = province;
+        //    PostalCode = postalCode;
         //    Phone = phone;
         //    CardNumber = cardNumber;
+        //    CardHolderName = cardHolderName;
         //    ExpirationDate = expirationDate;
         //    CVW = cvw;
         //}

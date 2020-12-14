@@ -11,19 +11,19 @@
                 <form class="pr-lg-5 pb-5 pb-lg-0" method="post">
                     <h5>Shipping Address</h5>
                     <div class="input-control firstName mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.FirstName" id="firstName" placeholder="First Name" />
+                        <input type="text" asp-for="@Model.checkoutInfo.FirstName" name="firstName" id="firstName" placeholder="First Name" />
                     </div>
                     <div class="input-control lastName mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.LastName" id="lastName" placeholder="Last Name" />
+                        <input type="text" asp-for="@Model.checkoutInfo.LastName" name="lastName" id="lastName" placeholder="Last Name" />
                     </div>
                     <div class="input-control address mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Address" id="address" placeholder="Adress" />
+                        <input type="text" asp-for="@Model.checkoutInfo.Address" name="address" id="address" placeholder="Adress" />
                     </div>
                     <div class="input-control apartment mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Apartment" id="apartment" placeholder="Apartment" />
+                        <input type="text" asp-for="@Model.checkoutInfo.Apartment" name="apartment" id="apartment" placeholder="Apartment" />
                     </div>
                     <div class="input-control city mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.City" id="city" placeholder="City" />
+                        <input type="text" asp-for="@Model.checkoutInfo.City" name="city" id="city" placeholder="City" />
                     </div>
                     <div class="d-flex">
                         <div class="input-control country mb-3">
@@ -52,25 +52,25 @@
                         </div>
                     </div>
                     <div class="input-control postal mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.PostalCode" id="postCode" placeholder="Postal Code" />
+                        <input type="text" asp-for="@Model.checkoutInfo.PostalCode"  name="postalCode" id="postCode" placeholder="Postal Code" />
                     </div>
                     <div class="input-control phone mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Phone" id="phone" placeholder="Phone" />
+                        <input type="text" asp-for="@Model.checkoutInfo.Phone" name="phone" id="phone" placeholder="Phone" />
                     </div>
                     <h5 class="mt-4">Payment Method</h5>
                     <div class="input-control name mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.CardHolderName" id="name" placeholder="Cardholder Name" />
+                        <input type="text" asp-for="@Model.checkoutInfo.CardHolderName" name="cardHolderName" id="name" placeholder="Cardholder Name" />
                     </div>
                     <div class="d-flex">
                         <div class="input-control number">
-                            <input type="text" asp-for="@Model.checkoutInfo.CardNumber" id="number" placeholder="Card Number" />
+                            <input type="text" asp-for="@Model.checkoutInfo.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
                         </div>
                         <div class="input-control expirationDate mx-5 mb-3">
-                            <input type="text" asp-for="@Model.checkoutInfo.ExpirationDate" id="phone" placeholder="Expiration Date mm/yy" />
+                            <input type="text" asp-for="@Model.checkoutInfo.ExpirationDate" name="expirationDate" id="expirationDate" placeholder="Expiration Date mm/yy" />
                         </div>
                     </div>
                     <div class="input-control cvw mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.CVW" id="cvw" placeholder="CVW" />
+                        <input type="text" asp-for="@Model.checkoutInfo.CVW" name="cvw" id="cvw" placeholder="CVW" />
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <p>Return to cart</p>
