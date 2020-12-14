@@ -3,9 +3,22 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
     color: white !important;
-    font-size: 30px !important;
-    font-family: 'Lucida Sans Unicode';
+    font-size: 35px !important;
+    font-family:Bahnschrift;
 
+}
+
+/*Style for the main nav*/
+
+#main-nav a{
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+}
+
+#main-nav a:hover{
+    color: grey;
+    background-color: black;
 }
 
 /* Provide sufficient contrast against white background */
