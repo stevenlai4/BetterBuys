@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BetterBuys.Interfaces;
-using BetterBuys.Models;
 using BetterBuys.ViewModels;
+using BetterBuys.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
