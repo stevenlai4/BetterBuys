@@ -112,3 +112,8 @@ footer {
     padding-top: 50px;
     padding-bottom:150px;
 }
+
+#followcolumn i{
+    font-size: 25px !important;
+    color: white !important;
+}
