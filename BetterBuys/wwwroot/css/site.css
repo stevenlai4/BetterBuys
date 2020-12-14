@@ -4,7 +4,8 @@ for details on configuring this project to bundle and minify static web assets. 
 a.navbar-brand {
     color: white !important;
     font-size: 30px !important;
-    font-family: Arial;
+    font-family: 'Lucida Sans Unicode';
+
 }
 
 /* Provide sufficient contrast against white background */
@@ -33,14 +34,18 @@ a {
     width: 200%;
 }
 /*add styling to the main nav*/
-#main-nav a{
+#main-nav a {
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+    text-decoration: none;
+    display: block;
+    
 }
 
-#main-nav a:hover{
-    color: grey;
-}
+    #main-nav a:hover {
+        color: grey;
+        background-color: black;
+    }
 
 /* Sticky footer styles
 -------------------------------------------------- */
