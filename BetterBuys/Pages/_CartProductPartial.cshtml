@@ -1,18 +1,22 @@
 ﻿@model BetterBuys.ViewModels.ProductVM
+
 <div class="product-item d-flex align-items-center">
     <img src="@Model.ImageUri" width="300" />
     <div>
         <h5>@Model.Name</h5>
         <label for="quantity" class="col-form-label mr-2">Quantity</label>
-        <select class="form-select" id="quantity">
-            @for (int i = 1; i < 51; i++)
-            {
-                <option value=@i>@i</option>
-            }
-        </select>
+            <select asp-for="@Model.Quantity" class="form-select" id="quantity">
+                @for (int i = 1; i < 51; i++)
+                {
+                    <option value=@i>@i</option>
+                }
+            </select>
         <p class="price">$@Model.Price</p>
         <form method="post">
-            <button asp-page-handler="Delete" asp-route-productId="@Model.Id" onclick="return confirm('Comfirm to Delete this item.')">Delete</button>
+            <button type="submit" asp-page-handler="Update" asp-route-productId="@Model.Id">Update</button>
+        </form>
+        <form method="post">
+            <button type="submit" asp-page-handler="Delete" asp-route-productId="@Model.Id" onclick="return confirm('Comfirm to Delete this item.')">Delete</button>
         </form>
     </div>
 </div>

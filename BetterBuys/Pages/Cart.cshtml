@@ -3,6 +3,7 @@
 
 <h1 class="text-center mb-5">Shopping Cart</h1>
 <section class="shopping-cart">
+    <a asp-page="index">Continue Shipping</a>
     <div class="d-flex container justify-content-between">
         @if (Model.productsInCart.Count == 0)
         {
@@ -17,7 +18,6 @@
                 {
                     <partial name="_CartProductPartial" for="@item" />
                 }
-                <a asp-page="index">Continue Shipping</a>
             </div>
             <div class="checkout-container border border-dark pt-5 pl-4 pr-4">
                 <form class="promo mb-5" method="post">

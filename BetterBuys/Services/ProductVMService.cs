@@ -25,7 +25,7 @@ namespace BetterBuys.Services
             _db = db;
         }
 
-        public ProductIndexVM GetProductsVM(int? categoryId)
+        public ProductIndexVM GetProductsVM(int? categoryId, int? cartId)
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
@@ -46,7 +46,7 @@ namespace BetterBuys.Services
                     Name = p.Name,
                     Price = p.Price,
                     ImageUri = p.ImageUri,
-
+                    Quantity = cartId != null ? (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault() : 0
                 }).ToList(),
                 Categories = categories.Select(c => new CategoryVM
                 {

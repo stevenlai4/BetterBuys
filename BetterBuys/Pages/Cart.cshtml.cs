@@ -27,13 +27,11 @@ namespace BetterBuys.Pages.Cart
             _db = db;
         }
 
-        //public ShoppingCart Cart { get; set; }
-
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(categoryId, HttpContext.Session.GetInt32("cartId"));
 
             if (HttpContext.Session.GetInt32("cartId") != null)
             {
@@ -66,6 +64,22 @@ namespace BetterBuys.Pages.Cart
             return total+8;
         }
 
+        public async Task<IActionResult> OnPostUpdate(int? categoryId, int? productId)
+        {
+            ProductIndex = _productVMService.GetProductsVM(categoryId,);
+
+            int? cartId = HttpContext.Session.GetInt32("cartId");
+
+            var cartProduct = await _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == productId).FirstOrDefaultAsync();
+
+            if(cartProduct != null)
+            {
+                cartProduct.updateQuantity(ProductIndex.Products.Where(p => p.Id == productId).FirstOrDefault().Quantity);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage("Cart");
+        }
 
         //method for the delete
         public async Task<IActionResult> OnPostDelete(int? productId)

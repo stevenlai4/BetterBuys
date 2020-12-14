@@ -10,7 +10,7 @@ namespace BetterBuys.Interfaces
 {
     public interface IProductVMService
     {
-        ProductIndexVM GetProductsVM(int? categoryId);
+        ProductIndexVM GetProductsVM(int? categoryId, int? cartId);
         ProductVM GetProduct(int productId);
     }
 }
