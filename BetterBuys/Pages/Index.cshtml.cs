@@ -16,7 +16,7 @@ namespace BetterBuys.Pages
     {
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
-       
+
         public IndexModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
@@ -25,21 +25,23 @@ namespace BetterBuys.Pages
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Boolean IsFiltering = false;
-        public IList<Product> Product { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
+        public string SearchString { get; set; }   
         public void OnGet(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
             ProductIndex = _productVMService.GetProductsVM(categoryId);
-
-            var products = from p in _db.Products
-                           select p;
             if (!string.IsNullOrEmpty(SearchString))
             {
-                products = products.Where(s => s.Name.Contains(SearchString));
+                ProductIndex = new ProductIndexVM()
+                {
+                    Products = (from p in ProductIndex.Products
+                                where p.Name.ToLower().Contains(SearchString.ToLower())
+                                select p).ToList(),
+                    Categories = ProductIndex.Categories
+                };
             }
-            Product = products.ToList();
+
         }
     }
 }
