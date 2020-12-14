@@ -14,13 +14,10 @@ namespace BetterBuys.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IProductVMService _productVMService;
-        private readonly StoreDbContext _db;
-
-        public IndexModel(IProductVMService productVMService, StoreDbContext db)
+        private readonly IProductVMService _productVMService;        
+        public IndexModel(IProductVMService productVMService)
         {
-            _productVMService = productVMService;
-            _db = db;
+            _productVMService = productVMService;            
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
