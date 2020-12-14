@@ -7,6 +7,12 @@
 <div>
     @if (!Model.IsFiltering)
     {
+        <div>
+            <form>
+                <input type ="text" asp-for="SearchString" />
+                <input type="submit" value="Search">
+            </form>
+        </div>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

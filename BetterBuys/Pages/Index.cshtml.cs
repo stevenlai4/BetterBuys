@@ -15,18 +15,31 @@ namespace BetterBuys.Pages
     public class IndexModel : PageModel
     {
         private readonly IProductVMService _productVMService;
+        private readonly StoreDbContext _db;
        
-        public IndexModel(IProductVMService productVMService)
+        public IndexModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
+            _db = db;
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Boolean IsFiltering = false;
+        public IList<Product> Product { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
         public void OnGet(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
             ProductIndex = _productVMService.GetProductsVM(categoryId);
+
+            var products = from p in _db.Products
+                           select p;
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                products = products.Where(s => s.Name.Contains(SearchString));
+            }
+            Product = products.ToList();
         }
     }
 }
