@@ -68,20 +68,19 @@
             @*order box*@
             <div class="border border-secondary col-lg-6">
                 <h5 class="d-flex justify-content-center m-2">Your Order</h5>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td><img src="/images/products/echo-dot.jpg" width="100" /></td>
-                            <td>Echo dot</td>
-                            <td>$10.99</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/images/products/echo-dot.jpg" width="100" /></td>
-                            <td>Echo dot</td>
-                            <td>$10.99</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @foreach (var item in Model.ShoppingCart.CartProducts)
+                {
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><img src="@item.Product.ImageUri" width="100" /></td>
+                                <td>@item.Product.Name</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
                 <p>Add a Discount Code</p>
                 <div class="d-flex justify-content-between my-2">
                     <input type="text" id="discount" placeholder="Discount Code" />

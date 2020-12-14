@@ -68,7 +68,6 @@ namespace BetterBuys.Pages.Cart
             {
                 cp = new CartProduct((int)cartId, testProduct.Id, testProduct.Price, testProduct.Quantity);
                 _db.CartProducts.Add(cp);
-
             }
 
             else //product is already in cart

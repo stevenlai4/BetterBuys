@@ -9,6 +9,8 @@ namespace BetterBuys.Models
 {
     public class CheckoutInfo : BaseEntity
     {
+        private object p;
+
         public int CartId { get; private set; }
         public string ShippingAddress { get; private set; }
         [Phone]
@@ -28,5 +30,15 @@ namespace BetterBuys.Models
         public string CVW { get; set; }
 
         public virtual ShoppingCart Cart { get; set; }
+
+        //public CheckoutInfo(int cartId, string shippingAddress, string phone, string cardNumber, string expirationDate, string cvw)
+        //{
+        //    CartId = cartId;
+        //    ShippingAddress = shippingAddress;
+        //    Phone = phone;
+        //    CardNumber = cardNumber;
+        //    ExpirationDate = expirationDate;
+        //    CVW = cvw;
+        //}
     }
 }

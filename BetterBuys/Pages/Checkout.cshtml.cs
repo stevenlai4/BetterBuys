@@ -39,14 +39,26 @@ namespace BetterBuys.Pages.Checkout
                     .FirstOrDefault();
         }
 
-        public async Task<IActionResult> onPost() 
+        CheckoutInfo checkoutInfo;
+        public async Task<IActionResult> onPost()
         {
+
             if (!ModelState.IsValid)
+            {
+                //checkoutInfo = new CheckoutInfo(null);
+                await _db.CheckoutInfos.AddAsync(checkoutInfo);
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Index");
+
+            }
+            else
             {
                 return Page();
             }
             HttpContext.Session.Remove("cartId");
-            return RedirectToPage();
+            return RedirectToPage("~/Index");
         }
     }
 }
+
+
