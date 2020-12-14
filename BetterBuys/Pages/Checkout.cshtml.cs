@@ -29,7 +29,7 @@ namespace BetterBuys.Pages.Checkout
         public ShoppingCart ShoppingCart { get; set; }
         public void OnGet(int? categoryId)  
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             int? cartId = HttpContext.Session.GetInt32("cartId");
             if (cartId != null)
                 ShoppingCart = _db.Carts
@@ -39,7 +39,7 @@ namespace BetterBuys.Pages.Checkout
                     .FirstOrDefault();
         }
 
-        public async Task<IActionResult> onPost() 
+        public async Task<IActionResult> OnPost() 
         {
             if (!ModelState.IsValid)
             {

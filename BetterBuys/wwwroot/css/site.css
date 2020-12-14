@@ -25,45 +25,22 @@ a {
   border-color: #1861ac;
 }
 
-.navbar .container{
-    justify-content: space-between !important;
+/* Nav cart count */
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
 }
 
-.form-inline .form-control{
-    padding-left: 100px;
-    width: 80%;
-}
-
-.form-inline #searchbtn{
-    width: 100px;
-}
-
-.navbar-collapse{
-    padding-left: 100px;
-}
-
-.navbar-expand-sm .navbar-collapse{
-    display: flex;
-}
-
-.navbar hr{
-    border-radius: 0;
-    padding-top:0;
-    padding-bottom:0;
-}
-
-/*add styling to the main nav*/
-#main-nav a {
-    color: white;
-    font-size: 25px;
-    text-decoration: none;
-    display: block;
-    
-}
-
-#main-nav a:hover {
-   color: grey;
-   background-color: black;
+#cartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
 }
 
 /* Sticky footer styles

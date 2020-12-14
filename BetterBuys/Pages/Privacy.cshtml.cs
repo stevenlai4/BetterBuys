@@ -26,7 +26,7 @@ namespace BetterBuys.Pages
 
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
     }
 }

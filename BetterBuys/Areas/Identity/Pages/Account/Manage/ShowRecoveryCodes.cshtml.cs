@@ -30,7 +30,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public IActionResult OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             if (RecoveryCodes == null || RecoveryCodes.Length == 0)
             {
                 return RedirectToPage("./TwoFactorAuthentication");

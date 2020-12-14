@@ -52,7 +52,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
 
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (user == null)
             {
