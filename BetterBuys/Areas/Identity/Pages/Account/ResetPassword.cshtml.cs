@@ -52,7 +52,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public IActionResult OnGet(int? categoryId, string code = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (code == null)
             {

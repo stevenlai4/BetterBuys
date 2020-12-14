@@ -7,6 +7,7 @@ using BetterBuys.ViewModels;
 using BetterBuys.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
 namespace BetterBuys.Pages
 {
@@ -24,7 +25,7 @@ namespace BetterBuys.Pages
         public void OnGet(int productId, int? categoryId)
         {
             ProductDetail = _productVMService.GetProduct(productId);
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             ViewData["returnUrl"] = HttpContext.Request.Host.Value;
         }
     }
