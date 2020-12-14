@@ -24,6 +24,14 @@ a {
   border-color: #1861ac;
 }
 
+/*add styling to the main nav*/
+a:link{
+    color: white;
+}
+
+a:hover{
+    color: blue;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
