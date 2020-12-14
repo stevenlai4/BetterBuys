@@ -4,15 +4,20 @@
     <img src="@Model.ImageUri" width="300" />
     <div>
         <h5>@Model.Name</h5>
-        <label for="quantity" class="col-form-label mr-2">Quantity</label>
-            <select asp-for="@Model.Quantity" class="form-select" id="quantity">
+        <form method="post">
+            <label for="quantity" class="col-form-label mr-2">Quantity</label>
+            <select class="form-select" id="quantity" name="quantity">
                 @for (int i = 1; i < 51; i++)
                 {
+                    @if (i == Model.Quantity)
+                    {
+                        <option value=@i selected>@i</option>
+                    }
                     <option value=@i>@i</option>
                 }
             </select>
-        <p class="price">$@Model.Price</p>
-        <form method="post">
+            <p class="price">$@Model.Price</p>
+
             <button type="submit" asp-page-handler="Update" asp-route-productId="@Model.Id">Update</button>
         </form>
         <form method="post">

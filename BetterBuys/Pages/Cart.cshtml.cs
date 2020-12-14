@@ -21,13 +21,12 @@ namespace BetterBuys.Pages.Cart
 
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
-        Claim user;
 
         public CartModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _productVMService = productVMService;
             _db = db;
-            user = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+            
         }
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
@@ -67,9 +66,10 @@ namespace BetterBuys.Pages.Cart
             return total+8;
         }
 
-        public async Task<IActionResult> OnPostUpdate(int? categoryId, int? productId)
+        // method of the update
+        public async Task<IActionResult> OnPostUpdate(int quantity, int? categoryId, int? productId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId,);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             int? cartId = HttpContext.Session.GetInt32("cartId");
 
@@ -77,7 +77,7 @@ namespace BetterBuys.Pages.Cart
 
             if(cartProduct != null)
             {
-                cartProduct.updateQuantity(ProductIndex.Products.Where(p => p.Id == productId).FirstOrDefault().Quantity);
+                cartProduct.updateQuantity(quantity);
                 await _db.SaveChangesAsync();
             }
 
