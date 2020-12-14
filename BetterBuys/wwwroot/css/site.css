@@ -2,9 +2,8 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    color: red !important;
+    font-size: 30px !important;
 }
 
 /* Provide sufficient contrast against white background */
@@ -24,6 +23,13 @@ a {
   border-color: #1861ac;
 }
 
+.navbar .container{
+    justify-content: normal !important;
+}
+
+.form-inline .form-control{
+    width: 200%;
+}
 /*add styling to the main nav*/
 
 /* Sticky footer styles
