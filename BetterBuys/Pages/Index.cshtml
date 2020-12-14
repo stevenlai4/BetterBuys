@@ -1,10 +1,17 @@
 ﻿@page
 @model IndexModel
+
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div>
+
+    <form class="form-inline">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
     @if (!Model.IsFiltering)
     {
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
