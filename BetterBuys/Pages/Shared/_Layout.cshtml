@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
@@ -21,13 +20,27 @@
                     <ul class="navbar-nav">
                         <partial name="_LoginPartial" />
                         <li class="nav-item">
-                            <a href="~/cart" class="nav-link text-white"><i class="fas fa-shopping-cart" style="font-size: 25px;"></i></a>
+                            <a href="~/cart" class="nav-link text-white">
+                                <i class="fas fa-shopping-cart" style="font-size: 25px;"></i>
+                                @{
+                                    var sum = 0;
+                                    foreach (var product in Model.ProductIndex.Products)
+                                    {
+                                        sum += product.Quantity;
+                                    }
+                                }
+                                @if (sum != 0)
+                                {
+                                    <span class="badge badge-danger" id="cartCount">@sum</span>
+                                }
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <partial name="_NavbarIndex" for="@Model" />
+
     </header>
 
     <div class="container">

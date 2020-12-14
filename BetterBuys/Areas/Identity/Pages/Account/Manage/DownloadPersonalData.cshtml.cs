@@ -32,7 +32,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
 
         public async Task<IActionResult> OnPostAsync()

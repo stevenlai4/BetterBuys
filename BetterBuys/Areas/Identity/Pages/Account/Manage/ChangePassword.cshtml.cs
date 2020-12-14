@@ -60,7 +60,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync(int? categoryId)
         {
             var user = await _userManager.GetUserAsync(User);
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");

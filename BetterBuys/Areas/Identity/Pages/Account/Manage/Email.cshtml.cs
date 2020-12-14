@@ -71,7 +71,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
