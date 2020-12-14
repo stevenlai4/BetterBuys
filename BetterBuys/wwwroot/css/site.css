@@ -34,6 +34,23 @@ a {
     width: 80%;
 }
 
+.form-inline #searchbtn{
+    width: 100px;
+}
+
+.navbar-collapse{
+    padding-left: 100px;
+}
+
+.navbar-expand-sm .navbar-collapse{
+    display: flex;
+}
+
+.navbar hr{
+    border-radius: 0;
+    padding-top:0;
+    padding-bottom:0;
+}
 
 /*add styling to the main nav*/
 #main-nav a {
