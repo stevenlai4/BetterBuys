@@ -56,7 +56,6 @@ namespace BetterBuys.Pages
         public IActionResult OnPost(int? categoryId, ProductVM testProduct)
         {
             IsFiltering = categoryId != null ? true : false;
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (testProduct?.Id == null)
             {
@@ -102,6 +101,8 @@ namespace BetterBuys.Pages
             _db.SaveChanges();
 
             HttpContext.Session.SetInt32("cartId", (int)cartId);
+
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             return Page();
         }

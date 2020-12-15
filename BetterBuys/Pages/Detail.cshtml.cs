@@ -40,8 +40,7 @@ namespace BetterBuys.Pages
         public IActionResult OnPost(int productId, ProductVM testProduct)
         {
             ProductDetail = _productVMService.GetProduct(productId);
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
-         
+
             if (testProduct?.Id == null)
             {
                 return RedirectToPage("/Index");
@@ -86,6 +85,8 @@ namespace BetterBuys.Pages
             _db.SaveChanges();
 
             HttpContext.Session.SetInt32("cartId", (int)cartId);
+
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
 
             return Page();
         }
