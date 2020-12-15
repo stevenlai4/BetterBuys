@@ -69,9 +69,9 @@ namespace BetterBuys.Services
                     //Set the current cart session with the userId
                     Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
                     Cart.setBuyer(userId);
-                    //Set old cart's status to 2 to indicate that it has been merged
+                    //Delete old cart
                     Cart = _db.Carts.Where(c => c.Id == userCartId).FirstOrDefault();
-                    Cart.setStatus(2);
+                    _db.Carts.Remove(Cart);
 
                     await _db.SaveChangesAsync();
                 }
