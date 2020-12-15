@@ -31,5 +31,10 @@ namespace BetterBuys.Models
         {
             Quantity += quantity;
         }
+
+        public void updateQuantity(int quantity)
+        {
+            Quantity = quantity;
+        }
     }
 }
