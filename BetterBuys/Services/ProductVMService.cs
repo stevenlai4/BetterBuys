@@ -31,6 +31,18 @@ namespace BetterBuys.Services
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
 
+            int? cartId = context.Session.GetInt32("cartId");
+
+            int total = 0;
+
+            if (cartId != null)
+            {
+                foreach (var p in products)
+                {
+                    total += (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault();
+                }
+            }
+
             if (categoryId != null)
             {
                 products = (from p in products
@@ -39,8 +51,6 @@ namespace BetterBuys.Services
                             where c.Id == categoryId
                             select p);
             }
-
-            int? cartId = context.Session.GetInt32("cartId");
 
             var vm = new ProductIndexVM()
             {
@@ -56,7 +66,8 @@ namespace BetterBuys.Services
                 {
                     Id = c.Id,
                     Name = c.Name
-                }).ToList()
+                }).ToList(),
+                TotalQuantity = total
             };
             return vm;
         }

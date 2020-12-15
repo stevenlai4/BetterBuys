@@ -11,5 +11,6 @@ namespace BetterBuys.ViewModels
     {
         public List<ProductVM> Products { get; set; }
         public List<CategoryVM> Categories { get; set; }
+        public int TotalQuantity { get; set; }
     }
 }
