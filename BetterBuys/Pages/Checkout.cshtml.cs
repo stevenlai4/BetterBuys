@@ -90,7 +90,7 @@ namespace BetterBuys.Pages.Checkout
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
                 await _db.SaveChangesAsync();
                 HttpContext.Session.Remove("cartId");
-                return RedirectToPage("index");
+                return RedirectToPage("Confirmation");
             }
         }
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
