@@ -37,7 +37,8 @@ namespace BetterBuys.Pages
                     Products = (from p in ProductIndex.Products
                                 where p.Name.ToLower().Contains(SearchString.ToLower())
                                 select p).ToList(),
-                    Categories = ProductIndex.Categories
+                    Categories = ProductIndex.Categories,
+                    TotalQuantity = ProductIndex.TotalQuantity
                 };
                 IsFiltering = true;
             }
