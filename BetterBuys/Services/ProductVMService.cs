@@ -30,6 +30,7 @@ namespace BetterBuys.Services
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
+
             if (categoryId != null)
             {
                 products = (from p in products
