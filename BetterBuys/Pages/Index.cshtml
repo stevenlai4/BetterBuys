@@ -6,11 +6,28 @@
 }
 
 <div>
-
-    <form class="form-inline">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9">
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-3">
+                <form class="form-inline">
+                    <select class="form-control d-inline ml-2 form-inline"  input type="text" asp-for="Filter" name="Filter">
+                        {
+                        <option selected disabled>Sort by Price</option>
+                        <option value="lowToHigh">Low to High</option>
+                        <option value="highToLow">High to Low</option>
+                        }
+                    </select>
+                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Apply" />
+                </form>
+            </div>
+        </div>
+    </div>
 
     @if (!Model.IsFiltering)
     {

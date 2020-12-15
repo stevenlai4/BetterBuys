@@ -30,7 +30,9 @@ namespace BetterBuys.Pages
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Boolean IsFiltering = false;
         [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }   
+        public string SearchString { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string Filter { get; set; }
         public void OnGet(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
@@ -38,14 +40,23 @@ namespace BetterBuys.Pages
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             if (!string.IsNullOrEmpty(SearchString))
             {
-                ProductIndex = new ProductIndexVM()
-                {
-                    Products = (from p in ProductIndex.Products
-                                where p.Name.ToLower().Contains(SearchString.ToLower())
-                                select p).ToList(),
-                    Categories = ProductIndex.Categories,
-                    TotalQuantity = ProductIndex.TotalQuantity
-                };
+                ProductIndex.Products = (from p in ProductIndex.Products
+                                         where p.Name.ToLower().Contains(SearchString.ToLower())
+                                         select p).ToList();
+                IsFiltering = true;
+            }
+            if (Filter == "lowToHigh")
+            {
+                ProductIndex.Products = (from p in ProductIndex.Products
+                                         orderby p.Price
+                                         select p).ToList();
+                IsFiltering = true;
+            }
+            else if (Filter == "highToLow")
+            {
+                ProductIndex.Products = (from p in ProductIndex.Products
+                                         orderby p.Price descending
+                                         select p).ToList();                    
                 IsFiltering = true;
             }
         }
