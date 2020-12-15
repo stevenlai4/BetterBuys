@@ -68,12 +68,16 @@ namespace BetterBuys.Pages.Checkout
         }
 
         public CheckoutInfo checkoutInfo;
-        //public async Task<IActionResult> OnPost(string firstName, string lastName, string address, string apartment, string city,
-        //                                string country, string province, string postalCode, string phone,
-        //                                string cardNumber, string cardHolderName, string expirationDate)
         public async Task<IActionResult> OnPost()
         {
             ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+            if (HttpContext.Session.GetInt32("cartId") != null)
+            {
+                productsInCart = (from p in ProductIndex.Products
+                                  join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                  where cp.CartId == (int)HttpContext.Session.GetInt32("cartId")
+                                  select p).ToList();
+            }
             checkoutInfo = new CheckoutInfo(HttpContext.Session.GetInt32("cartId"), FirstName, LastName, Address, Apartment, City,
                              Country, Province, PostalCode, Phone, CardNumber, CardHolderName, ExpirationDate);
 
