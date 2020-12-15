@@ -28,7 +28,7 @@ namespace BetterBuys.Services
             int? userCartId = (from c in _db.Carts where c.BuyerId == userId && c.Status == 0 orderby c.CreatedOn descending select c.Id).FirstOrDefault();
                 
             //If there is a unclosed cart assoicated with the user
-            if (userCartId != null)
+            if (userCartId != 0)
             {
                 //If there is no cart in session, set the most recent unclosed cart as the session
                 if (cartId == null)
