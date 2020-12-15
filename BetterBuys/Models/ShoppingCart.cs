@@ -16,6 +16,9 @@ namespace BetterBuys.Models
         public virtual ICollection<CartProduct> CartProducts { get; set; }
         public virtual CheckoutInfo CheckoutInfo { get; set; }
 
+        //public ShoppingCart()
+        //{
+        //}
         public ShoppingCart(string buyerId)
         {
             BuyerId = buyerId;
