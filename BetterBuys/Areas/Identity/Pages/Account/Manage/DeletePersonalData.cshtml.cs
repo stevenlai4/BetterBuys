@@ -42,10 +42,10 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
         public bool RequirePassword { get; set; }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public async Task<IActionResult> OnGet(int? categoryId)
+        public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");

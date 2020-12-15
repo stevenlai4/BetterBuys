@@ -69,9 +69,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        public async Task OnGetAsync(int? categoryId, string returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

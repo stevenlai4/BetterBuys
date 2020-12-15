@@ -28,20 +28,19 @@ namespace BetterBuys.Pages
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public ProductVM ProductDetail { get; private set; }
 
-        public void OnGet(int productId, int? categoryId)
+        public void OnGet(int productId)
         {
             ProductDetail = _productVMService.GetProduct(productId);
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
         }
 
         public ShoppingCart Cart { get; set; }
 
         // Add a product to the cart
-        public IActionResult OnPost(int? categoryId, int productId, ProductVM testProduct)
+        public IActionResult OnPost(int productId, ProductVM testProduct)
         {
             ProductDetail = _productVMService.GetProduct(productId);
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
-         
+
             if (testProduct?.Id == null)
             {
                 return RedirectToPage("/Index");
@@ -86,6 +85,8 @@ namespace BetterBuys.Pages
             _db.SaveChanges();
 
             HttpContext.Session.SetInt32("cartId", (int)cartId);
+
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
 
             return Page();
         }
