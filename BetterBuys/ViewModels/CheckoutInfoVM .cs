@@ -7,7 +7,7 @@ namespace BetterBuys.ViewModels
 {
     public class CheckoutInfoVM
     {
-        public int CartId { get; private set; }
+        public int Id { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

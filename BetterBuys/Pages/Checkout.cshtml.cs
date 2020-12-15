@@ -37,26 +37,53 @@ namespace BetterBuys.Pages.Checkout
                     .ThenInclude(cp => cp.Product)
                     .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
                     .FirstOrDefault();
+
+            if (HttpContext.Session.GetInt32("cartId") != null)
+            {
+                productsInCart = (from p in ProductIndex.Products
+                                  join cp in _db.CartProducts on p.Id equals cp.ProductId
+                                  where cp.CartId == (int)HttpContext.Session.GetInt32("cartId")
+                                  select p).ToList();
+            }
         }
 
         public CheckoutInfo checkoutInfo;
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(string firstName, string lastName, string address, string apartment, string city,
+                                                string country, string province, string postalCode, string phone,
+                                                string cardNumber, string cardHolderName, string expirationDate)
         {
-
-            //if (!ModelState.IsValid)
-            //{
-            //    return RedirectToPage("Checkout");
-            //}
-            //else
-            //{
-                //checkoutInfo = new CheckoutInfo(cartId, firstName, lastName, address, apartment, city, country,  province, postalCode, phone,
-                //                                cardNumber, cardHolderName, expirationDate, cvw);
+            if (!ModelState.IsValid)
+            {
+                return RedirectToPage("Checkout");
+            }
+            else
+            {
+                checkoutInfo = new CheckoutInfo(HttpContext.Session.GetInt32("cartId"), firstName, lastName, address, apartment, city,
+                                             country, province, postalCode, phone, cardNumber, cardHolderName, expirationDate);
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
                 await _db.SaveChangesAsync();
-                return Page();
-            //
-            HttpContext.Session.Remove("cartId");
-            //return RedirectToPage("~/Index");
+                HttpContext.Session.Remove("cartId");
+                return RedirectToPage("index");
+            }
+        }
+        public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
+        public decimal CalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach (var item in productList)
+            {
+                total += item.Price;
+            }
+            return total;
+        }
+        public decimal CalFinalTotal(List<ProductVM> productList)
+        {
+            decimal total = 0;
+            foreach (var item in productList)
+            {
+                total += item.Price;
+            }
+            return total + 8;
         }
     }
 }
