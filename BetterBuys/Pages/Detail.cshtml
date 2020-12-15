@@ -23,13 +23,15 @@
                     including versions of Lorem Ipsum.
                 </p>
 
-                <form asp-page="cart" method="post">
+
+                <form method="post">
                     <div class="product-detail-button">
                         <span>Quantity:</span>
                         <select class="form-control d-inline w-75 ml-2" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                            @for(int i = 1; i <= 10; i++)
+                            {
+                                <option>@i</option>
+                            }
                         </select>
                         <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart" />
                     </div>
