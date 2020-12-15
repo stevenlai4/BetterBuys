@@ -9,14 +9,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-auto">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">BetterBuys</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav">
                         <partial name="_LoginPartial" />
                         <li class="nav-item">
@@ -29,10 +29,11 @@
                             </a>
                         </li>
                     </ul>
+                    
                 </div>
             </div>
         </nav>
-        @*<partial name="_NavbarIndex" for="@Model" />*@
+        <partial name="_NavbarIndex" for="@Model" />
     </header>
 
     <div class="container">
@@ -46,32 +47,32 @@
             <div class="row">
                 <div class="col-lg-4">
                     <aside id="followcolumn">
-                        <i class="fab fa-facebook-square" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
-                        <i class="fab fa-instagram" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
-                        <i class="fab fa-twitter-square" style="font-size: 25px; color:white;"></i>&nbsp; &nbsp;
-                        <i class="fab fa-youtube" style="font-size: 25px; color:white;"></i><br />
-                        <i class="fas fa-map-marker-alt" style="font-size: 25px;color:white;"></i> <br />
-                        <i class="fas fa-phone-square" style="font-size: 25px; color:white;"></i><br />
-                        <i class="fas fa-envelope" style="font-size: 25px; color:white;"></i>
+                        <i class="fab fa-facebook-square"></i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <i class="fab fa-instagram"></i>&nbsp; &nbsp; &nbsp; &nbsp;
+                        <i class="fab fa-twitter-square"></i>&nbsp; &nbsp; &nbsp; &nbsp;
+                        <i class="fab fa-youtube"></i><br /><br />
+                        <i class="fas fa-map-marker-alt"><p style="font-size: 20px;">555 Seymore Stree, Vancouver, BC, Canada</p></i> <br />
+                        <i class="fas fa-phone-square"><p style="font-size: 20px;">+1-778-123-0012</p></i><br />
+                        <i class="fas fa-envelope"><p style="font-size:20px;">www.betterbuysca@hotmail.com</p></i>
                     </aside>
                 </div>
                 <div class="col-lg-4">
-                    <h3 style="color:white;">BetterBuys</h3><br />
+                    <h3 style="color:white;">BetterBuys</h3><br /><br /><br />
                     <a href="#">About Us</a>&nbsp; &nbsp;
                     <a href="#">Services</a>&nbsp; &nbsp;
                     <a href="#">Careers</a>&nbsp; &nbsp;
                     <a href="#">Get In Touch</a><br /><br />
                     &copy; 2020 - BetterBuys
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="contact">
                     <h3 style="color:white;"> Contact Us</h3>
                     <form class="form-inline">
                         <input class="form-control" type="text" placeholder="Enter Email" />
                     </form>
                     <form class="form-inline" style="padding-top: 20px;">
-                        <input class="form-control" type="text" placeholder="Write your message here" />
-                    </form>
-                    <button class="btn btn-outline-success" type="submit">Send Message</button>
+                        <textarea id="submitform" cols="50"></textarea>
+                    </form><br />
+                    <button class="btn btn-success" type="submit" id="footerbtn">Send Message</button>
                 </div>
             </div>
 

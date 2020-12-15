@@ -2,11 +2,48 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    color: white !important;
+    font-size: 35px !important;
+    font-family:Bahnschrift;
+
 }
 
+/*Style for the main nav*/
+
+#main-nav a {
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px 0;
+    display: block;
+    position: relative;
+    transition: all 0.3s ease;
+    float: left;
+}
+
+#main-nav a:hover {
+    color: #e74c3c;
+}
+
+#main-nav a::before {
+    content: "";
+    transition: all 0.4s ease-in-out;
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    height: 2px;
+    background-color: #e74c3c;
+    
+}
+.navbar-collapse i {
+    font-size: 25px;
+    padding-left: 25px;
+}
+#accountlogo a {
+    padding-left: 45rem;
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -127,4 +164,20 @@ footer {
 .product-detail-button {
     padding-top: 50px;
     padding-bottom:150px;
+}
+
+/*Styling for the footer*/
+
+#followcolumn i{
+    font-size: 40px !important;
+    color: white !important;
+}
+
+#contact .form-control{
+    width: 100%;
+}
+
+#contact #submitform{
+    height: 150px;
+    
 }
