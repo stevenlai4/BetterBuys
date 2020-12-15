@@ -71,7 +71,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(int? categoryId, string returnUrl = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

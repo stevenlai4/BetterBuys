@@ -36,7 +36,7 @@ namespace BetterBuys.Pages.Cart
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet(int? categoryId)
         {
-            ProductIndex = _productVMService.GetProductsVM(categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             if (HttpContext.Session.GetInt32("cartId") != null)
             {
@@ -110,7 +110,6 @@ namespace BetterBuys.Pages.Cart
 
             cp = _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == testProduct.Id)
                 .FirstOrDefault();
-
 
             if (cp == null) //product not in this cart yet
             {
