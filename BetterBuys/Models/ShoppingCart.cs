@@ -26,6 +26,11 @@ namespace BetterBuys.Models
         {
             BuyerId = buyerId;
         }
+
+        public void setStatus(int status)
+        {
+            Status = status;
+        }
     }
 }
 
