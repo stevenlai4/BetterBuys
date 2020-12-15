@@ -37,7 +37,7 @@ namespace BetterBuys.Pages.Checkout
         [BindProperty, Required, RegularExpression("^[ABCEGHJ-NPRSTVXY]{1}[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[ ]?[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[0-9]{1}$",
         ErrorMessage = "Invalid Postal Code")]
         public string PostalCode { get; set; }
-        [BindProperty, Required, Phone]
+        [BindProperty, Required, Phone(ErrorMessage = "Invalid Phone Number")]
         public string Phone { get; set; }
         [BindProperty, Required, RegularExpression("^((?!(0))[0-9]{16})$", ErrorMessage = "Invalid Card Number")]
         public string CardNumber { get; set; }
