@@ -19,11 +19,11 @@ namespace BetterBuys.Pages.Checkout
     //[Authorize]
     public class CheckoutModel : PageModel
     {
-        [BindProperty, Required, MinLength(2, ErrorMessage = "First Name must contain at least 2 characters"),
+        [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "First Name must contain at least 2 characters"),
         MaxLength(50, ErrorMessage = "First Name must not exceed 50 characters")]
         public string FirstName { get; set; }
-        [BindProperty, Required, MinLength(2, ErrorMessage = "Last Name must contain at least 2 characters"),
-        MaxLength(50, ErrorMessage = "Last Name must not exceed 50 characters")]
+        [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Last Name must contain at least 2 characters"),
+           MaxLength(50, ErrorMessage = "Last Name must not exceed 50 characters")]
         public string LastName { get; set; }
         [BindProperty, Required, MaxLength(100, ErrorMessage = "Address must not exceed 100 characters")]
         public string Address { get; set; }
@@ -43,8 +43,8 @@ namespace BetterBuys.Pages.Checkout
         [BindProperty, Required, RegularExpression("^((?!(0))[0-9]{16})$", ErrorMessage = "Invalid Card Number")]
         public string CardNumber { get; set; }
         //[StringLength(100, MinimumLength = 10)]
-        [BindProperty, Required, MinLength(2, ErrorMessage = "Name must contain at least 2 characters"),
-        MaxLength(50, ErrorMessage = "CardHolderName")]
+        [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Cardholder Name must contain at least 2 characters"),
+         MaxLength(50, ErrorMessage = "Cardholder Name must not exceed 50 characters")]
         public string CardHolderName { get; set; }
         [BindProperty, Required, RegularExpression("^((0[1-9])|(1[0-2]))/((20[2-9][0-9])|(3000))$", ErrorMessage = "Invalid Expiration Date")]
         public string ExpirationDate { get; set; }
