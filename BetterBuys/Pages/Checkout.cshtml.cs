@@ -65,7 +65,7 @@ namespace BetterBuys.Pages.Checkout
             decimal total = 0;
             foreach (var item in productList)
             {
-                total += item.Price;
+                total += (item.Price * item.Quantity);
             }
             return total;
         }
