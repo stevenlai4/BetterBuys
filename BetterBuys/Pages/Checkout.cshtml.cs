@@ -58,23 +58,16 @@ namespace BetterBuys.Pages.Checkout
             }
         }
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
+
+        // Calculate total price before delivery fee
         public decimal CalTotal(List<ProductVM> productList)
         {
             decimal total = 0;
             foreach (var item in productList)
             {
-                total += item.Price;
+                total += (item.Price * item.Quantity);
             }
             return total;
-        }
-        public decimal CalFinalTotal(List<ProductVM> productList)
-        {
-            decimal total = 0;
-            foreach (var item in productList)
-            {
-                total += item.Price;
-            }
-            return total + 8;
         }
     }
 }

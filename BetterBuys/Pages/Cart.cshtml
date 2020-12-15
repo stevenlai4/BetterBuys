@@ -1,6 +1,10 @@
 ﻿@page
 @model BetterBuys.Pages.Cart.CartModel
 
+@{ 
+    decimal total = Model.CalTotal(Model.productsInCart);
+}
+
 <h1 class="text-center mb-5">Shopping Cart</h1>
 <section class="shopping-cart">
     <a asp-page="index">Continue Shopping</a>
@@ -32,8 +36,7 @@
                         <p>Order Value</p>
 
                         <p>
-                            $@Model.CalTotal(Model.productsInCart)
-
+                            $@string.Format("{0:n2}", total)
                         </p>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -43,7 +46,7 @@
                     <hr />
                     <div class="d-flex justify-content-between">
                         <b>Total</b>
-                        <p>$@Model.CalFinalTotal(Model.productsInCart)</p>
+                        <p>$@string.Format("{0:n2}", total + 8)</p>
                     </div>
                     <a class="btn btn-primary mb-4" asp-page="Checkout">Continue To Checkout</a>
                     <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>

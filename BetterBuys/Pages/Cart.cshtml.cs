@@ -50,20 +50,9 @@ namespace BetterBuys.Pages.Cart
             decimal total = 0;
             foreach(var item in productList)
             {
-                total += item.Price;
+                total += (item.Price * item.Quantity);
             }
             return total;
-        }
-
-        // Calculate total price with delivery fee
-        public decimal CalFinalTotal(List<ProductVM> productList)
-        {
-            decimal total = 0;
-            foreach (var item in productList)
-            {
-                total += item.Price;
-            }
-            return total+8;
         }
 
         // method of the update

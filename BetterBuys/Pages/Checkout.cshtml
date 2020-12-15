@@ -1,9 +1,14 @@
 ﻿@page
 @model BetterBuys.Pages.Checkout.CheckoutModel
 
+@{
+        decimal total = Model.CalTotal(Model.productsInCart);
+}
+
 <div class="wrapper content">
     <h2 class="d-flex justify-content-center">Checkout</h2>
     <div class="container content-checkout">
+        <a asp-page="cart">Return To Cart</a>
         <div class="row my-3">
             @*shipping address box*@
             <div class="col-lg-6">
@@ -51,7 +56,7 @@
                         </div>
                     </div>
                     <div class="input-control postal mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.PostalCode"  name="postalCode" id="postCode" placeholder="Postal Code" />
+                        <input type="text" asp-for="@Model.checkoutInfo.PostalCode" name="postalCode" id="postCode" placeholder="Postal Code" />
                     </div>
                     <div class="input-control phone mb-3">
                         <input type="text" asp-for="@Model.checkoutInfo.Phone" name="phone" id="phone" placeholder="Phone" />
@@ -72,7 +77,6 @@
                         <input type="text" asp-for="@Model.checkoutInfo.CVW" name="cvw" id="cvw" placeholder="CVW" />
                     </div>*@
                     <div class="d-flex justify-content-between mt-2">
-                        <p>Return to cart</p>
                         <input class="btn btn-primary" type="submit" value="COMPLETE PURCHASE" id="complete" />
                     </div>
                 </form>
@@ -88,7 +92,8 @@
                                 <td><img src="@item.ImageUri" width="100" /></td>
                                 <td>@item.Name</td>
                                 <td>@item.Quantity</td>
-                                <td>@item.Price</td>
+                                <td>$@string.Format("{0:n2}", item.Price)</td>
+                                <td>$@string.Format("{0:n2}", item.Price * item.Quantity)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -100,15 +105,15 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Order Value</p>
-                    <p> $@Model.CalTotal(Model.productsInCart)</p>
+                    <p> $@string.Format("{0:n2}", total)</p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Delivery</p>
-                    <p>$8</p>
+                    <p>$8.00</p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <h5>Total</h5>
-                    <h5>$@Model.CalFinalTotal(Model.productsInCart)</h5>
+                    <h5>$@string.Format("{0:n2}", total + 8)</h5>
                 </div>
                 <p class="my-5">Price and shipping costs are not confirmed until you've reached checkout</p>
             </div>
