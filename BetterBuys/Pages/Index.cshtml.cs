@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using BetterBuys.Data;
 using BetterBuys.Interfaces;
@@ -18,6 +19,7 @@ namespace BetterBuys.Pages
     {
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
+        public string warningMsg = "";
         Claim user;
 
         public IndexModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
@@ -29,13 +31,15 @@ namespace BetterBuys.Pages
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Boolean IsFiltering = false;
+        public ShoppingCart Cart { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }   
+        public string SearchString { get; set; }
         public void OnGet(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
 
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 ProductIndex = new ProductIndexVM()
@@ -50,14 +54,12 @@ namespace BetterBuys.Pages
             }
         }
 
-        public ShoppingCart Cart { get; set; }
-
         // Add a product to the cart
-        public IActionResult OnPost(int? categoryId, ProductVM testProduct)
+        public IActionResult OnPost(int? categoryId, ProductVM product)
         {
             IsFiltering = categoryId != null ? true : false;
 
-            if (testProduct?.Id == null)
+            if (product?.Id == null)
             {
                 return RedirectToPage("/Index");
             }
@@ -71,31 +73,32 @@ namespace BetterBuys.Pages
                 _db.SaveChanges();
                 cartId = Cart.Id;
             }
-            else
-            {
-                Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
-                Cart.setBuyer(user == null ? null : user.Value);
-            }
 
             //update existing prod in existing cart
             CartProduct cp;
             //add new prod to existing cart 
 
-            cp = _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == testProduct.Id)
+            cp = _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == product.Id)
                 .FirstOrDefault();
 
 
             if (cp == null) //product not in this cart yet
             {
-                cp = new CartProduct((int)cartId, testProduct.Id, testProduct.Price, testProduct.Quantity);
+                cp = new CartProduct((int)cartId, product.Id, product.Price, product.Quantity);
                 _db.CartProducts.Add(cp);
 
             }
-
             else //product is already in cart
             {
                 //might want to validate for price change in the future;
-                cp.AddQuantity(testProduct.Quantity);
+                if ((cp.Quantity + product.Quantity) <= 50)  // Add quantity if won't exceed 50
+                {
+                    cp.AddQuantity(product.Quantity);
+                }
+                else // Display alert for exactly 50
+                {
+                    warningMsg = product.Name + " already reaches highest quantity of 50!";
+                }
             }
 
             _db.SaveChanges();
