@@ -31,6 +31,7 @@ namespace BetterBuys.Pages
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public Boolean IsFiltering = false;
+        public ShoppingCart Cart { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         public void OnGet(int? categoryId)
@@ -38,6 +39,7 @@ namespace BetterBuys.Pages
             IsFiltering = categoryId != null ? true : false;
 
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 ProductIndex = new ProductIndexVM()
@@ -51,8 +53,6 @@ namespace BetterBuys.Pages
                 IsFiltering = true;
             }
         }
-
-        public ShoppingCart Cart { get; set; }
 
         // Add a product to the cart
         public IActionResult OnPost(int? categoryId, ProductVM product)
@@ -72,11 +72,6 @@ namespace BetterBuys.Pages
                 _db.Carts.Add(Cart);
                 _db.SaveChanges();
                 cartId = Cart.Id;
-            }
-            else
-            {
-                Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
-                Cart.setBuyer(user == null ? null : user.Value);
             }
 
             //update existing prod in existing cart
