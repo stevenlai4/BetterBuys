@@ -23,7 +23,7 @@ namespace BetterBuys.Pages.Checkout
         MaxLength(50, ErrorMessage = "First Name must not exceed 50 characters")]
         public string FirstName { get; set; }
         [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Last Name must contain at least 2 characters"),
-           MaxLength(50, ErrorMessage = "Last Name must not exceed 50 characters")]
+        MaxLength(50, ErrorMessage = "Last Name must not exceed 50 characters")]
         public string LastName { get; set; }
         [BindProperty, Required, MaxLength(100, ErrorMessage = "Address must not exceed 100 characters")]
         public string Address { get; set; }
@@ -39,10 +39,8 @@ namespace BetterBuys.Pages.Checkout
         public string PostalCode { get; set; }
         [BindProperty, Required, Phone]
         public string Phone { get; set; }
-        //[StringLength(12)]
         [BindProperty, Required, RegularExpression("^((?!(0))[0-9]{16})$", ErrorMessage = "Invalid Card Number")]
         public string CardNumber { get; set; }
-        //[StringLength(100, MinimumLength = 10)]
         [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Cardholder Name must contain at least 2 characters"),
          MaxLength(50, ErrorMessage = "Cardholder Name must not exceed 50 characters")]
         public string CardHolderName { get; set; }
