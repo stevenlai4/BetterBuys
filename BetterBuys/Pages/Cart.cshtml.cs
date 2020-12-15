@@ -31,9 +31,9 @@ namespace BetterBuys.Pages.Cart
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
-        public void OnGet(int? categoryId)
+        public void OnGet()
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
 
             if (HttpContext.Session.GetInt32("cartId") != null)
             {

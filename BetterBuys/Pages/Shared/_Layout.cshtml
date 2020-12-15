@@ -21,17 +21,10 @@
                         <partial name="_LoginPartial" />
                         <li class="nav-item">
                             <a href="~/cart" class="nav-link text-white">
-                                <i class="fas fa-shopping-cart"></i>
-                                @{
-                                    var sum = 0;
-                                    foreach (var product in Model.ProductIndex.Products)
-                                    {
-                                        sum += product.Quantity;
-                                    }
-                                }
-                                @if (sum != 0)
+                                <i class="fas fa-shopping-cart" style="font-size: 25px;"></i>
+                                @if (Model.ProductIndex.TotalQuantity != 0)
                                 {
-                                    <span class="badge badge-danger" id="cartCount">@sum</span>
+                                    <span class="badge badge-danger" id="cartCount">@Model.ProductIndex.TotalQuantity</span>
                                 }
                             </a>
                         </li>
@@ -41,7 +34,6 @@
             </div>
         </nav>
         <partial name="_NavbarIndex" for="@Model" />
-
     </header>
 
     <div class="container">

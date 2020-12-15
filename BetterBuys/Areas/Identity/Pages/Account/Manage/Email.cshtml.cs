@@ -69,9 +69,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         }
 
-        public async Task<IActionResult> OnGetAsync(int? categoryId)
+        public async Task<IActionResult> OnGetAsync()
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

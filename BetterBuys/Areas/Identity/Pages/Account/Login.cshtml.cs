@@ -65,9 +65,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public async Task OnGetAsync(int? categoryId, string returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
 
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -86,7 +86,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(int? categoryId, string captcha, string returnUrl = null)
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             //var captchaData = await _captchaValidator.GetCaptchaResultDataAsync(captcha);
             if (!await _captchaValidator.IsCaptchaPassedAsync(captcha))
             {

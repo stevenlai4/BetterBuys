@@ -23,10 +23,10 @@ namespace BetterBuys.Areas.Identity.Pages
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public void OnGet(int? categoryId)
+        public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
         }
     }
 }
