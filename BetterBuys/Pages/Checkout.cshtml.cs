@@ -26,18 +26,9 @@ namespace BetterBuys.Pages.Checkout
             _db = db;
         }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
-        public ShoppingCart ShoppingCart { get; set; } 
         public void OnGet(int? categoryId)  
         {
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
-            int? cartId = HttpContext.Session.GetInt32("cartId");
-            if (cartId != null)
-                ShoppingCart = _db.Carts
-                    .Include(c => c.CartProducts)
-                    .ThenInclude(cp => cp.Product)
-                    .Where(c => c.Id == (int)HttpContext.Session.GetInt32("cartId"))
-                    .FirstOrDefault();
-
             if (HttpContext.Session.GetInt32("cartId") != null)
             {
                 productsInCart = (from p in ProductIndex.Products

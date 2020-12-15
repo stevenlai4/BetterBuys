@@ -80,13 +80,13 @@
             @*order box*@
             <div class="border border-secondary col-lg-6">
                 <h5 class="d-flex justify-content-center m-2">Your Order</h5>
-                @foreach (var item in Model.ShoppingCart.CartProducts)
+                @foreach (var item in Model.productsInCart)
                 {
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td><img src="@item.Product.ImageUri" width="100" /></td>
-                                <td>@item.Product.Name</td>
+                                <td><img src="@item.ImageUri" width="100" /></td>
+                                <td>@item.Name</td>
                                 <td>@item.Quantity</td>
                                 <td>@item.Price</td>
                             </tr>
