@@ -10,24 +10,39 @@ a.navbar-brand {
 
 /*Style for the main nav*/
 
-#main-nav a{
-    text-decoration: none;
-    font-size: 25px;
+#main-nav a {
     color: white;
-}
-
-#main-nav a:hover{
-    color: grey;
-    background-color: black;
-}
-
-.navbar-collapse i{
     font-size: 25px;
-    padding-left: 30px;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px 0;
+    display: block;
+    position: relative;
+    transition: all 0.3s ease;
+    float: left;
 }
 
-#accountlogo a{
-    padding-left: 50rem;
+#main-nav a:hover {
+    color: #e74c3c;
+}
+
+#main-nav a::before {
+    content: "";
+    transition: all 0.4s ease-in-out;
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    height: 2px;
+    background-color: #e74c3c;
+    
+}
+.navbar-collapse i {
+    font-size: 25px;
+    padding-left: 25px;
+}
+#accountlogo a {
+    padding-left: 45rem;
 }
 /* Provide sufficient contrast against white background */
 a {
@@ -164,4 +179,5 @@ footer {
 
 #contact #submitform{
     height: 150px;
+    
 }
