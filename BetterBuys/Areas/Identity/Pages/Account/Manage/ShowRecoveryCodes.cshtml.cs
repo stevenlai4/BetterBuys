@@ -28,9 +28,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public IActionResult OnGet(int? categoryId)
+        public IActionResult OnGet()
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             if (RecoveryCodes == null || RecoveryCodes.Length == 0)
             {
                 return RedirectToPage("./TwoFactorAuthentication");
