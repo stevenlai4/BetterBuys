@@ -29,21 +29,21 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly ICaptchaValidator _captchaValidator;
         private readonly IProductVMService _productVMService;
-        private readonly StoreDbContext _db;
+        private readonly ILoginCartManagerService _loginCartManagerService;
 
         public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             ICaptchaValidator captchaValidator,
             IProductVMService productVMService,
-            StoreDbContext db)
+            ILoginCartManagerService loginCartManagerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _captchaValidator = captchaValidator;
             _productVMService = productVMService;
-            _db = db;
+            _loginCartManagerService = loginCartManagerService;
         }
 
         [BindProperty]
@@ -114,15 +114,10 @@ namespace BetterBuys.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
-                    int? cartId = HttpContext.Session.GetInt32("cartId");
-
-                    if (cartId != null)
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user != null)
                     {
-                        var user = await _userManager.FindByEmailAsync(Input.Email);
-                        var userId = user.Id;
-                        Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
-                        Cart.setBuyer(user == null ? null : userId);
-                        _db.SaveChanges();
+                        await _loginCartManagerService.ManageCart(HttpContext, user.Id);
                     }
 
                     return LocalRedirect(returnUrl);
