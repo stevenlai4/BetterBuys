@@ -18,13 +18,15 @@ namespace BetterBuys.Pages
     public class IndexModel : PageModel
     {
         private readonly IProductVMService _productVMService;
+        private readonly ILoginCartManagerService _loginCartManagerService;
         private readonly StoreDbContext _db;
         public string warningMsg = "";
         Claim user;
 
-        public IndexModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IProductVMService productVMService, ILoginCartManagerService loginCartManagerService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _productVMService = productVMService;
+            _loginCartManagerService = loginCartManagerService;
             _db = db;
             user = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
         }
@@ -34,9 +36,17 @@ namespace BetterBuys.Pages
         public ShoppingCart Cart { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-        public void OnGet(int? categoryId)
+        public async Task OnGetAsync(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
+
+            int? cartId = HttpContext.Session.GetInt32("cartId");
+
+            //If logged in and without a cart session, check if there is a recent unclosed cart session
+            if (user != null && cartId == null)
+            {
+                await _loginCartManagerService.ManageCart(HttpContext, user.Value);
+            }
 
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
@@ -80,7 +90,6 @@ namespace BetterBuys.Pages
 
             cp = _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == product.Id)
                 .FirstOrDefault();
-
 
             if (cp == null) //product not in this cart yet
             {

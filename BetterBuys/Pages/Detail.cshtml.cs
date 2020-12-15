@@ -65,7 +65,6 @@ namespace BetterBuys.Pages
             cp = _db.CartProducts.Where(cp => cp.CartId == cartId && cp.ProductId == product.Id)
                 .FirstOrDefault();
 
-
             if (cp == null) //product not in this cart yet
             {
                 cp = new CartProduct((int)cartId, product.Id, product.Price, product.Quantity);
