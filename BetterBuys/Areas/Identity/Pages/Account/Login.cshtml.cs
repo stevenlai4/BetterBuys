@@ -30,15 +30,13 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly ICaptchaValidator _captchaValidator;
         private readonly IProductVMService _productVMService;
         private readonly ILoginCartManagerService _loginCartManagerService;
-        private readonly StoreDbContext _db;
 
         public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             ICaptchaValidator captchaValidator,
             IProductVMService productVMService,
-            ILoginCartManagerService loginCartManagerService,
-            StoreDbContext db)
+            ILoginCartManagerService loginCartManagerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -46,7 +44,6 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             _captchaValidator = captchaValidator;
             _productVMService = productVMService;
             _loginCartManagerService = loginCartManagerService;
-            _db = db;
         }
 
         [BindProperty]

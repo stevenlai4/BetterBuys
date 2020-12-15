@@ -19,12 +19,14 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
         private readonly IProductVMService _productVMService;
+        private readonly ILoginCartManagerService _loginCartManagerService;
 
-        public LoginWithRecoveryCodeModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWithRecoveryCodeModel> logger, IProductVMService productVMService)
+        public LoginWithRecoveryCodeModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWithRecoveryCodeModel> logger, IProductVMService productVMService, ILoginCartManagerService loginCartManagerService)
         {
             _signInManager = signInManager;
             _logger = logger;
             _productVMService = productVMService;
+            _loginCartManagerService = loginCartManagerService;
         }
 
         [BindProperty]
@@ -78,6 +80,12 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
+
+                if (user != null)
+                {
+                    await _loginCartManagerService.ManageCart(HttpContext, user.Id);
+                }
+
                 return LocalRedirect(returnUrl ?? Url.Content("~/"));
             }
             if (result.IsLockedOut)
