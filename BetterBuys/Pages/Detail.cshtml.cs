@@ -22,10 +22,10 @@ namespace BetterBuys.Pages
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public ProductVM ProductDetail { get; private set; }
 
-        public void OnGet(int productId, int? categoryId)
+        public void OnGet(int productId)
         {
             ProductDetail = _productVMService.GetProduct(productId);
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             ViewData["returnUrl"] = HttpContext.Request.Host.Value;
         }
     }

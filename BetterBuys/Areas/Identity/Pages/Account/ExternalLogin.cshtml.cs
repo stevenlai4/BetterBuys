@@ -60,9 +60,9 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
 
-        public IActionResult OnGetAsync(int? categoryId)
+        public IActionResult OnGetAsync()
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
 
             return RedirectToPage("./Login");
         }

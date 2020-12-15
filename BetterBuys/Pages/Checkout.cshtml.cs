@@ -27,9 +27,9 @@ namespace BetterBuys.Pages.Checkout
         }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
         public ShoppingCart ShoppingCart { get; set; }
-        public void OnGet(int? categoryId)  
+        public void OnGet()
         {
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             int? cartId = HttpContext.Session.GetInt32("cartId");
             if (cartId != null)
                 ShoppingCart = _db.Carts
