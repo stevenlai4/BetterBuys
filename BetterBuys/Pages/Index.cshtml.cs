@@ -32,7 +32,7 @@ namespace BetterBuys.Pages
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string Filter { get; set; }
+        public string Sort { get; set; }
         public void OnGet(int? categoryId)
         {
             IsFiltering = categoryId != null ? true : false;
@@ -43,22 +43,25 @@ namespace BetterBuys.Pages
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          where p.Name.ToLower().Contains(SearchString.ToLower())
                                          select p).ToList();
-                IsFiltering = true;
+                IsFiltering = true;               
+                
             }
-            if (Filter == "lowToHigh")
+
+            if (Sort == "lowToHigh")
             {
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          orderby p.Price
                                          select p).ToList();
                 IsFiltering = true;
             }
-            else if (Filter == "highToLow")
+            else if (Sort == "highToLow")
             {
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          orderby p.Price descending
-                                         select p).ToList();                    
+                                         select p).ToList();
                 IsFiltering = true;
             }
+
         }
 
         public ShoppingCart Cart { get; set; }
