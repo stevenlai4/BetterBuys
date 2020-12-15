@@ -15,29 +15,35 @@
                 <form class="pr-lg-5 pb-5 pb-lg-0" method="post">
                     <h5>Shipping Address</h5>
                     <div class="input-control firstName mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.FirstName" name="firstName" id="firstName" placeholder="First Name" />
+                        <input type="text" asp-for="@Model.FirstName" name="firstName" id="firstName" placeholder="First Name" />
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                     </div>
                     <div class="input-control lastName mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.LastName" name="lastName" id="lastName" placeholder="Last Name" />
+                        <input type="text" asp-for="@Model.LastName" name="lastName" id="lastName" placeholder="Last Name" />
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                     </div>
                     <div class="input-control address mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Address" name="address" id="address" placeholder="Adress" />
+                        <input type="text" asp-for="@Model.Address" name="address" id="address" placeholder="Adress" />
+                        <span asp-validation-for="@Model.Address" class="text-danger"></span>
                     </div>
                     <div class="input-control apartment mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Apartment" name="apartment" id="apartment" placeholder="Apartment" />
+                        <input type="text" asp-for="@Model.Apartment" name="apartment" id="apartment" placeholder="Apartment" />
+                        <span asp-validation-for="@Model.Apartment" class="text-danger"></span>
                     </div>
                     <div class="input-control city mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.City" name="city" id="city" placeholder="City" />
+                        <input type="text" asp-for="@Model.City" name="city" id="city" placeholder="City" />
+                        <span asp-validation-for="@Model.City" class="text-danger"></span>
                     </div>
                     <div class="d-flex">
                         <div class="input-control country mb-3">
-                            <select asp-for="@Model.checkoutInfo.Country" name="country" class="countries" id="countryId">
+                            <select asp-for="@Model.Country" name="country" class="countries" id="countryId">
                                 <option value="">Select Country</option>
                                 <option value="Canada">Canada</option>
                             </select>
+                            <span asp-validation-for="@Model.Country" class="text-danger"></span>
                         </div>
                         <div class="input-control province mx-5 mb-3">
-                            <select asp-for="@Model.checkoutInfo.Province" name="province" class="provinces" id="provinceId">
+                            <select asp-for="@Model.Province" name="province" class="provinces" id="provinceId">
                                 <option value="">Select Province</option>
                                 <option value="AB">Alberta</option>
                                 <option value="BC">British Columbia</option>
@@ -53,29 +59,32 @@
                                 <option value="NU">Nunavut</option>
                                 <option value="YT">Yukon</option>
                             </select>
+                            <span asp-validation-for="@Model.Province" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="input-control postal mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.PostalCode" name="postalCode" id="postCode" placeholder="Postal Code" />
+                        <input type="text" asp-for="@Model.PostalCode" name="postalCode" id="postCode" placeholder="Postal Code" />
+                        <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
                     </div>
                     <div class="input-control phone mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.Phone" name="phone" id="phone" placeholder="Phone" />
+                        <input type="text" asp-for="@Model.Phone" name="phone" id="phone" placeholder="Phone" />
+                        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
                     </div>
                     <h5 class="mt-4">Payment Method</h5>
                     <div class="input-control name mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.CardHolderName" name="cardHolderName" id="name" placeholder="Cardholder Name" />
+                        <input type="text" asp-for="@Model.CardHolderName" name="cardHolderName" id="name" placeholder="Cardholder Name" />
+                        <span asp-validation-for="@Model.CardHolderName" class="text-danger"></span>
                     </div>
                     <div class="d-flex">
                         <div class="input-control number">
-                            <input type="text" asp-for="@Model.checkoutInfo.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
+                            <input type="text" asp-for="@Model.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
+                            <span asp-validation-for="@Model.CardNumber" class="text-danger"></span>
                         </div>
                         <div class="input-control expirationDate mx-5 mb-3">
-                            <input type="text" asp-for="@Model.checkoutInfo.ExpirationDate" name="expirationDate" id="expirationDate" placeholder="Expiration Date mm/yy" />
+                            <input type="text" asp-for="@Model.ExpirationDate" name="expirationDate" id="expirationDate" placeholder="Expiration Date mm/yy" />
+                            <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span>
                         </div>
                     </div>
-                    @*<div class="input-control cvw mb-3">
-                        <input type="text" asp-for="@Model.checkoutInfo.CVW" name="cvw" id="cvw" placeholder="CVW" />
-                    </div>*@
                     <div class="d-flex justify-content-between mt-2">
                         <input class="btn btn-primary" type="submit" value="COMPLETE PURCHASE" id="complete" />
                     </div>
