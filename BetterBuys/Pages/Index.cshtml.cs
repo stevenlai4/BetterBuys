@@ -41,7 +41,6 @@ namespace BetterBuys.Pages
                 };
                 IsFiltering = true;
             }
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
         }
     }
 }
