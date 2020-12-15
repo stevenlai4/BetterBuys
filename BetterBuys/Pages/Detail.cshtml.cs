@@ -57,11 +57,6 @@ namespace BetterBuys.Pages
                 _db.SaveChanges();
                 cartId = Cart.Id;
             }
-            else
-            {
-                Cart = _db.Carts.Where(c => c.Id == cartId).FirstOrDefault();
-                Cart.setBuyer(user == null ? null : user.Value);
-            }
 
             //update existing prod in existing cart
             CartProduct cp;
