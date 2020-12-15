@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using BetterBuys.Data;
@@ -18,6 +19,34 @@ namespace BetterBuys.Pages.Checkout
     //[Authorize]
     public class CheckoutModel : PageModel
     {
+        [BindProperty, Required]
+        public string FirstName { get; set; }
+        [BindProperty, Required]
+        public string LastName { get; set; }
+        [BindProperty, Required]
+        public string Address { get; set; }
+        public string Apartment { get; set; }
+        [BindProperty, Required]
+        public string City { get; set; }
+        [BindProperty, Required]
+        public string Country { get; set; }
+        [BindProperty, Required]
+        public string Province { get; set; }
+        [BindProperty, Required]
+        public string PostalCode { get; set; }
+        [Phone]
+        [BindProperty, Required]
+        public string Phone { get; set; }
+        //[StringLength(12)]
+        [BindProperty, Required]
+        public string CardNumber { get; set; }
+        //[StringLength(100, MinimumLength = 10)]
+        [BindProperty, Required]
+        public string CardHolderName { get; set; }
+        //[StringLength(100, MinimumLength = 10)]
+        [BindProperty, Required]
+        public string ExpirationDate { get; set; }
+
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
         public CheckoutModel(IProductVMService productVMService, StoreDbContext db)
@@ -39,18 +68,21 @@ namespace BetterBuys.Pages.Checkout
         }
 
         public CheckoutInfo checkoutInfo;
-        public async Task<IActionResult> OnPost(string firstName, string lastName, string address, string apartment, string city,
-                                                string country, string province, string postalCode, string phone,
-                                                string cardNumber, string cardHolderName, string expirationDate)
+        //public async Task<IActionResult> OnPost(string firstName, string lastName, string address, string apartment, string city,
+        //                                string country, string province, string postalCode, string phone,
+        //                                string cardNumber, string cardHolderName, string expirationDate)
+        public async Task<IActionResult> OnPost()
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+            checkoutInfo = new CheckoutInfo(HttpContext.Session.GetInt32("cartId"), FirstName, LastName, Address, Apartment, City,
+                             Country, Province, PostalCode, Phone, CardNumber, CardHolderName, ExpirationDate);
+
             if (!ModelState.IsValid)
             {
-                return RedirectToPage("Checkout");
+                return Page();
             }
             else
             {
-                checkoutInfo = new CheckoutInfo(HttpContext.Session.GetInt32("cartId"), firstName, lastName, address, apartment, city,
-                                             country, province, postalCode, phone, cardNumber, cardHolderName, expirationDate);
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
                 await _db.SaveChangesAsync();
                 HttpContext.Session.Remove("cartId");
