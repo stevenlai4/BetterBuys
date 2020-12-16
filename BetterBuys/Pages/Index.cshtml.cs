@@ -39,7 +39,7 @@ namespace BetterBuys.Pages
         [BindProperty(SupportsGet = true)]
         public string Sort { get; set; }
         public int? CategoryID { get; set; }
-        public void OnGet(int? categoryId)
+        public async Task OnGetAsync(int? categoryId)
         {
             CategoryID = categoryId;
             IsFiltering = categoryId != null ? true : false;
