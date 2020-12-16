@@ -19,12 +19,14 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginWith2faModel> _logger;
         private readonly IProductVMService _productVMService;
+        private readonly ILoginCartManagerService _loginCartManagerService;
 
-        public LoginWith2faModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWith2faModel> logger, IProductVMService productVMService)
+        public LoginWith2faModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWith2faModel> logger, IProductVMService productVMService, ILoginCartManagerService loginCartManagerService)
         {
             _signInManager = signInManager;
             _logger = logger;
             _productVMService = productVMService;
+            _loginCartManagerService = loginCartManagerService;
         }
 
         [BindProperty]
@@ -67,6 +69,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -87,6 +90,12 @@ namespace BetterBuys.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
+
+                if (user != null)
+                {
+                    await _loginCartManagerService.ManageCart(HttpContext, user.Id);
+                }
+
                 return LocalRedirect(returnUrl);
             }
             else if (result.IsLockedOut)

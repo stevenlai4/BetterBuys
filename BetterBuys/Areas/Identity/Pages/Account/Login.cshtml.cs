@@ -14,6 +14,10 @@ using Microsoft.Extensions.Logging;
 using GoogleReCaptcha.V3.Interface;
 using BetterBuys.ViewModels;
 using BetterBuys.Interfaces;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using BetterBuys.Data;
+using BetterBuys.Models;
 
 namespace BetterBuys.Areas.Identity.Pages.Account
 {
@@ -25,18 +29,21 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly ICaptchaValidator _captchaValidator;
         private readonly IProductVMService _productVMService;
+        private readonly ILoginCartManagerService _loginCartManagerService;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
             ICaptchaValidator captchaValidator,
-            IProductVMService productVMService)
+            IProductVMService productVMService,
+            ILoginCartManagerService loginCartManagerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _captchaValidator = captchaValidator;
             _productVMService = productVMService;
+            _loginCartManagerService = loginCartManagerService;
         }
 
         [BindProperty]
@@ -48,6 +55,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        public ShoppingCart Cart { get; set; }
 
         public class InputModel
         {
@@ -87,7 +96,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(int? categoryId, string captcha, string returnUrl = null)
         {
             ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
-            //var captchaData = await _captchaValidator.GetCaptchaResultDataAsync(captcha);
+
             if (!await _captchaValidator.IsCaptchaPassedAsync(captcha))
             {
                 ModelState.AddModelError("captcha", "Captcha validation failed");
@@ -104,6 +113,13 @@ namespace BetterBuys.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user != null)
+                    {
+                        await _loginCartManagerService.ManageCart(HttpContext, user.Id);
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

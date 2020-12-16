@@ -16,17 +16,20 @@ namespace BetterBuys.Models
         public virtual ICollection<CartProduct> CartProducts { get; set; }
         public virtual CheckoutInfo CheckoutInfo { get; set; }
 
-        //public ShoppingCart()
-        //{
-        //}
         public ShoppingCart(string buyerId)
         {
+            CreatedOn = DateTime.Now;
             BuyerId = buyerId;
         }
 
         public void setBuyer(string buyerId)
         {
             BuyerId = buyerId;
+        }
+
+        public void setStatus(int status)
+        {
+            Status = status;
         }
     }
 }

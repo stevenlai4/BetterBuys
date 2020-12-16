@@ -54,6 +54,7 @@ namespace BetterBuys
             });
 
             services.AddScoped<IProductVMService, ProductVMService>();
+            services.AddScoped<ILoginCartManagerService, LoginCartManagerService>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddSession();
             services.AddRazorPages();

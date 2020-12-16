@@ -13,14 +13,15 @@
                     {
                         <option value=@i selected>@i</option>
                     }
-                    <option value=@i>@i</option>
+                    else
+                    {
+                        <option value=@i>@i</option>
+                    }
                 }
             </select>
-            <p class="price">$@Model.Price</p>
+            <p class="price">$@string.Format("{0:n2}", Model.Price * Model.Quantity)</p>
 
             <button type="submit" asp-page-handler="Update" asp-route-productId="@Model.Id">Update</button>
-        </form>
-        <form method="post">
             <button type="submit" asp-page-handler="Delete" asp-route-productId="@Model.Id" onclick="return confirm('Comfirm to Delete this item.')">Delete</button>
         </form>
     </div>
