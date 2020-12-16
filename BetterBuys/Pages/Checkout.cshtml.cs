@@ -71,11 +71,13 @@ namespace BetterBuys.Pages.Checkout
         public async Task<IActionResult> OnPost()
         {
             ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
-            if (HttpContext.Session.GetInt32("cartId") != null)
+            int? cartId = HttpContext.Session.GetInt32("cartId");
+
+            if (cartId != null)
             {
                 productsInCart = (from p in ProductIndex.Products
                                   join cp in _db.CartProducts on p.Id equals cp.ProductId
-                                  where cp.CartId == (int)HttpContext.Session.GetInt32("cartId")
+                                  where cp.CartId == cartId
                                   select p).ToList();
             }
             checkoutInfo = new CheckoutInfo(HttpContext.Session.GetInt32("cartId"), FirstName, LastName, Address, Apartment, City,
@@ -88,6 +90,8 @@ namespace BetterBuys.Pages.Checkout
             else
             {
                 await _db.CheckoutInfos.AddAsync(checkoutInfo);
+                ShoppingCart cart = await _db.Carts.Where(c => c.Id == cartId).FirstOrDefaultAsync();
+                cart.setStatus(1);
                 await _db.SaveChangesAsync();
                 HttpContext.Session.Remove("cartId");
                 return RedirectToPage("Confirmation");
