@@ -57,6 +57,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostRemoveLoginAsync(string loginProvider, string providerKey)
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -77,6 +79,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostLinkLoginAsync(string provider)
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -88,6 +92,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetLinkLoginCallbackAsync()
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

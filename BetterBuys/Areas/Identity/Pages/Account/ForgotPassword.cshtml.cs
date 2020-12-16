@@ -48,6 +48,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
