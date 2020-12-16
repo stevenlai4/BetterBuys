@@ -33,11 +33,12 @@ namespace BetterBuys.Pages
         public string SearchString { get; set; }
         [BindProperty(SupportsGet = true)]
         public string Sort { get; set; }
+        public int? CategoryID { get; set; }
         public void OnGet(int? categoryId)
         {
-            
+            CategoryID = categoryId;
             IsFiltering = categoryId != null ? true : false;
-            ProductIndex = _productVMService.GetProductsVMFilteredSorted(categoryId, SearchString, Sort);
+            ProductIndex = _productVMService.GetProductsVMFilteredSorted(CategoryID, SearchString, Sort);
             if (!String.IsNullOrEmpty(SearchString) || !String.IsNullOrEmpty(Sort))
             {
                 IsFiltering = true;

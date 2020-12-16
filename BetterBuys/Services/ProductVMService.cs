@@ -88,7 +88,7 @@ namespace BetterBuys.Services
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
-            
+
 
             if (categoryId != null)
             {
@@ -97,9 +97,24 @@ namespace BetterBuys.Services
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
                             select p);
-               
             }
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = (from p in products
+                            where p.Name.ToLower().Contains(searchString.ToLower())
+                            orderby p.Price
+                            select p);
+            }
+
+
+            if (sortOption == "highToLow")
+            {
+
+                products = (from p in products
+                            orderby p.Price descending
+                            select p);
+            }
 
 
             VM.Products = products.Select(p => new ProductVM
@@ -115,32 +130,6 @@ namespace BetterBuys.Services
                 Name = c.Name
             }).ToList();
 
-
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                VM.Products = (from p in VM.Products
-                               where p.Name.ToLower().Contains(searchString.ToLower())
-                               select p).ToList();               
-
-            }
-
-            if (sortOption == "lowToHigh")
-            {
-
-                VM.Products = (from p in VM.Products
-                               orderby p.Price
-                               select p).ToList();
-            }
-            else if (sortOption == "highToLow")
-            {
-
-                VM.Products = (from p in VM.Products
-                               orderby p.Price descending
-                               select p).ToList();
-            }
-
-            
             return VM;
         }
     }

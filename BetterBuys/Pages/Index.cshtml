@@ -11,6 +11,8 @@
             <div class="col-9">
                 <form class="form-inline">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
+                    <input type="hidden" asp-for="CategoryID">
+                    <input type="hidden" asp-for="Sort">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
@@ -23,6 +25,8 @@
                         <option value="highToLow">High to Low</option>
                         }
                     </select>
+                    <input type="hidden" asp-for="CategoryID">
+                    <input type="hidden" asp-for="SearchString">
                 </form>                 
             </div>
         </div>
