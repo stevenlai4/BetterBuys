@@ -19,7 +19,6 @@ namespace BetterBuys.Services
         private readonly IBaseRepository<Category> _categoryRepo;
         private readonly StoreDbContext _db;
         public ProductIndexVM VM = new ProductIndexVM();
-        public IQueryable<Product> filteredProducts = new IQueryable<Product>();
         public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
         {
             _productRepo = productRepo;
@@ -73,7 +72,7 @@ namespace BetterBuys.Services
             return vm;
         }
 
-        public ProductVM GetProduct (int productId)
+        public ProductVM GetProduct(int productId)
         {
             Product product = _productRepo.GetOne(productId);
             ProductVM productVM = new ProductVM();
@@ -88,9 +87,9 @@ namespace BetterBuys.Services
         public ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption)
         {
             IQueryable<Product> products = _productRepo.GetAll();
-            IQueryable<Category> categories = _categoryRepo.GetAll();           
-            string lastAction;
-                      
+            IQueryable<Category> categories = _categoryRepo.GetAll();
+            
+
             if (categoryId != null)
             {
                 products = (from p in products
@@ -98,8 +97,7 @@ namespace BetterBuys.Services
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
                             select p);
-                lastAction = "filter";
-                filteredProducts = products;
+               
             }
 
 
@@ -116,32 +114,33 @@ namespace BetterBuys.Services
                 Id = c.Id,
                 Name = c.Name
             }).ToList();
-                
-            
+
+
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 VM.Products = (from p in VM.Products
-                            where p.Name.ToLower().Contains(searchString.ToLower())
-                            select p).ToList();
-                lastAction = "search";
-                
+                               where p.Name.ToLower().Contains(searchString.ToLower())
+                               select p).ToList();               
+
             }
 
             if (sortOption == "lowToHigh")
             {
+
                 VM.Products = (from p in VM.Products
-                                         orderby p.Price
-                                         select p).ToList();             
+                               orderby p.Price
+                               select p).ToList();
             }
             else if (sortOption == "highToLow")
             {
 
                 VM.Products = (from p in VM.Products
-                                         orderby p.Price descending
-                                         select p).ToList();            
+                               orderby p.Price descending
+                               select p).ToList();
             }
 
+            
             return VM;
         }
     }

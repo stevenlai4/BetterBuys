@@ -47,6 +47,12 @@ namespace BetterBuys
 
             services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
+
             services.AddScoped<IProductVMService, ProductVMService>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddSession();

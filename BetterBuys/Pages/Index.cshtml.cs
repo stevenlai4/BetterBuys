@@ -38,32 +38,10 @@ namespace BetterBuys.Pages
             
             IsFiltering = categoryId != null ? true : false;
             ProductIndex = _productVMService.GetProductsVMFilteredSorted(categoryId, SearchString, Sort);
-           
-            //if (!string.IsNullOrEmpty(SearchString))
-            //{
-            //    ProductIndex.Products = (from p in ProductIndex.Products
-            //                             where p.Name.ToLower().Contains(SearchString.ToLower())
-            //                             select p).ToList();
-            //    IsFiltering = true;           
-            //}
-
-            //if (Sort == "lowToHigh")
-            //{                
-            //    ProductIndex.Products = (from p in ProductIndex.Products
-            //                             orderby p.Price
-            //                             select p).ToList();
-            //    IsFiltering = true;
-            //}
-            //else if (Sort == "highToLow")
-            //{
-               
-            //    ProductIndex.Products = (from p in ProductIndex.Products
-            //                             orderby p.Price descending
-            //                             select p).ToList();
-            //    IsFiltering = true;
-            //}
-
-            
+            if (!String.IsNullOrEmpty(SearchString) || !String.IsNullOrEmpty(Sort))
+            {
+                IsFiltering = true;
+            }          
         }
 
         public ShoppingCart Cart { get; set; }
@@ -123,19 +101,5 @@ namespace BetterBuys.Pages
             return Page();
                        
         }
-
-        //public List<ProductVM> FilterSort(string filter, string sort)
-        //{
-        //    List<Product> Products = new List<Product>();
-        //    Products = _db.Products.ToList();
-        //    List<ProductVM> ProductsVM = new List<ProductVM>();
-        //    Products.Select(p => new ProductVM
-        //        {
-        //            Id = p.Id,
-        //            Name = p.Name,
-        //            Price = p.Price,
-        //            ImageUri = p.ImageUri,
-        //    return Products;
-        //}
     }
 }
