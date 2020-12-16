@@ -69,6 +69,7 @@ namespace BetterBuys.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
             if (!ModelState.IsValid)
             {
                 return Page();

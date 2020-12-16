@@ -84,6 +84,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -121,6 +123,8 @@ namespace BetterBuys.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
+            ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
