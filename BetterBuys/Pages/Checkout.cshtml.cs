@@ -34,17 +34,17 @@ namespace BetterBuys.Pages.Checkout
         public string Country { get; set; }
         [BindProperty, Required]
         public string Province { get; set; }
-        [BindProperty, Required, RegularExpression("^[ABCEGHJ-NPRSTVXY]{1}[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[ ]?[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[0-9]{1}$",
+        [BindProperty, Required, RegularExpression("^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[ ]?[0-9]{1}[a-zA-Z]{1}[0-9]{1}$",
         ErrorMessage = "Invalid Postal Code")]
         public string PostalCode { get; set; }
         [BindProperty, Required, Phone(ErrorMessage = "Invalid Phone Number")]
         public string Phone { get; set; }
         [BindProperty, Required, RegularExpression("^((?!(0))[0-9]{16})$", ErrorMessage = "Invalid Card Number")]
         public string CardNumber { get; set; }
-        [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Cardholder Name must contain at least 2 characters"),
+        [BindProperty, Required, RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "Cardholder Name must contain at least 2 characters"),
          MaxLength(50, ErrorMessage = "Cardholder Name must not exceed 50 characters")]
         public string CardHolderName { get; set; }
-        [BindProperty, Required, RegularExpression("^((0[1-9])|(1[0-2]))/((20[2-9][0-9])|(3000))$", ErrorMessage = "Invalid Expiration Date")]
+        [BindProperty, Required, RegularExpression("^((0[1-9])|(1[0-2]))/((2[0-9][2-9][0-9])|(3000))$", ErrorMessage = "Invalid Expiration Date")]
         public string ExpirationDate { get; set; }
 
         private readonly IProductVMService _productVMService;
