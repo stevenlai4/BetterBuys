@@ -6,6 +6,10 @@
 }
 
 <div>
+    @if (Model.warningMsg != "")
+    {
+        <b class="alert-danger quantity-alert">@Model.warningMsg</b>
+    }
     <div class="container-fluid">
         <div class="row">
             <div class="col-9">
@@ -16,7 +20,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
-            <div class="col-3">                
+            <div class="col-3">
                 <form>
                     <select class="form-control d-inline ml-2 form-inline" input type="text" name="sort" onchange="this.form.submit();">
                         {
@@ -27,7 +31,7 @@
                     </select>
                     <input type="hidden" asp-for="CategoryID">
                     <input type="hidden" asp-for="SearchString">
-                </form>                 
+                </form>
             </div>
         </div>
     </div>

@@ -117,6 +117,8 @@ namespace BetterBuys.Services
             }
 
 
+
+
             VM.Products = products.Select(p => new ProductVM
             {
                 Id = p.Id,
