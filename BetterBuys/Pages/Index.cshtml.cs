@@ -37,31 +37,31 @@ namespace BetterBuys.Pages
         {
             
             IsFiltering = categoryId != null ? true : false;
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+            ProductIndex = _productVMService.GetProductsVMFilteredSorted(categoryId, SearchString, Sort);
            
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                ProductIndex.Products = (from p in ProductIndex.Products
-                                         where p.Name.ToLower().Contains(SearchString.ToLower())
-                                         select p).ToList();
-                IsFiltering = true;           
-            }
+            //if (!string.IsNullOrEmpty(SearchString))
+            //{
+            //    ProductIndex.Products = (from p in ProductIndex.Products
+            //                             where p.Name.ToLower().Contains(SearchString.ToLower())
+            //                             select p).ToList();
+            //    IsFiltering = true;           
+            //}
 
-            if (Sort == "lowToHigh")
-            {                
-                ProductIndex.Products = (from p in ProductIndex.Products
-                                         orderby p.Price
-                                         select p).ToList();
-                IsFiltering = true;
-            }
-            else if (Sort == "highToLow")
-            {
+            //if (Sort == "lowToHigh")
+            //{                
+            //    ProductIndex.Products = (from p in ProductIndex.Products
+            //                             orderby p.Price
+            //                             select p).ToList();
+            //    IsFiltering = true;
+            //}
+            //else if (Sort == "highToLow")
+            //{
                
-                ProductIndex.Products = (from p in ProductIndex.Products
-                                         orderby p.Price descending
-                                         select p).ToList();
-                IsFiltering = true;
-            }
+            //    ProductIndex.Products = (from p in ProductIndex.Products
+            //                             orderby p.Price descending
+            //                             select p).ToList();
+            //    IsFiltering = true;
+            //}
 
             
         }
@@ -124,18 +124,18 @@ namespace BetterBuys.Pages
                        
         }
 
-        public List<ProductVM> FilterSort(string filter, string sort)
-        {
-            List<Product> Products = new List<Product>();
-            Products = _db.Products.ToList();
-            List<ProductVM> ProductsVM = new List<ProductVM>();
-            Products.Select(p => new ProductVM
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    ImageUri = p.ImageUri,
-            return Products;
-        }
+        //public List<ProductVM> FilterSort(string filter, string sort)
+        //{
+        //    List<Product> Products = new List<Product>();
+        //    Products = _db.Products.ToList();
+        //    List<ProductVM> ProductsVM = new List<ProductVM>();
+        //    Products.Select(p => new ProductVM
+        //        {
+        //            Id = p.Id,
+        //            Name = p.Name,
+        //            Price = p.Price,
+        //            ImageUri = p.ImageUri,
+        //    return Products;
+        //}
     }
 }

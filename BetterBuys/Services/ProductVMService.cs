@@ -18,7 +18,8 @@ namespace BetterBuys.Services
         private readonly IBaseRepository<Product> _productRepo;
         private readonly IBaseRepository<Category> _categoryRepo;
         private readonly StoreDbContext _db;
-
+        public ProductIndexVM VM = new ProductIndexVM();
+        public IQueryable<Product> filteredProducts = new IQueryable<Product>();
         public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
         {
             _productRepo = productRepo;
@@ -87,11 +88,9 @@ namespace BetterBuys.Services
         public ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption)
         {
             IQueryable<Product> products = _productRepo.GetAll();
-            IQueryable<Category> categories = _categoryRepo.GetAll();
-            
-            int total = 0;
-
-           
+            IQueryable<Category> categories = _categoryRepo.GetAll();           
+            string lastAction;
+                      
             if (categoryId != null)
             {
                 products = (from p in products
@@ -99,25 +98,51 @@ namespace BetterBuys.Services
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
                             select p);
+                lastAction = "filter";
+                filteredProducts = products;
             }
 
-            var vm = new ProductIndexVM()
+
+
+            VM.Products = products.Select(p => new ProductVM
             {
-                Products = products.Select(p => new ProductVM
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    ImageUri = p.ImageUri                   
-                }).ToList(),
-                Categories = categories.Select(c => new CategoryVM
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                }).ToList(),
-                TotalQuantity = total
-            };
-            return vm;
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUri = p.ImageUri
+            }).ToList();
+            VM.Categories = categories.Select(c => new CategoryVM
+            {
+                Id = c.Id,
+                Name = c.Name
+            }).ToList();
+                
+            
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                VM.Products = (from p in VM.Products
+                            where p.Name.ToLower().Contains(searchString.ToLower())
+                            select p).ToList();
+                lastAction = "search";
+                
+            }
+
+            if (sortOption == "lowToHigh")
+            {
+                VM.Products = (from p in VM.Products
+                                         orderby p.Price
+                                         select p).ToList();             
+            }
+            else if (sortOption == "highToLow")
+            {
+
+                VM.Products = (from p in VM.Products
+                                         orderby p.Price descending
+                                         select p).ToList();            
+            }
+
+            return VM;
         }
     }
 }
