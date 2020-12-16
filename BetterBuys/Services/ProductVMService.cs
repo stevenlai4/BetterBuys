@@ -102,8 +102,7 @@ namespace BetterBuys.Services
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = (from p in products
-                            where p.Name.ToLower().Contains(searchString.ToLower())
-                            orderby p.Price
+                            where p.Name.ToLower().Contains(searchString.ToLower())                            
                             select p);
             }
 
@@ -115,9 +114,14 @@ namespace BetterBuys.Services
                             orderby p.Price descending
                             select p);
             }
+            
+            if (sortOption == "lowToHigh")
+            {
 
-
-
+                products = (from p in products
+                            orderby p.Price 
+                            select p);
+            }
 
             VM.Products = products.Select(p => new ProductVM
             {
