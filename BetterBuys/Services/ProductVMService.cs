@@ -83,5 +83,41 @@ namespace BetterBuys.Services
 
             return productVM;
         }
+
+        public ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption)
+        {
+            IQueryable<Product> products = _productRepo.GetAll();
+            IQueryable<Category> categories = _categoryRepo.GetAll();
+            
+            int total = 0;
+
+           
+            if (categoryId != null)
+            {
+                products = (from p in products
+                            join pc in _db.ProductCategories on p.Id equals pc.ProductId
+                            join c in categories on pc.CategoryId equals c.Id
+                            where c.Id == categoryId
+                            select p);
+            }
+
+            var vm = new ProductIndexVM()
+            {
+                Products = products.Select(p => new ProductVM
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUri = p.ImageUri                   
+                }).ToList(),
+                Categories = categories.Select(c => new CategoryVM
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToList(),
+                TotalQuantity = total
+            };
+            return vm;
+        }
     }
 }

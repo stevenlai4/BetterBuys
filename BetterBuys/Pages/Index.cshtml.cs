@@ -17,7 +17,7 @@ namespace BetterBuys.Pages
     public class IndexModel : PageModel
     {
         private readonly IProductVMService _productVMService;
-        private readonly StoreDbContext _db;
+        public readonly StoreDbContext _db;
         Claim user;
 
         public IndexModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
@@ -35,20 +35,20 @@ namespace BetterBuys.Pages
         public string Sort { get; set; }
         public void OnGet(int? categoryId)
         {
+            
             IsFiltering = categoryId != null ? true : false;
-
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
+           
             if (!string.IsNullOrEmpty(SearchString))
             {
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          where p.Name.ToLower().Contains(SearchString.ToLower())
                                          select p).ToList();
-                IsFiltering = true;               
-                
+                IsFiltering = true;           
             }
 
             if (Sort == "lowToHigh")
-            {
+            {                
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          orderby p.Price
                                          select p).ToList();
@@ -56,12 +56,14 @@ namespace BetterBuys.Pages
             }
             else if (Sort == "highToLow")
             {
+               
                 ProductIndex.Products = (from p in ProductIndex.Products
                                          orderby p.Price descending
                                          select p).ToList();
                 IsFiltering = true;
             }
 
+            
         }
 
         public ShoppingCart Cart { get; set; }
@@ -119,6 +121,21 @@ namespace BetterBuys.Pages
             ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
 
             return Page();
+                       
+        }
+
+        public List<ProductVM> FilterSort(string filter, string sort)
+        {
+            List<Product> Products = new List<Product>();
+            Products = _db.Products.ToList();
+            List<ProductVM> ProductsVM = new List<ProductVM>();
+            Products.Select(p => new ProductVM
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUri = p.ImageUri,
+            return Products;
         }
     }
 }
