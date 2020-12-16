@@ -13,7 +13,10 @@
                     {
                         <option value=@i selected>@i</option>
                     }
-                    <option value=@i>@i</option>
+                    else
+                    {
+                        <option value=@i>@i</option>
+                    }
                 }
             </select>
             <p class="price">$@string.Format("{0:n2}", Model.Price * Model.Quantity)</p>
