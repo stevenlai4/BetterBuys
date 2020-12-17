@@ -84,10 +84,22 @@ namespace BetterBuys.Services
             return productVM;
         }
 
-        public ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption)
+        public ProductIndexVM GetProductsVMFilteredSorted(HttpContext context, int? categoryId, string searchString, string sortOption)
         {
             IQueryable<Product> products = _productRepo.GetAll();
             IQueryable<Category> categories = _categoryRepo.GetAll();
+
+            int? cartId = context.Session.GetInt32("cartId");
+
+            int total = 0;
+
+            if (cartId != null)
+            {
+                foreach (var p in products)
+                {
+                    total += (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault();
+                }
+            }
 
 
             if (categoryId != null)
@@ -128,13 +140,15 @@ namespace BetterBuys.Services
                 Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
-                ImageUri = p.ImageUri
+                ImageUri = p.ImageUri,
+                Quantity = cartId != null ? (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault() : 0
             }).ToList();
             VM.Categories = categories.Select(c => new CategoryVM
             {
                 Id = c.Id,
                 Name = c.Name
             }).ToList();
+            VM.TotalQuantity = total;
 
             return VM;
         }

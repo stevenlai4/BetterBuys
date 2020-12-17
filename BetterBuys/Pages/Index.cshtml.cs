@@ -52,7 +52,7 @@ namespace BetterBuys.Pages
                 await _loginCartManagerService.ManageCart(HttpContext, user.Value);
             }
 
-            ProductIndex = _productVMService.GetProductsVMFilteredSorted(CategoryID, SearchString, Sort);
+            ProductIndex = _productVMService.GetProductsVMFilteredSorted(HttpContext, CategoryID, SearchString, Sort);
             if (!String.IsNullOrEmpty(SearchString) || !String.IsNullOrEmpty(Sort))
             {
                 IsFiltering = true;
