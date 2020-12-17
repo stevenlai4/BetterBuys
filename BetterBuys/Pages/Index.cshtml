@@ -10,10 +10,31 @@
     {
         <b class="alert-danger quantity-alert">@Model.warningMsg</b>
     }
-    <form class="form-inline">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9">
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" asp-for="SearchString">
+                    <input type="hidden" asp-for="CategoryID">
+                    <input type="hidden" asp-for="Sort">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-3">
+                <form>
+                    <select class="form-control d-inline ml-2 form-inline" input type="text" name="sort" onchange="this.form.submit();">
+                        {
+                        <option selected disabled>Sort by Price</option>
+                        <option value="lowToHigh">Low to High</option>
+                        <option value="highToLow">High to Low</option>
+                        }
+                    </select>
+                    <input type="hidden" asp-for="CategoryID">
+                    <input type="hidden" asp-for="SearchString">
+                </form>
+            </div>
+        </div>
+    </div>
 
     @if (!Model.IsFiltering)
     {

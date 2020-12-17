@@ -36,8 +36,12 @@ namespace BetterBuys.Pages
         public ShoppingCart Cart { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string Sort { get; set; }
+        public int? CategoryID { get; set; }
         public async Task OnGetAsync(int? categoryId)
         {
+            CategoryID = categoryId;
             IsFiltering = categoryId != null ? true : false;
 
             int? cartId = HttpContext.Session.GetInt32("cartId");
@@ -48,20 +52,11 @@ namespace BetterBuys.Pages
                 await _loginCartManagerService.ManageCart(HttpContext, user.Value);
             }
 
-            ProductIndex = _productVMService.GetProductsVM(HttpContext, categoryId);
-
-            if (!string.IsNullOrEmpty(SearchString))
+            ProductIndex = _productVMService.GetProductsVMFilteredSorted(CategoryID, SearchString, Sort);
+            if (!String.IsNullOrEmpty(SearchString) || !String.IsNullOrEmpty(Sort))
             {
-                ProductIndex = new ProductIndexVM()
-                {
-                    Products = (from p in ProductIndex.Products
-                                where p.Name.ToLower().Contains(SearchString.ToLower())
-                                select p).ToList(),
-                    Categories = ProductIndex.Categories,
-                    TotalQuantity = ProductIndex.TotalQuantity
-                };
                 IsFiltering = true;
-            }
+            }          
         }
 
         // Add a product to the cart
