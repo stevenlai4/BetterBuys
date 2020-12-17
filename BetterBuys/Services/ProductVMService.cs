@@ -18,7 +18,7 @@ namespace BetterBuys.Services
         private readonly IBaseRepository<Product> _productRepo;
         private readonly IBaseRepository<Category> _categoryRepo;
         private readonly StoreDbContext _db;
-
+        public ProductIndexVM VM = new ProductIndexVM();
         public ProductVMService(IBaseRepository<Product> productRepo, IBaseRepository<Category> categoryRepo, StoreDbContext db)
         {
             _productRepo = productRepo;
@@ -72,7 +72,7 @@ namespace BetterBuys.Services
             return vm;
         }
 
-        public ProductVM GetProduct (int productId)
+        public ProductVM GetProduct(int productId)
         {
             Product product = _productRepo.GetOne(productId);
             ProductVM productVM = new ProductVM();
@@ -82,6 +82,61 @@ namespace BetterBuys.Services
             productVM.ImageUri = product.ImageUri;
 
             return productVM;
+        }
+
+        public ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption)
+        {
+            IQueryable<Product> products = _productRepo.GetAll();
+            IQueryable<Category> categories = _categoryRepo.GetAll();
+
+
+            if (categoryId != null)
+            {
+                products = (from p in products
+                            join pc in _db.ProductCategories on p.Id equals pc.ProductId
+                            join c in categories on pc.CategoryId equals c.Id
+                            where c.Id == categoryId
+                            select p);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = (from p in products
+                            where p.Name.ToLower().Contains(searchString.ToLower())                            
+                            select p);
+            }
+
+
+            if (sortOption == "highToLow")
+            {
+
+                products = (from p in products
+                            orderby p.Price descending
+                            select p);
+            }
+            
+            if (sortOption == "lowToHigh")
+            {
+
+                products = (from p in products
+                            orderby p.Price 
+                            select p);
+            }
+
+            VM.Products = products.Select(p => new ProductVM
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUri = p.ImageUri
+            }).ToList();
+            VM.Categories = categories.Select(c => new CategoryVM
+            {
+                Id = c.Id,
+                Name = c.Name
+            }).ToList();
+
+            return VM;
         }
     }
 }

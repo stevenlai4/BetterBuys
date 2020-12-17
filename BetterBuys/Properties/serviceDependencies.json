@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "mssql3": {
-      "type": "mssql",
-      "connectionId": "AuthConnection"
-    },
     "mssql2": {
       "type": "mssql",
       "connectionId": "StoreConnection"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "AuthConnection"
     }
   }
 }

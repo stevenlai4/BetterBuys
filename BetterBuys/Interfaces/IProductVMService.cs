@@ -13,5 +13,6 @@ namespace BetterBuys.Interfaces
     {
         ProductIndexVM GetProductsVM(HttpContext context, int? categoryId);
         ProductVM GetProduct(int productId);
+        ProductIndexVM GetProductsVMFilteredSorted(int? categoryId, string searchString, string sortOption);
     }
 }
