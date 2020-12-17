@@ -23,6 +23,7 @@ A simple app like amazon that sell variety of products - Razor
 -   Cart
 -   Checkout
 -   Shop - product page
+-   Product Detail 
 
 ### Non-functional
 
