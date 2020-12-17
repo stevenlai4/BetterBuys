@@ -1,8 +1,13 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 text-white bottom-nav">
-    <div class="container" id="main-nav">
-        @foreach (var item in Model.ProductIndex.Categories)
-        {
-            <a href="~/index?categoryId=@item.Id">@item.Name</a>
-        }
+﻿<nav class="navbar navbar-expand-lg navbar-light bottom-nav">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto">
+            @foreach (var item in Model.ProductIndex.Categories)
+            {
+                <li class="nav-item"><a href="~/index?categoryId=@item.Id">@item.Name</a></li>
+            }
+        </ul>
     </div>
 </nav>

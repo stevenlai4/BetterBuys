@@ -9,21 +9,16 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-light box-shadow mb-auto top-nav">
-            @*<div class="container">*@
+        <nav class="top-nav">
             <a class="navbar-brand" asp-area="" asp-page="/Index">
-                <img src="~/images/logo.png" alt="Logo" width="100" height="100" />
+                <img src="~/images/logo3.png" alt="Logo" />
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex">
-                <ul class="navbar-nav">
+            <div class="nav-icons">
+                <ul class="d-flex">
                     <partial name="_LoginPartial" />
                     <li class="nav-item">
-                        <a href="~/cart" class="nav-link text-white">
-                            <i class="fas fa-shopping-cart" style="font-size: 25px;"></i>
+                        <a href="~/cart" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
                             @if (Model.ProductIndex.TotalQuantity != 0)
                             {
                                 <span class="badge badge-danger" id="cartCount">@Model.ProductIndex.TotalQuantity</span>
@@ -31,13 +26,12 @@
                         </a>
                     </li>
                 </ul>
-                @*</div>*@
             </div>
         </nav>
         <partial name="_NavbarIndex" for="@Model" />
     </header>
 
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -5,18 +5,14 @@ for details on configuring this project to bundle and minify static web assets. 
 
 
 
-a.navbar-brand {
+/*a.navbar-brand {
     color: white !important;
     font-size: 35px !important;
     font-family: Bahnschrift;
-}
+}*/
 
-/*Style for the main nav*/
-.navbar {
-    overflow-x: hidden;
-}
 
-#main-nav a {
+/*#main-nav a {
     color: white;
     font-size: 25px;
     text-decoration: none;
@@ -50,9 +46,9 @@ a.navbar-brand {
 
 #accountlogo a {
     padding-left: 45rem;
-}
+}*/
 /* Provide sufficient contrast against white background */
-a {
+/*a {
     color: #0366d6;
 }
 
@@ -66,9 +62,135 @@ a {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
-}
+}*/
 
 /* Nav cart count */
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+
+/*.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}*/
+
+/*/////////////////// Global /////////////////////////*/
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    padding-left: 8%;
+    padding-right: 8%;
+    margin: 40px 0;
+}
+
+/* Navbar */
+.top-nav {
+    position: relative;
+    min-height: 60px;
+}
+
+    .top-nav > a {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+@media screen and (min-width: 767px) {
+    .top-nav > a {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.top-nav .nav-icons {
+    position: absolute;
+    align-self: center;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+    .top-nav .nav-icons ul {
+        margin: 0;
+        padding: 0;
+        justify-self: end;
+    }
+
+    .top-nav .nav-icons li {
+        list-style: none;
+    }
+
+    .top-nav .nav-icons a,
+    .top-nav .nav-icons button {
+        padding: 5px 15px 5px 5px;
+    }
+
+    .top-nav .nav-icons i,
+    .top-nav .nav-icons button {
+        color: black;
+        font-size: 25px;
+    }
+
+.bottom-nav .nav-item {
+    text-align: center;
+    padding: 15px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+    .bottom-nav .nav-item:not(:last-child) {
+        border-bottom: 1px solid lightgrey;
+    }
+
+    .bottom-nav .nav-item a {
+        font-size: 20px;
+        color: black;
+        font-weight: 400;
+    }
+
+@media screen and (min-width: 992px) {
+    .bottom-nav .nav-item {
+        width: auto;
+    }
+
+        .bottom-nav .nav-item:not(:last-child) {
+            border-bottom: none;
+        }
+}
+
 .badge {
     padding-left: 9px;
     padding-right: 9px;
@@ -86,59 +208,68 @@ a {
     margin-left: -10px;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.border-top {
-    border-top: 1px solid #e5e5e5;
-}
-
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 main {
     min-height: 100vh;
 }
 
+/* Footer */
 footer {
     justify-content: end;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 
-/* Styles for individual product page --------------------------------*/
+/*/////////////////// Home /////////////////////////*/
+.search {
+    width: 70%;
+}
 
+.price-filter {
+    width: 20%;
+}
+
+.carousel-item img {
+    width: 100% !important;
+}
+
+.product-item {
+    margin-bottom: 20px;
+}
+
+.product-item-img {
+    margin-bottom: 10px;
+}
+
+    .product-item-img img {
+        width: 100%;
+        transition: opacity 0.7s;
+    }
+
+        .product-item-img img:hover {
+            opacity: 0.5;
+        }
+
+.product-item-name {
+    margin: 0;
+}
+
+.product-item-add-btn {
+    text-transform: uppercase;
+    width: 100%;
+    color: #385678;
+    background-color: transparent;
+    border: 3px solid #385678;
+    font-weight: 500;
+    padding: 10px 0;
+    transition: all 0.8s;
+}
+
+    .product-item-add-btn:hover {
+        background-color: #385678;
+        color: white;
+    }
+
+/*/////////////////// Detail /////////////////////////*/
 .product-detail-body-link {
     text-align: end;
 }
