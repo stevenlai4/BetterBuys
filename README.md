@@ -55,6 +55,9 @@ A simple app like amazon that sell variety of products - Razor
 
 ![Checkout Page](https://i.imgur.com/RrEURm2.png)
 
+### Product Detail Page
+
+![Product Detail Page](https://i.imgur.com/9SjbVEl.png)
 ---
 
 ### ERD
