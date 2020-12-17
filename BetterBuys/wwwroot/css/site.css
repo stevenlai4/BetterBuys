@@ -4,8 +4,7 @@ for details on configuring this project to bundle and minify static web assets. 
 a.navbar-brand {
     color: white !important;
     font-size: 35px !important;
-    font-family:Bahnschrift;
-
+    font-family: Bahnschrift;
 }
 
 /*Style for the main nav*/
@@ -22,43 +21,44 @@ a.navbar-brand {
     float: left;
 }
 
-#main-nav a:hover {
-    color: #e74c3c;
-}
+    #main-nav a:hover {
+        color: #e74c3c;
+    }
 
-#main-nav a::before {
-    content: "";
-    transition: all 0.4s ease-in-out;
-    position: absolute;
-    right: 50%;
-    left: 50%;
-    bottom: 0;
-    height: 2px;
-    background-color: #e74c3c;
-    
-}
+    #main-nav a::before {
+        content: "";
+        transition: all 0.4s ease-in-out;
+        position: absolute;
+        right: 50%;
+        left: 50%;
+        bottom: 0;
+        height: 2px;
+        background-color: #e74c3c;
+    }
+
 .navbar-collapse i {
     font-size: 25px;
     padding-left: 25px;
 }
+
 #accountlogo a {
     padding-left: 45rem;
 }
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Nav cart count */
@@ -82,43 +82,48 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
+
 body {
     display: flex;
     flex-direction: column;
 }
+
 main {
     min-height: 100vh;
 }
+
 footer {
     justify-content: end;
     padding-top: 40px;
@@ -163,21 +168,149 @@ footer {
 
 .product-detail-button {
     padding-top: 50px;
-    padding-bottom:150px;
+    padding-bottom: 150px;
 }
 
 /*Styling for the footer*/
 
-#followcolumn i{
+#followcolumn i {
     font-size: 40px !important;
     color: white !important;
 }
 
-#contact .form-control{
+#contact .form-control {
     width: 100%;
 }
 
-#contact #submitform{
+#contact #submitform {
     height: 150px;
-    
+}
+
+/*/////////////////// Checkout /////////////////////////*/
+/*checkout form*/
+.input-control
+input,
+select {
+    width: 100%;
+    padding: 10px;
+}
+
+.checkout-subtitile {
+ 
+    color: #565656;
+}
+
+input,
+select {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.input-control {
+    margin-bottom: 6%;
+}
+
+.checkout-content-wrapper {
+    margin: 0 3%;
+}
+
+    .checkout-content-wrapper p {
+        color: #323232;
+    }
+
+.content-checkout {
+    overflow: hidden;
+}
+
+.bottom a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #323232;
+}
+
+.bottom-btn {
+    margin: 5% 0;
+    width: 100%;
+}
+
+/*order box*/
+.order-box {
+    background-color: #F5F5F5;
+    padding: 0 20px;
+}
+
+.discount-box,
+.checkout-subtotal,
+.checkout-delivery,
+.checkout-total
+ {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.checkout-subtitile-order {
+    text-align: center;
+    margin: 5% 0;
+    color: #565656;
+}
+
+.submit-btn,
+.add-btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    height: 45px;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 5% 0;
+}
+
+.checkout-product-img {
+    position: relative;
+    margin-right: 4%;
+}
+
+.checkout-quantity {
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    background-color: #385678;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+}
+
+.promo {
+    margin-bottom: 20px;
+}
+
+    .promo input {
+        margin-right: 8px;
+        border: 1px solid #D3D3D3;
+        width: 90%;
+    }
+
+.promo-btn {
+    width: 20%;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+.checkout-condition {
+    display: block;
+    text-align: center;
 }
