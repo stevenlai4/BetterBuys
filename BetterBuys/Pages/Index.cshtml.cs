@@ -101,7 +101,7 @@ namespace BetterBuys.Pages
                 }
                 else // Display alert for exactly 50
                 {
-                    warningMsg = product.Name + " already reaches highest quantity of 50!";
+                    warningMsg = "You have reach the quantity limit for " + product.Name + "!";
                 }
             }
 

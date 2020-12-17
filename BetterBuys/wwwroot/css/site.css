@@ -142,6 +142,13 @@ main {
 }
 
 /*/////////////////// Home /////////////////////////*/
+.index .quantity-alert {
+    text-align: center;
+    margin: 20px auto;
+    width: 45%;
+    font-weight: 500;
+}
+
 .search {
     width: 100%;
     margin-bottom: 10px;
@@ -589,6 +596,12 @@ select {
 }
 
 /*/////////////////// Product Detail /////////////////////////*/
+.detail .quantity-alert {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 500;
+}
+
 .product-detail-body-text .fa {
     color: #FFDF00 !important;
 }

@@ -1,12 +1,8 @@
 ﻿@page
 @model DetailModel
 
-<section>
+<section class="detail">
     <div class="wrapper product-detail">
-        @if (Model.warningMsg != "")
-        {
-            <b class="alert-danger quantity-alert">@Model.warningMsg</b>
-        }
         <div class="container">
             <div class="row product-detail-body">
                 <div class="col-lg-6">
@@ -38,6 +34,10 @@
                             <div class="add-to-cart">
                                 <input class="add-to-cart-btn" type="submit" value="Add to Cart" id="Add" />
                             </div>
+                            @if (Model.warningMsg != "")
+                            {
+                                <p class="alert-danger quantity-alert">@Model.warningMsg</p>
+                            }
                             <div class="product-detail-body-link">
                                 <a asp-page="index" class="product-detail-link">Continue Shopping</a>
                             </div>
