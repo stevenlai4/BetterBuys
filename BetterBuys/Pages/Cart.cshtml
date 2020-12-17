@@ -1,34 +1,34 @@
 ﻿@page
 @model BetterBuys.Pages.Cart.CartModel
 
-@{ 
+@{
     decimal total = Model.CalTotal(Model.productsInCart);
 }
 
-<h1 class="text-center mb-5">Shopping Cart</h1>
+@*<h1 class="text-center mb-5">Shopping Cart</h1>*@
 <section class="shopping-cart">
-    <a asp-page="index">Continue Shopping</a>
-    <div class="d-flex container justify-content-between">
-        @if (Model.productsInCart.Count == 0)
-        {
-            <div>
-                <p>Your Cart Is Empty...</p>
-            </div>
-        }
-        else
-        {
-            <div class="products">
+    @if (Model.productsInCart.Count == 0)
+    {
+        <div class="empty-cart">
+            <p>Your Cart Is Empty...</p>
+            <a class="cont-shipping" asp-page="index">Continue Shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex flex-wrap">
+            <div class="d-flex flex-column cart-items align-items-center">
                 @foreach (var item in Model.productsInCart)
                 {
                     <partial name="_CartProductPartial" for="@item" />
                 }
             </div>
-            <div class="checkout-container border border-dark pt-5 pl-4 pr-4">
-                <form class="promo mb-5" method="post">
+            <div class="cart-receipt-container sticky-top">
+                <form class="promo" method="post">
                     <label for="promo-code" class="form-label">Add a Discount Code</label>
                     <div class="d-flex">
-                        <input type="text" id="promo-code" class="col-form-control mr-2" />
-                        <button type="submit" class="btn btn-primary">Apply Promo Code</button>
+                        <input type="text" id="promo-code" class="col-form-control" />
+                        <button type="submit" class="promo-btn">Apply</button>
                     </div>
                 </form>
                 <div class="total text-center">
@@ -44,17 +44,18 @@
                         <p>$8.00</p>
                     </div>
                     <hr />
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between total-price">
                         <b>Total</b>
                         <p>$@string.Format("{0:n2}", total + 8)</p>
                     </div>
-                    <a class="btn btn-primary mb-4" asp-page="Checkout">Continue To Checkout</a>
+                    <button class="cont-to-checkout"><a asp-page="Checkout">Continue To Checkout</a></button>
                     <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>
                 </div>
             </div>
-        }
-    </div>
-    <div>
+        </div>
+    }
+
+    <div class="advertisement">
         <p>Advertisement</p>
     </div>
 </section>

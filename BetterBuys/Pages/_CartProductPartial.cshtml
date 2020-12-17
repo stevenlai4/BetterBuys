@@ -1,28 +1,36 @@
 ﻿@model BetterBuys.ViewModels.ProductVM
 
-<div class="product-item d-flex align-items-center">
-    <img src="@Model.ImageUri" width="300" />
-    <div>
-        <h5>@Model.Name</h5>
-        <form method="post">
-            <label for="quantity" class="col-form-label mr-2">Quantity</label>
-            <select class="form-select" id="quantity" name="quantity">
-                @for (int i = 1; i < 51; i++)
-                {
-                    @if (i == Model.Quantity)
+<div class="cart-item d-flex">
+    <div class="cart-img-container">
+        <img src="@Model.ImageUri" />
+    </div>
+    <div class="d-flex cart-content">
+        <form class="cart-form" method="post">
+            <h5>@Model.Name</h5>
+            <div class="cart-quantity-container">
+                <select class="form-select cart-quantity-list" id="quantity" name="quantity">
+                    @for (int i = 1; i < 51; i++)
                     {
-                        <option value=@i selected>@i</option>
+                        @if (i == Model.Quantity)
+                        {
+                            <option value=@i selected>@i</option>
+                        }
+                        else
+                        {
+                            <option value=@i>@i</option>
+                        }
                     }
-                    else
-                    {
-                        <option value=@i>@i</option>
-                    }
-                }
-            </select>
+                </select>
+                <button class="cart-update-btn" type="submit" asp-page-handler="Update" asp-route-productId="@Model.Id">Update</button>
+            </div>
             <p class="price">$@string.Format("{0:n2}", Model.Price * Model.Quantity)</p>
-
-            <button type="submit" asp-page-handler="Update" asp-route-productId="@Model.Id">Update</button>
-            <button type="submit" asp-page-handler="Delete" asp-route-productId="@Model.Id" onclick="return confirm('Comfirm to Delete this item.')">Delete</button>
+        </form>
+        <form class="cart-delete-form" method="post">
+            <button class="fas fa-times cart-item-delete"
+               type="submit"
+               asp-page-handler="Delete"
+               asp-route-productId="@Model.Id"
+               onclick="return confirm('Comfirm to Delete this item.')"></button>
         </form>
     </div>
 </div>
