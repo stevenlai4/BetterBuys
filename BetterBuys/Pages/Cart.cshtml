@@ -5,8 +5,7 @@
     decimal total = Model.CalTotal(Model.productsInCart);
 }
 
-@*<h1 class="text-center mb-5">Shopping Cart</h1>*@
-<section class="shopping-cart">
+<section class="shopping-cart wrapper">
     @if (Model.productsInCart.Count == 0)
     {
         <div class="empty-cart">

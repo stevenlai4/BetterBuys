@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BetterBuys.Pages.Checkout
 {
-    //[Authorize]
+    [Authorize]
     public class CheckoutModel : PageModel
     {
         [BindProperty, Required, RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only"), MinLength(2, ErrorMessage = "First Name must contain at least 2 characters"),
