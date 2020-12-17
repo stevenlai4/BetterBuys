@@ -23,7 +23,8 @@
                     <partial name="_CartProductPartial" for="@item" />
                 }
             </div>
-            <div class="cart-receipt-container sticky-top">
+            <div class="cart-receipt-container">
+
                 <form class="promo" method="post">
                     <label for="promo-code" class="form-label">Add a Discount Code</label>
                     <div class="d-flex">
@@ -48,7 +49,7 @@
                         <b>Total</b>
                         <p>$@string.Format("{0:n2}", total + 8)</p>
                     </div>
-                    <button class="cont-to-checkout"><a asp-page="Checkout">Continue To Checkout</a></button>
+                    <a class="cont-to-checkout" asp-page="Checkout">Continue To Checkout</a>
                     <small class="d-block">Prices and shipping costs are not confirmed until you've reached checkout</small>
                 </div>
             </div>
