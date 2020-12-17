@@ -79,11 +79,11 @@ namespace BetterBuys.Pages
                 }
                 else if(cp.Quantity == 50) // Display alert for exactly 50
                 {
-                    warningMsg = product.Name + " already reaches highest quantity of 50!";
+                    warningMsg = "You have reach the quantity limit!";
                 }
                 else // Display alert if the added quantity will exceed 50
                 {
-                    warningMsg = "Exceeding quantity limit of 50! You can only add " + (50 - cp.Quantity) + " more of " + product.Name + "!";
+                    warningMsg = "Reach quantity limit. You can add " + (50 - cp.Quantity) + " more of " + product.Name + "!";
                 }
             }
 
