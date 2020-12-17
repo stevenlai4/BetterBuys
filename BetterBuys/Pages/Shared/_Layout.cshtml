@@ -37,41 +37,51 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted bg-dark">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <aside id="followcolumn">
-                        <i class="fab fa-facebook-square"></i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <i class="fab fa-instagram"></i>&nbsp; &nbsp; &nbsp; &nbsp;
-                        <i class="fab fa-twitter-square"></i>&nbsp; &nbsp; &nbsp; &nbsp;
-                        <i class="fab fa-youtube"></i><br /><br />
-                        <i class="fas fa-map-marker-alt"><p style="font-size: 20px;">555 Seymore Stree, Vancouver, BC, Canada</p></i> <br />
-                        <i class="fas fa-phone-square"><p style="font-size: 20px;">+1-778-123-0012</p></i><br />
-                        <i class="fas fa-envelope"><p style="font-size:20px;">www.betterbuysca@hotmail.com</p></i>
-                    </aside>
-                </div>
-                <div class="col-lg-4">
-                    <h3 style="color:white;">BetterBuys</h3><br /><br /><br />
-                    <a href="#">About Us</a>&nbsp; &nbsp;
-                    <a href="#">Services</a>&nbsp; &nbsp;
-                    <a href="#">Careers</a>&nbsp; &nbsp;
-                    <a href="#">Get In Touch</a><br /><br />
-                    &copy; 2020 - BetterBuys
-                </div>
-                <div class="col-lg-4" id="contact">
-                    <h3 style="color:white;"> Contact Us</h3>
-                    <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Enter Email" />
-                    </form>
-                    <form class="form-inline" style="padding-top: 20px;">
-                        <textarea id="submitform" cols="50"></textarea>
-                    </form><br />
-                    <button class="btn btn-success" type="submit" id="footerbtn">Send Message</button>
+            <div class="footer-left">
+                <img src="~/images/footer-logo.png" alt="Footer logo" />
+                <div class="address-container">
+                    <p class="address">1289 Johnson Street</p>
+                    <p class="region">Vancouver, BC, V3L 1B6</p>
                 </div>
             </div>
-
-
+            <div class="footer-right">
+                <div class="subscription">
+                    <b>Get on the list</b>
+                    <p>Sign up for our newest products and discounts</p>
+                    <div class="sub-input-container">
+                        <input type="email" placeholder="Enter email address" />
+                        <button class="fas fa-arrow-right"></button>
+                    </div>
+                </div>
+                <div class="footer-other">
+                    <div class="contact">
+                        <b>Get in touch</b>
+                        <p class="hours">Mon - Fri: 8 am - 4 pm</p>
+                        <div class="phone">
+                            <i class="fas fa-phone-alt"></i><span>1.866.322.1255</span>
+                        </div>
+                        <div class="email">
+                            <i class="fas fa-envelope"></i><span>betterbuys@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="help">
+                        <b>Help</b>
+                        <a asp-page="">Shipping & Returns</a>
+                        <a asp-page="">Gift Cards</a>
+                        <a asp-page="">Exchanges</a>
+                        <a asp-page="">Care & Assembly</a>
+                    </div>
+                    <div class="about">
+                        <b>About</b>
+                        <a asp-page="">About Us</a>
+                        <a asp-page="">Partners</a>
+                        <a asp-page="">Presss</a>
+                        <a asp-page="">Careers</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
