@@ -1,6 +1,10 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/*/////////////////// Global /////////////////////////*/
+
+
+
 a.navbar-brand {
     color: white !important;
     font-size: 35px !important;
@@ -8,6 +12,9 @@ a.navbar-brand {
 }
 
 /*Style for the main nav*/
+.navbar {
+    overflow-x: hidden;
+}
 
 #main-nav a {
     color: white;
@@ -130,30 +137,6 @@ footer {
     padding-bottom: 40px;
 }
 
-/* Product */
-.product-item {
-    width: 21%;
-    margin: 2%;
-}
-
-@media screen and (max-width: 1200px) {
-    .product-item {
-        width: 29%;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .product-item {
-        width: 46%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .product-item {
-        width: 96%;
-    }
-}
-
 /* Styles for individual product page --------------------------------*/
 
 .product-detail-body-link {
@@ -186,11 +169,182 @@ footer {
     height: 150px;
 }
 
+/*/////////////////// Cart /////////////////////////*/
+/* Empty Cart */
+.empty-cart {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100px;
+}
+
+    .empty-cart p {
+        margin-bottom: 30px;
+    }
+
+.cont-shipping {
+    text-transform: uppercase;
+    border: 2.5px solid black;
+    padding: 10px;
+    margin-top: 20px;
+    color: black;
+}
+
+    .cont-shipping:hover {
+        color: white;
+        background-color: #343A40;
+        text-decoration: none;
+    }
+
+
+/*Cart Products*/
+.cart-items {
+    width: 100%;
+}
+
+@media screen and (min-width: 1025px) {
+    .cart-items {
+        width: 60%;
+        margin-right: 50px;
+    }
+}
+
+.cart-item {
+    margin-bottom: 15px;
+    padding: 15px 0;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+}
+
+.cart-img-container {
+    width: 30%;
+}
+
+    .cart-img-container img {
+        width: 100%;
+    }
+
+.cart-content {
+    width: 70%;
+}
+
+.cart-form {
+    width: 90%;
+    padding: 0 10px;
+}
+
+    .cart-form h5 {
+        margin-bottom: 15px;
+    }
+
+.cart-quantity-container {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.cart-quantity-list {
+    padding: 7px;
+    margin-right: 15px;
+    border: 1px solid #D3D3D3;
+    background-color: white;
+}
+
+.cart-update-btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 18px;
+}
+
+.cart-delete-form {
+    width: 10%;
+}
+
+.cart-item-delete {
+    background-color: transparent;
+    border: none;
+    top: 0px;
+    font-size: 20px;
+    color: lightgrey;
+    outline: none;
+}
+
+/* Receipt */
+.cart-receipt-container {
+    background-color: #fafafa;
+    padding: 15px;
+    width: 100%;
+    max-height: 420px;
+}
+
+@media screen and (min-width: 1025px) {
+    .cart-receipt-container {
+        width: 35%;
+    }
+}
+
+.promo {
+    margin-bottom: 20px;
+}
+
+    .promo input {
+        margin-right: 8px;
+        border: 1px solid #D3D3D3;
+        width: 80%;
+    }
+
+.promo-btn {
+    width: 20%;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.cart-receipt-container .total-price {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.cont-to-checkout {
+    display: block;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    width: 100%;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+}
+
+    .cont-to-checkout:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+
+    .cont-to-checkout a:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+/* Advertisement */
+.advertisement {
+    text-align: center;
+}
+
 /*/////////////////// Checkout /////////////////////////*/
 /*checkout form*/
-.input-control
-input,
-select {
+.input-control input,
+.input-control select {
     width: 100%;
     padding: 10px;
 }
