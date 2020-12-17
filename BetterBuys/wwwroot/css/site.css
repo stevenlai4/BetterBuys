@@ -196,7 +196,6 @@ select {
 }
 
 .checkout-subtitile {
- 
     color: #565656;
 }
 
@@ -230,9 +229,9 @@ select {
     color: #323232;
 }
 
-.bottom a:hover{
-    color: lightgray;
-}
+    .bottom a:hover {
+        color: lightgray;
+    }
 
 .bottom-btn {
     margin: 5% 0;
@@ -242,15 +241,14 @@ select {
 /*order box*/
 .order-box {
     background-color: #F5F5F5;
-    padding: 0 20px 20px 20px;
+    padding: 0 15px 15px 15px;
     height: 50%;
 }
 
 .discount-box,
 .checkout-subtotal,
 .checkout-delivery,
-.checkout-total
- {
+.checkout-total {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5%;
@@ -276,11 +274,6 @@ select {
     display: flex;
     justify-content: space-between;
     margin: 5% 0;
-}
-
-.checkout-product-img {
-    position: relative;
-    margin-right: 4%;
 }
 
 .checkout-product-quantity {
@@ -315,24 +308,33 @@ select {
     border-radius: 5px;
     padding: 10px 15px;
 }
+
 .checkout-condition {
     display: block;
     text-align: center;
 }
 
-.checkout-product-img{
-    width: 30%;
+.checkout-product-img {
+    position: relative;
+    width: 25%;
 }
 
-.checkout-product-img img{
-    width: 100%;
-}
+    .checkout-product-img img {
+        width: 100%;
+    }
 
 .checkout-product-name {
-    width: 60%;
+    width: 50%;
     text-align: center;
 }
 
+    .checkout-product-name p {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
 .checkout-product-price {
-    width: 10%
+    width: 15%;
 }

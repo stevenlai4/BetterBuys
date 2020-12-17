@@ -96,10 +96,10 @@
                 {
                     <div class="order-summary">
                         <div class="checkout-product-img">
-                            <img src="@item.ImageUri" width="100" />
+                            <img src="@item.ImageUri" width="80" />
                             <div class="checkout-product-quantity">@item.Quantity</div>
                         </div>
-                        <p class="checkout-product-name">@item.Name</p>
+                        <div class="checkout-product-name"><p>@item.Name</p></div>
                         <p class="checkout-product-price">$@string.Format("{0:n2}", item.Price * item.Quantity)</p>
                     </div>
                 }
