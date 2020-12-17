@@ -499,7 +499,7 @@ select {
 }
 
 /*/////////////////// Product Detail /////////////////////////*/
-.add-to-cart-btn {
+/*.add-to-cart-btn {
     text-transform: uppercase;
     color: white;
     background-color: #385678;
@@ -531,3 +531,4 @@ select {
 .product-detail-image {
     justify-content: center;
 }
+*/
