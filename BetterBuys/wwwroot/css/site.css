@@ -73,9 +73,15 @@ body {
 
     .top-nav .nav-icons i,
     .top-nav .nav-icons button {
-        color: black;
+        color: #385678;
         font-size: 25px;
+        transition: all 0.7s;
     }
+
+        .top-nav .nav-icons i:hover,
+        .top-nav .nav-icons button:hover {
+            color: #003366;
+        }
 
 .bottom-nav .nav-item {
     text-align: center;
@@ -596,24 +602,40 @@ select {
 /*/////////////////// Footer /////////////////////////*/
 footer {
     padding-top: 30px;
+    padding-bottom: 30px;
     border-top: 1px solid #d3d3d3;
 }
 
-@media screen and (min-width: 992px) {
-    footer {
+@media screen and (min-width: 1025px) {
+    footer > div {
         display: flex;
     }
 }
 
 .footer-left {
+    text-align: center;
     margin-bottom: 40px;
 }
 
-    .footer-left p {
-        margin-bottom: 5px;
-        margin-left: 15px;
-        color: #504f4f;
+.footer-logo {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .footer-logo {
+        width: 50%;
     }
+}
+
+@media screen and (min-width: 1025px) {
+    .footer-left {
+        width: 30%;
+    }
+
+    .footer-logo {
+        width: 90%;
+    }
+}
 
 .footer-right b {
     text-transform: uppercase;
@@ -649,10 +671,20 @@ footer {
         color: #373737;
     }
 
+.footer-other {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .contact {
     margin-left: 15px;
     margin-bottom: 40px;
+    width: 100%;
 }
+
+    .contact i {
+        margin-right: 10px;
+    }
 
 .hours {
     color: #504f4f;
@@ -662,25 +694,22 @@ footer {
     margin-bottom: 14px;
 }
 
-    .phone i, .email i {
-        margin-right: 10px;
-    }
-
     .phone span, .email span {
         color: #504f4f;
     }
 
-.footer-other {
-    display: flex;
-    flex-wrap: wrap;
+
+.address-container p {
+    margin-bottom: 5px;
+    color: #504f4f;
 }
 
-.contact {
-    width: 100%;
+.region {
+    padding-left: 23px;
 }
 
-.help {
-    margin-left: 15px;
+.about {
+    padding-left: 20px;
 }
 
 .help, .about {
@@ -693,3 +722,47 @@ footer {
         color: #504f4f;
         text-decoration: none;
     }
+
+@media screen and (min-width: 768px) {
+    .contact {
+        margin-bottom: 0;
+        margin-left: 15px;
+    }
+
+    .contact, .help, .about {
+        width: 30%;
+    }
+
+    .help, .about {
+        padding-left: 80px;
+    }
+
+    .address-container {
+        align-self: center;
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .contact {
+        margin-left: 0;
+    }
+
+    .subscription {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-other {
+        justify-content: center;
+    }
+
+    .footer-right {
+        width: 70%;
+        padding-left: 10%;
+    }
+
+    .help, .about {
+        padding-left: 50px;
+    }
+}
