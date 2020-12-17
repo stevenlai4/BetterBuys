@@ -7,61 +7,51 @@
         {
             <b class="alert-danger quantity-alert">@Model.warningMsg</b>
         }
-        <div class="row product-detail-body">
-            <div class="col-lg-6 col-sm-12 my-5">
-                <img src="@Model.ProductDetail.ImageUri" class="product-detail-image" />
-            </div>
-
-            <div class="col-lg-6 col-sm-12 product-detail-body-text">
-                <h4>@Model.ProductDetail.Name</h4>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half"></i>
-                <p>@Model.ProductDetail.Price.ToString("C")</p>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                    took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-                    including versions of Lorem Ipsum.
-                </p>
-
-
-                <form method="post">
-                    <div class="product-detail-button">
-                        <span>Quantity:</span>
-                        <select class="form-control d-inline w-75 ml-2" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
-                            @for (int i = 1; i <= 10; i++)
-                            {
-                                <option>@i</option>
-                            }
-                        </select>
-                        <input class="btn btn-primary d-block my-3 px-5 w-100" type="submit" value="Add to Cart" />
+        <div class="container">
+            <div class="row product-detail-body">
+                <div class="col-lg-6">
+                    <div class="product-img d-flex">
+                        <img src="@Model.ProductDetail.ImageUri" class="product-detail-image" />
                     </div>
-
-                    <input type="hidden" asp-for="@Model.ProductDetail.Id" name="id">
-                    <input type="hidden" asp-for="@Model.ProductDetail.Name" name="name">
-                    <input type="hidden" asp-for="@Model.ProductDetail.Price" name="price">
-                    <input type="hidden" asp-for="@Model.ProductDetail.ImageUri" name="pictureUri">
-                </form>
-
-                <div class="product-detail-body-link">
-                    <a asp-page="index" class="product-detail-link">Continue Shopping</a>
+                </div>
+                <div class="col-lg-6 product-detail-body-text">
+                    <h5>@Model.ProductDetail.Name</h5>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half"></i>
+                    <p>@Model.ProductDetail.Price.ToString("C")</p>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                        took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                        including versions of Lorem Ipsum.
+                    </p>
+                    <form method="post">
+                        <div class="product-detail-button">
+                            <div class="quantity">
+                                <select class="form-control" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
+                                    @for (int i = 1; i <= 10; i++)
+                                    {
+                                        <option>@i</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="add-to-cart">
+                                <input class="add-to-cart-btn" type="submit" value="Add to Cart" id="Add" />
+                            </div>
+                            <div class="product-detail-body-link">
+                                <a asp-page="index" class="product-detail-link">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <input type="hidden" asp-for="@Model.ProductDetail.Id" name="id">
+                        <input type="hidden" asp-for="@Model.ProductDetail.Name" name="name">
+                        <input type="hidden" asp-for="@Model.ProductDetail.Price" name="price">
+                        <input type="hidden" asp-for="@Model.ProductDetail.ImageUri" name="pictureUri">
+                    </form>
                 </div>
             </div>
         </div>
-
-        <div class="row product-detail-ad">
-            <div class="col-lg-12 my-5 ">
-                <p>Advertisement</p>
-            </div>
-        </div>
     </div>
-
-    <img />
-
-    <h6></h6>
-    <p></p>
-
 </section>
