@@ -139,7 +139,7 @@ footer {
 
 /* Styles for individual product page --------------------------------*/
 
-.product-detail-body-link {
+/*.product-detail-body-link {
     text-align: end;
 }
 
@@ -153,7 +153,7 @@ footer {
     padding-top: 50px;
     padding-bottom: 150px;
 }
-
+*/
 /*Styling for the footer*/
 
 #followcolumn i {
@@ -424,11 +424,16 @@ select {
     height: 45px;
 }
 
-.order-summary {
-    display: flex;
-    justify-content: space-between;
-    margin: 5% 0;
-}
+    .submit-btn:hover {
+        background-color: #003366;
+        color: white;
+    }
+
+    .order-summary {
+        display: flex;
+        justify-content: space-between;
+        margin: 5% 0;
+    }
 
 .checkout-product-quantity {
     text-align: center;
@@ -491,4 +496,38 @@ select {
 
 .checkout-product-price {
     width: 15%;
+}
+
+/*/////////////////// Product Detail /////////////////////////*/
+.add-to-cart-btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5%;
+    width: 100%;
+}
+
+.product-detail-body-link a {
+    text-decoration: none;
+    color: #323232;
+}
+
+.product-detail-body-link:hover a {
+    color: lightgray;
+}
+
+.product-detail {
+    overflow: hidden;
+    margin: 5%;
+}
+
+.detail-add-to-cart {
+    margin: 5%;
+}
+
+.product-detail-image {
+    justify-content: center;
 }
