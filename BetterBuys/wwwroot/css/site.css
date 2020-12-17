@@ -237,22 +237,6 @@ main {
         color: white;
     }
 
-/*/////////////////// Detail /////////////////////////*/
-.product-detail-body-link {
-    text-align: end;
-}
-
-.product-detail-ad {
-    text-align: center;
-    padding-top: 150px;
-}
-
-
-.product-detail-button {
-    padding-top: 50px;
-    padding-bottom: 150px;
-}
-
 /*Styling for the footer*/
 
 #followcolumn i {
@@ -530,6 +514,11 @@ select {
     height: 45px;
 }
 
+    .submit-btn:hover {
+        background-color: #003366;
+        color: white;
+    }
+
 .order-summary {
     display: flex;
     justify-content: space-between;
@@ -599,10 +588,92 @@ select {
     width: 15%;
 }
 
+/*/////////////////// Product Detail /////////////////////////*/
+.product-detail-body-text .fa {
+    color: #FFDF00 !important;
+}
+
+.add-to-cart-btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+}
+
+    .add-to-cart-btn:hover {
+        background-color: #003366;
+        color: white;
+    }
+
+.add-to-cart {
+    margin-bottom: 8%;
+}
+
+.product-detail-body-link a {
+    text-decoration: none;
+    color: #323232;
+}
+
+.product-detail-body-link:hover a {
+    color: lightgray;
+}
+
+.product-detail {
+    overflow: hidden;
+    margin: 5%;
+}
+
+.detail-add-to-cart {
+    margin: 5%;
+}
+
+.product-img {
+    justify-content: center;
+}
+
+.product-detail-image {
+    width: 100%;
+}
+
+.product-detail-body-text {
+    margin: 20px 0;
+}
+
+.quantity {
+    margin-bottom: 8%;
+}
+
+    .quantity select {
+        width: 100%;
+    }
+
+.product-detail-body-link {
+    text-align: center;
+}
+
+.quantity {
+    margin: 8% 0 2% 0;
+    color: #323232
+}
+
+@media only screen and (min-width: 992px) {
+    .product-detail-body-text {
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .product-detail-body-text {
+        margin: 0;
+        padding-left: 5%
+    }
+}
+
 /*/////////////////// Footer /////////////////////////*/
 footer {
-    padding-top: 30px;
-    padding-bottom: 30px;
     border-top: 1px solid #d3d3d3;
 }
 
@@ -712,6 +783,10 @@ footer {
     padding-left: 20px;
 }
 
+.help {
+    margin-left: 15px;
+}
+
 .help, .about {
     width: 46%;
 }
@@ -735,6 +810,7 @@ footer {
 
     .help, .about {
         padding-left: 80px;
+        margin-left: 0;
     }
 
     .address-container {
