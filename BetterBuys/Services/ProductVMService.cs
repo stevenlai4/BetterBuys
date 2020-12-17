@@ -60,6 +60,7 @@ namespace BetterBuys.Services
                     Name = p.Name,
                     Price = p.Price,
                     ImageUri = p.ImageUri,
+                    Description = p.Description,
                     Quantity = cartId != null ? (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault() : 0
                 }).ToList(),
                 Categories = categories.Select(c => new CategoryVM
@@ -80,6 +81,7 @@ namespace BetterBuys.Services
             productVM.Name = product.Name;
             productVM.Price = product.Price;
             productVM.ImageUri = product.ImageUri;
+            productVM.Description = product.Description;
 
             return productVM;
         }
@@ -141,6 +143,7 @@ namespace BetterBuys.Services
                 Name = p.Name,
                 Price = p.Price,
                 ImageUri = p.ImageUri,
+                Description = p.Description,
                 Quantity = cartId != null ? (from cp in _db.CartProducts where cp.ProductId == p.Id && cp.CartId == cartId select cp.Quantity).FirstOrDefault() : 0
             }).ToList();
             VM.Categories = categories.Select(c => new CategoryVM
