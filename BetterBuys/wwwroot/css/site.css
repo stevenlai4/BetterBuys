@@ -89,7 +89,7 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -339,4 +339,157 @@ footer {
 /* Advertisement */
 .advertisement {
     text-align: center;
+}
+
+/*/////////////////// Checkout /////////////////////////*/
+/*checkout form*/
+.input-control
+input,
+select {
+    width: 100%;
+    padding: 10px;
+}
+
+.checkout-subtitile {
+    color: #565656;
+}
+
+input,
+select {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.input-control {
+    margin-bottom: 6%;
+}
+
+.checkout-content-wrapper {
+    margin: 0 3%;
+}
+
+    .checkout-content-wrapper p {
+        color: #323232;
+    }
+
+.content-checkout {
+    overflow: hidden;
+}
+
+.bottom a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #323232;
+}
+
+    .bottom a:hover {
+        color: lightgray;
+    }
+
+.bottom-btn {
+    margin: 5% 0;
+    width: 100%;
+}
+
+/*order box*/
+.order-box {
+    background-color: #F5F5F5;
+    padding: 0 15px 15px 15px;
+    height: 50%;
+}
+
+.discount-box,
+.checkout-subtotal,
+.checkout-delivery,
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.checkout-subtitile-order {
+    text-align: center;
+    margin: 5% 0;
+    color: #565656;
+}
+
+.submit-btn,
+.add-btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    height: 45px;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0;
+}
+
+.checkout-product-quantity {
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    background-color: #385678;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+}
+
+.promo {
+    margin-bottom: 20px;
+}
+
+    .promo input {
+        margin-right: 8px;
+        border: 1px solid #D3D3D3;
+        width: 90%;
+    }
+
+.promo-btn {
+    width: 20%;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #385678;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.checkout-condition {
+    display: block;
+    text-align: center;
+}
+
+.checkout-product-img {
+    position: relative;
+    width: 25%;
+}
+
+    .checkout-product-img img {
+        width: 100%;
+    }
+
+.checkout-product-name {
+    width: 50%;
+    text-align: center;
+}
+
+    .checkout-product-name p {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+.checkout-product-price {
+    width: 15%;
 }
