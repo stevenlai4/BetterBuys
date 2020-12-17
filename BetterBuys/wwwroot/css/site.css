@@ -343,9 +343,8 @@ footer {
 
 /*/////////////////// Checkout /////////////////////////*/
 /*checkout form*/
-.input-control
-input,
-select {
+.input-control input,
+.input-control select {
     width: 100%;
     padding: 10px;
 }
