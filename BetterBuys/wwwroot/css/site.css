@@ -135,13 +135,6 @@ main {
     min-height: 100vh;
 }
 
-/* Footer */
-footer {
-    justify-content: end;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
 /*/////////////////// Home /////////////////////////*/
 .search {
     width: 100%;
@@ -599,3 +592,104 @@ select {
 .checkout-product-price {
     width: 15%;
 }
+
+/*/////////////////// Footer /////////////////////////*/
+footer {
+    padding-top: 30px;
+    border-top: 1px solid #d3d3d3;
+}
+
+@media screen and (min-width: 992px) {
+    footer {
+        display: flex;
+    }
+}
+
+.footer-left {
+    margin-bottom: 40px;
+}
+
+    .footer-left p {
+        margin-bottom: 5px;
+        margin-left: 15px;
+        color: #504f4f;
+    }
+
+.footer-right b {
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.subscription {
+    margin-bottom: 40px;
+    margin-left: 15px;
+}
+
+.sub-input-container {
+    position: relative;
+    width: 90%;
+}
+
+    .sub-input-container input {
+        width: 100%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 10px;
+    }
+
+    .sub-input-container button {
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #373737;
+    }
+
+.contact {
+    margin-left: 15px;
+    margin-bottom: 40px;
+}
+
+.hours {
+    color: #504f4f;
+}
+
+.phone, .email {
+    margin-bottom: 14px;
+}
+
+    .phone i, .email i {
+        margin-right: 10px;
+    }
+
+    .phone span, .email span {
+        color: #504f4f;
+    }
+
+.footer-other {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact {
+    width: 100%;
+}
+
+.help {
+    margin-left: 15px;
+}
+
+.help, .about {
+    width: 46%;
+}
+
+    .help a, .about a {
+        display: block;
+        margin-bottom: 10px;
+        color: #504f4f;
+        text-decoration: none;
+    }
