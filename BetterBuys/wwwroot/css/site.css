@@ -842,3 +842,13 @@ footer {
         padding-left: 50px;
     }
 }
+
+/*/////////////////// Confirmation /////////////////////////*/
+.confirmation-content a{
+    text-decoration: none;
+    color: #323232;
+}
+
+.confirmation-content:hover a {
+    color: lightgray;
+}
