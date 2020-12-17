@@ -2,129 +2,130 @@
 @model BetterBuys.Pages.Checkout.CheckoutModel
 
 @{
-        decimal total = Model.CalTotal(Model.productsInCart);
+    decimal total = Model.CalTotal(Model.productsInCart);
 }
 
-<div class="wrapper content">
-    <h2 class="d-flex justify-content-center">Checkout</h2>
+<div class="checkout-content-wrapper">
     <div class="container content-checkout">
-        <a asp-page="cart">Return To Cart</a>
         <div class="row my-3">
             @*shipping address box*@
             <div class="col-lg-6">
-                <form class="pr-lg-5 pb-5 pb-lg-0" method="post">
-                    <h5>Shipping Address</h5>
-                    <div class="input-control firstName mb-3">
+                <form class="form pr-lg-5 pb-5 pb-lg-0" method="post">
+                    <h5 class="checkout-subtitile">Shipping Address</h5>
+                    <div class="input-control firstName">
                         <input type="text" asp-for="@Model.FirstName" name="firstName" id="firstName" placeholder="First Name" />
                         <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                     </div>
-                    <div class="input-control lastName mb-3">
+                    <div class="input-control lastName">
                         <input type="text" asp-for="@Model.LastName" name="lastName" id="lastName" placeholder="Last Name" />
                         <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                     </div>
-                    <div class="input-control address mb-3">
+                    <div class="input-control address">
                         <input type="text" asp-for="@Model.Address" name="address" id="address" placeholder="Adress" />
                         <span asp-validation-for="@Model.Address" class="text-danger"></span>
                     </div>
-                    <div class="input-control apartment mb-3">
-                        <input type="text" asp-for="@Model.Apartment" name="apartment" id="apartment" placeholder="Apartment" />
+                    <div class="input-control apartment">
+                        <input type="text" asp-for="@Model.Apartment" name="apartment" id="apartment" placeholder="Apartment (optional)" />
                         <span asp-validation-for="@Model.Apartment" class="text-danger"></span>
                     </div>
-                    <div class="input-control city mb-3">
+                    <div class="input-control city">
                         <input type="text" asp-for="@Model.City" name="city" id="city" placeholder="City" />
                         <span asp-validation-for="@Model.City" class="text-danger"></span>
                     </div>
-                    <div class="d-flex">
-                        <div class="input-control country mb-3">
-                            <select asp-for="@Model.Country" name="country" class="countries" id="countryId">
-                                <option value="">Select Country</option>
-                                <option value="Canada">Canada</option>
-                            </select>
-                            <span asp-validation-for="@Model.Country" class="text-danger"></span>
-                        </div>
-                        <div class="input-control province mx-5 mb-3">
-                            <select asp-for="@Model.Province" name="province" class="provinces" id="provinceId">
-                                <option value="">Select Province</option>
-                                <option value="AB">Alberta</option>
-                                <option value="BC">British Columbia</option>
-                                <option value="MB">Manitoba</option>
-                                <option value="NB">New Brunswick</option>
-                                <option value="NL">Newfoundland and Labrador</option>
-                                <option value="NS">Nova Scotia</option>
-                                <option value="ON">Ontario</option>
-                                <option value="PE">Prince Edward Island</option>
-                                <option value="QC">Quebec</option>
-                                <option value="SK">Saskatchewan</option>
-                                <option value="NT">Northwest Territories</option>
-                                <option value="NU">Nunavut</option>
-                                <option value="YT">Yukon</option>
-                            </select>
-                            <span asp-validation-for="@Model.Province" class="text-danger"></span>
-                        </div>
+                    @*<div class="d-flex">*@
+                    <div class="input-control country">
+                        <select asp-for="@Model.Country" name="country" class="countries" id="countryId">
+                            <option value="">Select Country</option>
+                            <option value="Canada">Canada</option>
+                        </select>
+                        <span asp-validation-for="@Model.Country" class="text-danger"></span>
                     </div>
-                    <div class="input-control postal mb-3">
+                    <div class="input-control province">
+                        <select asp-for="@Model.Province" name="province" class="provinces" id="provinceId">
+                            <option value="">Select Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                        <span asp-validation-for="@Model.Province" class="text-danger"></span>
+                    </div>
+                    @*</div>*@
+                    <div class="input-control postal">
                         <input type="text" asp-for="@Model.PostalCode" name="postalCode" id="postCode" placeholder="Postal Code" />
                         <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
                     </div>
-                    <div class="input-control phone mb-3">
+                    <div class="input-control phone">
                         <input type="text" asp-for="@Model.Phone" name="phone" id="phone" placeholder="Phone" />
                         <span asp-validation-for="@Model.Phone" class="text-danger"></span>
                     </div>
-                    <h5 class="mt-4">Payment Method</h5>
-                    <div class="input-control name mb-3">
+                    <h5 class="checkout-subtitile">Payment Method</h5>
+                    <div class="input-control name">
                         <input type="text" asp-for="@Model.CardHolderName" name="cardHolderName" id="name" placeholder="Cardholder Name" />
                         <span asp-validation-for="@Model.CardHolderName" class="text-danger"></span>
                     </div>
-                    <div class="d-flex">
-                        <div class="input-control number">
-                            <input type="text" asp-for="@Model.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
-                            <span asp-validation-for="@Model.CardNumber" class="text-danger"></span>
-                        </div>
-                        <div class="input-control expirationDate mx-5 mb-3">
-                            <input type="text" asp-for="@Model.ExpirationDate" name="expirationDate" id="expirationDate" placeholder="Expiration Date mm/yyyy" />
-                            <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span>
-                        </div>
+                    @*<div class="d-flex">*@
+                    <div class="input-control number">
+                        <input type="text" asp-for="@Model.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
+                        <span asp-validation-for="@Model.CardNumber" class="text-danger"></span>
                     </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <input class="btn btn-primary" type="submit" value="COMPLETE PURCHASE" id="complete" />
+                    <div class="input-control expirationDate">
+                        <input type="text" asp-for="@Model.ExpirationDate" name="expirationDate" id="expirationDate" placeholder="Expiration Date mm/yyyy" />
+                        <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span>
+                    </div>
+                    @*</div>*@
+                    <div class="bottom">
+                        <input class="btn btn-primary bottom-btn submit-btn" type="submit" value="COMPLETE PURCHASE" id="complete" />
+                        <a class="bottom-btn" asp-page="cart">RETURN TO CART</a>
                     </div>
                 </form>
             </div>
             @*order box*@
-            <div class="border border-secondary col-lg-6">
-                <h5 class="d-flex justify-content-center m-2">Your Order</h5>
+            <div class="order-box col-lg-6">
+                <h5 class="checkout-subtitile-order">Order Summary</h5>
                 @foreach (var item in Model.productsInCart)
                 {
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td><img src="@item.ImageUri" width="100" /></td>
-                                <td>@item.Name</td>
-                                <td>@item.Quantity</td>
-                                <td>$@string.Format("{0:n2}", item.Price)</td>
-                                <td>$@string.Format("{0:n2}", item.Price * item.Quantity)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="order-summary">
+                        <div class="checkout-product-img">
+                            <img src="@item.ImageUri" width="80" />
+                            <div class="checkout-product-quantity">@item.Quantity</div>
+                        </div>
+                        <div class="checkout-product-name"><p>@item.Name</p></div>
+                        <p class="checkout-product-price">$@string.Format("{0:n2}", item.Price * item.Quantity)</p>
+                    </div>
                 }
-                <p>Add a Discount Code</p>
-                <div class="d-flex justify-content-between my-2">
-                    <input type="text" id="discount" placeholder="Discount Code" />
-                    <input class="btn btn-primary" type="Submit" value="ADD" id="Add" />
+
+                <div class="order-detail">
+                    <form class="promo" method="post">
+                        <label for="promo-code" class="form-label">Add a Discount Code</label>
+                        <div class="discount-box d-flex">
+                            <input type="text" id="promo-code" class="col-form-control" />
+                            <button type="submit" class="promo-btn">Apply</button>
+                        </div>
+                    </form>
+                    <div class="checkout-subtotal">
+                        <p>Subtotal</p>
+                        <p> $@string.Format("{0:n2}", total)</p>
+                    </div>
+                    <div class="checkout-delivery">
+                        <p>Shipping</p>
+                        <p>$8.00</p>
+                    </div>
+                    <div class="checkout-total">
+                        <h5>Total</h5>
+                        <h5>$@string.Format("{0:n2}", total + 8)</h5>
+                    </div>
+                    <small class="checkout-condition">Price and shipping costs are not confirmed until you've reached checkout</small>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <p>Order Value</p>
-                    <p> $@string.Format("{0:n2}", total)</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <p>Delivery</p>
-                    <p>$8.00</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <h5>Total</h5>
-                    <h5>$@string.Format("{0:n2}", total + 8)</h5>
-                </div>
-                <p class="my-5">Price and shipping costs are not confirmed until you've reached checkout</p>
             </div>
         </div>
     </div>
