@@ -230,6 +230,10 @@ select {
     color: #323232;
 }
 
+.bottom a:hover{
+    color: lightgray;
+}
+
 .bottom-btn {
     margin: 5% 0;
     width: 100%;
@@ -238,7 +242,8 @@ select {
 /*order box*/
 .order-box {
     background-color: #F5F5F5;
-    padding: 0 20px;
+    padding: 0 20px 20px 20px;
+    height: 50%;
 }
 
 .discount-box,
@@ -269,7 +274,7 @@ select {
 
 .order-summary {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 5% 0;
 }
 
@@ -278,7 +283,7 @@ select {
     margin-right: 4%;
 }
 
-.checkout-quantity {
+.checkout-product-quantity {
     text-align: center;
     height: 25px;
     width: 25px;
@@ -313,4 +318,21 @@ select {
 .checkout-condition {
     display: block;
     text-align: center;
+}
+
+.checkout-product-img{
+    width: 30%;
+}
+
+.checkout-product-img img{
+    width: 100%;
+}
+
+.checkout-product-name {
+    width: 60%;
+    text-align: center;
+}
+
+.checkout-product-price {
+    width: 10%
 }
