@@ -22,7 +22,7 @@ namespace BetterBuys.Pages.Cart
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
 
-        public CartModel(IProductVMService productVMService, StoreDbContext db, IHttpContextAccessor httpContextAccessor)
+        public CartModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
             _db = db;
