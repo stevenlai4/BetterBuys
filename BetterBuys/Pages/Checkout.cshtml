@@ -6,7 +6,7 @@
 }
 
 <div class="checkout-content-wrapper">
-    <div class="container content-checkout">
+    <div class="wrapper content-checkout">
         <div class="row my-3">
             @*shipping address box*@
             <div class="col-lg-6">
@@ -73,7 +73,7 @@
                         <input type="text" asp-for="@Model.CardHolderName" name="cardHolderName" id="name" placeholder="Cardholder Name" />
                         <span asp-validation-for="@Model.CardHolderName" class="text-danger"></span>
                     </div>
-                    @*<div class="d-flex">*@
+         
                     <div class="input-control number">
                         <input type="text" asp-for="@Model.CardNumber" name="cardNumber" id="number" placeholder="Card Number" />
                         <span asp-validation-for="@Model.CardNumber" class="text-danger"></span>
@@ -105,13 +105,13 @@
                 }
 
                 <div class="order-detail">
-                    <form class="promo" method="post">
+                    <div class="promo" method="post">
                         <label for="promo-code" class="form-label">Add a Discount Code</label>
                         <div class="discount-box d-flex">
                             <input type="text" id="promo-code" class="col-form-control" />
-                            <button type="submit" class="promo-btn">Apply</button>
+                            <button class="promo-btn">Apply</button>
                         </div>
-                    </form>
+                    </div>
                     <div class="checkout-subtotal">
                         <p>Subtotal</p>
                         <p> $@string.Format("{0:n2}", total)</p>
