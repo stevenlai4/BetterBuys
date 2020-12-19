@@ -63,11 +63,6 @@
     </div>
 
     <div class="wrapper">
-        @if (Model.warningMsg != "")
-        {
-            <p class="alert-danger quantity-alert">@Model.warningMsg</p>
-        }
-
         <div class="row">
             @foreach (var product in Model.ProductIndex.Products)
             {
