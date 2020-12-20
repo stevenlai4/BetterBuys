@@ -321,8 +321,21 @@ main {
 
 .cart-form {
     width: 90%;
-    padding: 0 10px;
+    padding: 0 30px;
 }
+
+@media screen and (min-width: 768px) {
+    .cart-form {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .cart-form {
+        padding: 0 80px;
+    }
+}
+
 
     .cart-form h5 {
         margin-bottom: 15px;

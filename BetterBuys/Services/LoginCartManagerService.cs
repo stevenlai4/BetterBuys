@@ -38,8 +38,8 @@ namespace BetterBuys.Services
                 //If there is a cart in session, merge most recent unclosed cart with the current session
                 else
                 {
-                    IQueryable<CartProduct> oldCart;
-                    oldCart = _db.CartProducts.Where(cp => cp.CartId == userCartId);
+                    List<CartProduct> oldCart;
+                    oldCart = _db.CartProducts.Where(cp => cp.CartId == userCartId).ToList();
 
                     //Merge each item of the old cart to the cart in session
                     foreach (var cartItem in oldCart)

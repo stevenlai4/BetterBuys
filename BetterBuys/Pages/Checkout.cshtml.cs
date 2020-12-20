@@ -49,12 +49,14 @@ namespace BetterBuys.Pages.Checkout
 
         private readonly IProductVMService _productVMService;
         private readonly StoreDbContext _db;
+        
         public CheckoutModel(IProductVMService productVMService, StoreDbContext db)
         {
             _productVMService = productVMService;
             _db = db;
         }
         public ProductIndexVM ProductIndex { get; set; } = new ProductIndexVM();
+        public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
         public void OnGet()
         {
             ProductIndex = _productVMService.GetProductsVM(HttpContext, null);
@@ -97,7 +99,7 @@ namespace BetterBuys.Pages.Checkout
                 return RedirectToPage("Confirmation");
             }
         }
-        public List<ProductVM> productsInCart { get; set; } = new List<ProductVM>();
+        
 
         // Calculate total price before delivery fee
         public decimal CalTotal(List<ProductVM> productList)
