@@ -21,7 +21,7 @@
                     <p>
                         @Model.ProductDetail.Description
                     </p>
-                    <form asp-page="/cart" method="post">
+                    <form method="post">
                         <div class="product-detail-button">
                             <div class="quantity">
                                 <select class="form-control" input type="number" asp-for="@Model.ProductDetail.Quantity" name="quantity">
@@ -34,6 +34,10 @@
                             <div class="add-to-cart">
                                 <input class="add-to-cart-btn" type="submit" value="Add to Cart" id="Add" />
                             </div>
+                            @if (Model.warningMsg != "")
+                            {
+                                <p class="alert-danger quantity-alert">@Model.warningMsg</p>
+                            }
                             <div class="product-detail-body-link">
                                 <a asp-page="index" class="product-detail-link">Continue Shopping</a>
                             </div>

@@ -5,7 +5,7 @@
         <img src="@Model.ImageUri" alt="@Model.Name" />
     </a>
 </div>
-<form class="product-item-form" asp-page="/Cart" method="post">
+<form class="product-item-form" method="post">
     <div class="product-item-text">
         <p class="product-item-name">@Model.Name</p>
         <p class="product-item-price">$@string.Format("{0:n2}", Model.Price)</p>
