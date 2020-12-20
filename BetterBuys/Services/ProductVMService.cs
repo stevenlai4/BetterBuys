@@ -28,8 +28,8 @@ namespace BetterBuys.Services
 
         public ProductIndexVM GetProductsVM(HttpContext context, int? categoryId)
         {
-            IQueryable<Product> products = _productRepo.GetAll();
-            IQueryable<Category> categories = _categoryRepo.GetAll();
+            List<Product> products = _productRepo.GetAll().ToList();
+            List<Category> categories = _categoryRepo.GetAll().ToList();
 
             int? cartId = context.Session.GetInt32("cartId");
 
@@ -49,7 +49,7 @@ namespace BetterBuys.Services
                             join pc in _db.ProductCategories on p.Id equals pc.ProductId
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
-                            select p);
+                            select p).ToList();
             }
 
             var vm = new ProductIndexVM()
@@ -88,8 +88,8 @@ namespace BetterBuys.Services
 
         public ProductIndexVM GetProductsVMFilteredSorted(HttpContext context, int? categoryId, string searchString, string sortOption)
         {
-            IQueryable<Product> products = _productRepo.GetAll();
-            IQueryable<Category> categories = _categoryRepo.GetAll();
+            List<Product> products = _productRepo.GetAll().ToList();
+            List<Category> categories = _categoryRepo.GetAll().ToList();
 
             int? cartId = context.Session.GetInt32("cartId");
 
@@ -110,14 +110,14 @@ namespace BetterBuys.Services
                             join pc in _db.ProductCategories on p.Id equals pc.ProductId
                             join c in categories on pc.CategoryId equals c.Id
                             where c.Id == categoryId
-                            select p);
+                            select p).ToList();
             }
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = (from p in products
                             where p.Name.ToLower().Contains(searchString.ToLower())                            
-                            select p);
+                            select p).ToList();
             }
 
 
@@ -126,7 +126,7 @@ namespace BetterBuys.Services
 
                 products = (from p in products
                             orderby p.Price descending
-                            select p);
+                            select p).ToList();
             }
             
             if (sortOption == "lowToHigh")
@@ -134,7 +134,7 @@ namespace BetterBuys.Services
 
                 products = (from p in products
                             orderby p.Price 
-                            select p);
+                            select p).ToList();
             }
 
             VM.Products = products.Select(p => new ProductVM

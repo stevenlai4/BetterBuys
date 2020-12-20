@@ -1,17 +1,5 @@
 {
   "dependencies": {
-    "mssql2": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/betterbuysdbserver/databases/BetterBuys_db",
-      "type": "mssql.azure",
-      "connectionId": "StoreConnection",
-      "secretStore": "AzureAppSettings"
-    },
-    "mssql3": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/betterbuysdbserver/databases/BetterBuys_db",
-      "type": "mssql.azure",
-      "connectionId": "AuthConnection",
-      "secretStore": "AzureAppSettings"
-    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "DefaultConnection",
