@@ -337,9 +337,9 @@ main {
 }
 
 
-    .cart-form h5 {
-        margin-bottom: 15px;
-    }
+.cart-form h5 {
+    margin-bottom: 15px;
+}
 
 .cart-quantity-container {
     display: flex;
@@ -647,20 +647,11 @@ select {
     color: lightgray;
 }
 
-.product-detail {
-    overflow: hidden;
-    margin: 5%;
-}
-
 .detail-add-to-cart {
     margin: 5%;
 }
 
-.product-img {
-    justify-content: center;
-}
-
-.product-detail-image {
+.product-detail-img img {
     width: 100%;
 }
 
@@ -685,16 +676,19 @@ select {
     color: #323232
 }
 
-@media only screen and (min-width: 992px) {
-    .product-detail-body-text {
-        margin: 0;
+@media only screen and (min-width: 1025px) {
+    .product-detail-body {
+        display: flex;
     }
-}
 
-@media only screen and (min-width: 992px) {
+    .product-detail-img {
+        width: 40%;
+    }
+
     .product-detail-body-text {
+        width: 60%;
         margin: 0;
-        padding-left: 5%
+        padding-left: 5%;
     }
 }
 
@@ -703,8 +697,15 @@ footer {
     border-top: 1px solid #d3d3d3;
 }
 
+    footer .wrapper {
+        padding-left: 8%;
+        padding-right: 8%;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
 @media screen and (min-width: 1025px) {
-    footer > div {
+    footer .wrapper {
         display: flex;
     }
 }
@@ -869,8 +870,54 @@ footer {
     }
 }
 
+/* Copy Right & Social Media */
+.cr-social-container {
+    text-align: center;
+    border-top: 1px solid #d3d3d3;
+    padding: 20px 0;
+}
+
+.social-media {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    padding-left: 0;
+}
+
+    .social-media li {
+        list-style: none;
+    }
+
+    .social-media i {
+        font-size: 20px;
+        color: #504f4f;
+    }
+
+.copy-right {
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 1025px) {
+    .cr-social-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    .social-media {
+        width: 20%;
+        margin: 0;
+    }
+
+    .copy-right {
+        padding-left: 30px;
+    }
+}
+
 /*/////////////////// Confirmation /////////////////////////*/
-.confirmation-content a{
+.confirmation-content a {
     text-decoration: none;
     color: #323232;
 }
